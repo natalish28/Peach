@@ -6,6 +6,7 @@
 # in a VPC leaves network interfaces behind that Lambda releases on its own
 # schedule, so the delete can sit for a while on the security groups.
 set -euo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH:-}"
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 

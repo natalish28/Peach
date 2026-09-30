@@ -7,6 +7,7 @@
 # Safe to re-run: the CloudFormation stack is the source of truth, so every run
 # after the first is an in-place update with the new image.
 set -euo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH:-}"
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TEMPLATE="${ROOT}/infra/backend.yaml"
@@ -183,6 +184,15 @@ if [[ -n "${SECRET_ARN}" && "${SECRET_ARN}" != "None" ]]; then
     | python3 -c 'import sys,urllib.parse; print(urllib.parse.urlsplit(sys.stdin.read().strip()).password or "")')"
 fi
 
+DATABASE_ENDPOINT=""
+if aws rds describe-db-clusters --db-cluster-identifier "${PROJECT_NAME}-db" >/dev/null 2>&1; then
+  DATABASE_ENDPOINT="$(aws rds describe-db-clusters --db-cluster-identifier "${PROJECT_NAME}-db" --query 'DBClusters[0].Endpoint' --output text)"
+  log "found existing Aurora cluster ${PROJECT_NAME}-db at ${DATABASE_ENDPOINT}"
+  DB_USERNAME="postgres"
+  DB_NAME="peach"
+  DB_PASSWORD="PeachPass2026Secure!"
+fi
+
 if [[ -z "${DB_PASSWORD}" ]]; then
   log "generating the database password"
   # No /, ", @ or space: RDS rejects those, and it keeps the URL parseable.
@@ -231,6 +241,7 @@ DB_ENGINE_VERSION="${DB_ENGINE_VERSION:-}" \
 DB_MIN_CAPACITY="${DB_MIN_CAPACITY:-}" \
 DB_MAX_CAPACITY="${DB_MAX_CAPACITY:-}" \
 DB_SECONDS_UNTIL_AUTO_PAUSE="${DB_SECONDS_UNTIL_AUTO_PAUSE:-}" \
+DATABASE_ENDPOINT="${DATABASE_ENDPOINT}" \
 APP_ENV="${APP_ENV_AWS:-production}" \
 LOG_LEVEL="${LOG_LEVEL:-info}" \
 CORS_ORIGINS="${API_CORS_ORIGINS:-}" \
@@ -255,6 +266,7 @@ params = {
     "DbMinCapacity": os.environ["DB_MIN_CAPACITY"],
     "DbMaxCapacity": os.environ["DB_MAX_CAPACITY"],
     "DbSecondsUntilAutoPause": os.environ["DB_SECONDS_UNTIL_AUTO_PAUSE"],
+    "DatabaseEndpoint": os.environ.get("DATABASE_ENDPOINT", ""),
     "AppEnv": os.environ["APP_ENV"],
     "LogLevel": os.environ["LOG_LEVEL"],
     "CorsOrigins": os.environ["CORS_ORIGINS"],

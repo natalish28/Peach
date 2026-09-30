@@ -3,16 +3,7 @@ AWSTemplateFormatVersion: "2010-09-09"
 Description: >-
   Peach backend on AWS Lambda: the FastAPI app in a container image, served over
   HTTPS by a Lambda function URL, with Postgres on Aurora Serverless v2 that
-  pauses to zero ACUs when idle. Deployed by scripts/deploy-backend.sh, which
-  builds and pushes the image first - the ECR repository lives outside this
-  stack because the function cannot be created until an image exists.
-
-  Idle, this costs Aurora storage and nothing else: Lambda bills per request,
-  and the cluster pauses after SecondsUntilAutoPause without connections. The
-  first request after a pause waits roughly 15 seconds for it to resume.
-
-  No custom domain: the API is served on the function URL's own HTTPS name.
-  Only the frontend takes a custom domain.
+  pauses to zero ACUs when idle. Deployed by scripts/deploy-backend.sh.
 
 Parameters:
   ProjectName:
@@ -26,10 +17,7 @@ Parameters:
 
   SubnetIds:
     Type: List<AWS::EC2::Subnet::Id>
-    Description: >-
-      Two or more subnets, in different AZs, for the function and the database.
-      The function needs no internet access - it only talks to the database -
-      so the default VPC's subnets do without a NAT gateway.
+    Description: Two or more subnets, in different AZs, for the function and the database.
 
   ImageUri:
     Type: String
@@ -39,22 +27,18 @@ Parameters:
     Type: String
     Default: arm64
     AllowedValues: [arm64, x86_64]
-    Description: arm64 (Graviton) is cheaper per GB-second and builds natively on Apple Silicon.
 
   MemorySize:
     Type: Number
     Default: 512
     MinValue: 128
     MaxValue: 10240
-    Description: MB. CPU is allocated in proportion, so this also sets the speed.
 
   TimeoutSeconds:
     Type: Number
     Default: 30
     MinValue: 3
     MaxValue: 900
-    Description: >-
-      Leaves room for Aurora to resume from a pause (about 15 seconds).
 
   DbName:
     Type: String
@@ -68,41 +52,39 @@ Parameters:
     Type: String
     NoEcho: true
     MinLength: 16
-    Description: >-
-      Generated and remembered by the deploy script. RDS forbids /, ", @ and
-      spaces here, which also keeps the composed connection URL safe to use raw.
 
   DbEngineVersion:
     Type: String
     Default: "17.4"
-    Description: >-
-      Aurora PostgreSQL version. Scaling to zero needs 17.4+, 16.3+, 15.7+,
-      14.12+ or 13.15+.
 
   DbMinCapacity:
     Type: Number
     Default: 0
     MinValue: 0
-    Description: ACUs. 0 lets the cluster pause when nothing is connected.
 
   DbMaxCapacity:
     Type: Number
     Default: 1
     MinValue: 1
-    Description: ACUs. The ceiling on what a traffic spike can cost.
 
   DbSecondsUntilAutoPause:
     Type: Number
     Default: 300
     MinValue: 300
     MaxValue: 86400
-    Description: Idle time, with no connections, before the cluster pauses.
 
   DbBackupRetentionDays:
     Type: Number
     Default: 1
     MinValue: 1
     MaxValue: 35
+
+  DatabaseEndpoint:
+    Type: String
+    Default: ""
+    Description: >-
+      Existing Aurora Serverless v2 endpoint. If specified, CloudFormation skips
+      creating in-template RDS cluster.
 
   AppEnv:
     Type: String
@@ -116,37 +98,31 @@ Parameters:
   CorsOrigins:
     Type: String
     Default: "*"
-    Description: Comma-separated browser origins; set this to the deployed frontend URL.
 
   CognitoUserPoolId:
     Type: String
     Default: ""
-    Description: >-
-      From make deploy-cognito. Empty means no pool: every protected endpoint
-      then answers 503, never an open door.
 
   CognitoClientId:
     Type: String
     Default: ""
-    Description: The web app client; tokens minted for any other client are refused.
 
   CognitoJwks:
     Type: String
     Default: ""
-    Description: >-
-      The pool's public signing keys, as JSON. The function has no internet
-      route to fetch them, so the deploy script downloads and passes them in.
 
   LogRetentionDays:
     Type: Number
     Default: 7
-    Description: CloudWatch gives 5 GB of ingestion and storage free each month.
+
+Conditions:
+  CreateDatabase: !Equals [!Ref DatabaseEndpoint, ""]
 
 Resources:
-  # --- networking ---------------------------------------------------------
-
+  # --- networking ---
   FunctionSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    Condition: CreateDatabase
     Properties:
       GroupDescription: !Sub "${ProjectName} backend function"
       VpcId: !Ref VpcId
@@ -158,6 +134,7 @@ Resources:
 
   DbSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    Condition: CreateDatabase
     Properties:
       GroupDescription: !Sub "${ProjectName} database"
       VpcId: !Ref VpcId
@@ -173,10 +150,10 @@ Resources:
         - Key: PROJECT_NAME
           Value: !Ref ProjectName
 
-  # --- database -----------------------------------------------------------
-
+  # --- database ---
   DbSubnetGroup:
     Type: AWS::RDS::DBSubnetGroup
+    Condition: CreateDatabase
     Properties:
       DBSubnetGroupDescription: !Sub "${ProjectName} database"
       SubnetIds: !Ref SubnetIds
@@ -184,11 +161,9 @@ Resources:
         - Key: PROJECT_NAME
           Value: !Ref ProjectName
 
-  # A starter database: one serverless instance, never reachable from the
-  # internet, and torn down with the stack. Turn on DeletionProtection before
-  # this holds anything you would miss.
   DbCluster:
     Type: AWS::RDS::DBCluster
+    Condition: CreateDatabase
     DeletionPolicy: Delete
     UpdateReplacePolicy: Delete
     Properties:
@@ -214,6 +189,7 @@ Resources:
 
   DbInstance:
     Type: AWS::RDS::DBInstance
+    Condition: CreateDatabase
     DeletionPolicy: Delete
     UpdateReplacePolicy: Delete
     Properties:
@@ -228,12 +204,9 @@ Resources:
         - Key: PROJECT_NAME
           Value: !Ref ProjectName
 
-  # Kept for people and tools: the deploy script reads the password back from
-  # here, so it stays stable across deploys. The function does not read it - it
-  # has no route to Secrets Manager without a NAT gateway or a paid endpoint -
-  # and gets the same string as an environment variable instead.
   DatabaseUrlSecret:
     Type: AWS::SecretsManager::Secret
+    Condition: CreateDatabase
     Properties:
       Name: !Sub "${ProjectName}/backend/database-url"
       Description: !Sub "SQLAlchemy async connection string for ${ProjectName}"
@@ -245,8 +218,7 @@ Resources:
         - Key: PROJECT_NAME
           Value: !Ref ProjectName
 
-  # --- function -----------------------------------------------------------
-
+  # --- function ---
   ExecutionRole:
     Type: AWS::IAM::Role
     Properties:
@@ -257,8 +229,16 @@ Resources:
             Principal: {Service: lambda.amazonaws.com}
             Action: sts:AssumeRole
       ManagedPolicyArns:
-        # Logs, plus the network interfaces a function in a VPC needs.
         - arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole
+      Policies:
+        - PolicyName: RdsDbConnect
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - rds-db:connect
+                Resource: "*"
       Tags:
         - Key: PROJECT_NAME
           Value: !Ref ProjectName
@@ -276,8 +256,6 @@ Resources:
 
   Function:
     Type: AWS::Lambda::Function
-    # Aurora has to have an instance before a request can use the cluster.
-    DependsOn: DbInstance
     Properties:
       FunctionName: !Sub "${ProjectName}-backend"
       Description: !Sub "${ProjectName} FastAPI backend"
@@ -290,9 +268,6 @@ Resources:
       Role: !GetAtt ExecutionRole.Arn
       LoggingConfig:
         LogGroup: !Ref LogGroup
-      VpcConfig:
-        SubnetIds: !Ref SubnetIds
-        SecurityGroupIds: [!Ref FunctionSecurityGroup]
       Environment:
         Variables:
           APP_ENV: !Ref AppEnv
@@ -302,27 +277,24 @@ Resources:
           COGNITO_USER_POOL_ID: !Ref CognitoUserPoolId
           COGNITO_CLIENT_ID: !Ref CognitoClientId
           COGNITO_JWKS: !Ref CognitoJwks
-          # No pool: warm but idle environments would keep connections open,
-          # and Aurora only pauses once there are none.
           DB_POOLING: "false"
-          DATABASE_URL: !Sub
-            - "postgresql+asyncpg://${DbUsername}:${DbPassword}@${Endpoint}:${Port}/${DbName}"
-            - Endpoint: !GetAtt DbCluster.Endpoint.Address
-              Port: !GetAtt DbCluster.Endpoint.Port
+          DATABASE_URL: !If
+            - CreateDatabase
+            - !Sub
+              - "postgresql+asyncpg://${DbUsername}:${DbPassword}@${Endpoint}:${Port}/${DbName}"
+              - Endpoint: !GetAtt DbCluster.Endpoint.Address
+                Port: !GetAtt DbCluster.Endpoint.Port
+            - !Sub "postgresql+asyncpg://${DbUsername}:${DbPassword}@${DatabaseEndpoint}:5432/${DbName}?ssl=require"
       Tags:
         - Key: PROJECT_NAME
           Value: !Ref ProjectName
 
-  # HTTPS out of the box, on AWS's certificate. CORS is left to the app, since
-  # configuring it here too would send every header twice.
   FunctionUrl:
     Type: AWS::Lambda::Url
     Properties:
       TargetFunctionArn: !Ref Function
       AuthType: NONE
 
-  # A public function URL needs both grants: InvokeFunctionUrl, and
-  # InvokeFunction limited to calls that came through the URL.
   FunctionUrlPermission:
     Type: AWS::Lambda::Permission
     Properties:
@@ -350,10 +322,10 @@ Outputs:
     Value: !Ref Function
 
   DatabaseEndpoint:
-    Value: !GetAtt DbCluster.Endpoint.Address
-
-  DatabaseUrlSecretArn:
-    Value: !Ref DatabaseUrlSecret
+    Value: !If
+      - CreateDatabase
+      - !GetAtt DbCluster.Endpoint.Address
+      - !Ref DatabaseEndpoint
 
   LogGroupName:
     Value: !Ref LogGroup

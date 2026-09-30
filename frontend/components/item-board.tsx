@@ -183,9 +183,15 @@ export function ItemBoard() {
           <AlertTitle>Could not load tasks</AlertTitle>
           <AlertDescription className="flex items-center gap-4">
             <span>{(error as Error).message}</span>
-            <Button size="sm" variant="outline" onClick={() => refetch()}>
-              Retry
-            </Button>
+            {(error as Error).message.includes("signed out") ? (
+              <Button size="sm" variant="default" onClick={() => (window.location.href = "/")}>
+                Sign In
+              </Button>
+            ) : (
+              <Button size="sm" variant="outline" onClick={() => refetch()}>
+                Retry
+              </Button>
+            )}
           </AlertDescription>
         </Alert>
       )}

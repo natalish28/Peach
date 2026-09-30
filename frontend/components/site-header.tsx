@@ -54,7 +54,7 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {session && (
+        {session ? (
           <div className="ml-auto flex items-center gap-2">
             <span
               aria-hidden
@@ -75,6 +75,16 @@ export function SiteHeader() {
             >
               <LogOut data-icon="inline-start" className="size-4" />
               Log out
+            </Button>
+          </div>
+        ) : (
+          <div className="ml-auto flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => router.push("/")}
+            >
+              Sign in
             </Button>
           </div>
         )}

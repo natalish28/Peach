@@ -5,6 +5,7 @@
 # build time, not read at runtime - so this builds against BACKEND_URL from
 # .env, which scripts/deploy-backend.sh writes. Deploy the backend first.
 set -euo pipefail
+export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH:-}"
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TEMPLATE="${ROOT}/infra/frontend.yaml"
