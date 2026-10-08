@@ -17,6 +17,21 @@ Parameters:
     Default: "http://localhost:3000"
     Description: Allowed logout URLs.
 
+  GoogleClientId:
+    Type: String
+    Default: ""
+    Description: Google OAuth Client ID.
+    NoEcho: true
+
+  GoogleClientSecret:
+    Type: String
+    Default: ""
+    Description: Google OAuth Client Secret.
+    NoEcho: true
+
+Conditions:
+  HasGoogle: !Not [!Equals [!Ref GoogleClientId, ""]]
+
 Resources:
   UserPool:
     Type: AWS::Cognito::UserPool
@@ -45,8 +60,25 @@ Resources:
       UserPoolTags:
         PROJECT_NAME: !Ref ProjectName
 
+  GoogleIdentityProvider:
+    Type: AWS::Cognito::UserPoolIdentityProvider
+    Condition: HasGoogle
+    Properties:
+      UserPoolId: !Ref UserPool
+      ProviderName: Google
+      ProviderType: Google
+      ProviderDetails:
+        client_id: !Ref GoogleClientId
+        client_secret: !Ref GoogleClientSecret
+        authorize_scopes: "email profile openid"
+      AttributeMapping:
+        email: email
+        name: name
+
   UserPoolClient:
     Type: AWS::Cognito::UserPoolClient
+    DependsOn:
+      - GoogleIdentityProvider
     Properties:
       ClientName: !Sub "${ProjectName}-web-client"
       UserPoolId: !Ref UserPool
@@ -65,7 +97,11 @@ Resources:
       CallbackURLs: !Ref CallbackUrls
       LogoutURLs: !Ref LogoutUrls
       SupportedIdentityProviders:
-        - COGNITO
+        !If
+          - HasGoogle
+          - - COGNITO
+            - Google
+          - - COGNITO
 
   UserPoolDomain:
     Type: AWS::Cognito::UserPoolDomain

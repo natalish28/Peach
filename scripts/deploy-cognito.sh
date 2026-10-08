@@ -49,12 +49,36 @@ open(path, "w").write("\n".join(lines) + "\n")
 PY
 }
 
+CALLBACK_URLS="http://localhost:3000,http://localhost:3000/auth/callback"
+LOGOUT_URLS="http://localhost:3000"
+
+if [[ -n "${DOMAIN_NAME:-}" ]]; then
+  CALLBACK_URLS="${CALLBACK_URLS},https://${DOMAIN_NAME},https://${DOMAIN_NAME}/auth/callback"
+  LOGOUT_URLS="${LOGOUT_URLS},https://${DOMAIN_NAME}"
+fi
+
+PARAMS=(
+  ProjectName="${PROJECT_NAME}"
+  CallbackUrls="${CALLBACK_URLS}"
+  LogoutUrls="${LOGOUT_URLS}"
+)
+
+if [[ -n "${GOOGLE_CLIENT_ID:-}" && -n "${GOOGLE_CLIENT_SECRET:-}" ]]; then
+  PARAMS+=(
+    GoogleClientId="${GOOGLE_CLIENT_ID}"
+    GoogleClientSecret="${GOOGLE_CLIENT_SECRET}"
+  )
+  GOOGLE_ENABLED="true"
+else
+  GOOGLE_ENABLED="false"
+fi
+
 log "deploying Cognito stack ${STACK_NAME} in ${AWS_REGION}"
 
 aws cloudformation deploy \
   --stack-name "${STACK_NAME}" \
   --template-file "${TEMPLATE}" \
-  --parameter-overrides ProjectName="${PROJECT_NAME}" \
+  --parameter-overrides "${PARAMS[@]}" \
   --no-fail-on-empty-changeset \
   --tags "PROJECT_NAME=${PROJECT_NAME}"
 
@@ -71,7 +95,7 @@ env_set COGNITO_REGION "${AWS_REGION}"
 env_set COGNITO_USER_POOL_ID "${USER_POOL_ID}"
 env_set COGNITO_CLIENT_ID "${CLIENT_ID}"
 env_set COGNITO_DOMAIN "${DOMAIN}"
-env_set COGNITO_GOOGLE_ENABLED "false"
+env_set COGNITO_GOOGLE_ENABLED "${GOOGLE_ENABLED}"
 
 echo
 log "Cognito User Pool successfully deployed!"
@@ -79,5 +103,9 @@ echo "  COGNITO_REGION=${AWS_REGION}"
 echo "  COGNITO_USER_POOL_ID=${USER_POOL_ID}"
 echo "  COGNITO_CLIENT_ID=${CLIENT_ID}"
 echo "  COGNITO_DOMAIN=${DOMAIN}"
+echo "  COGNITO_GOOGLE_ENABLED=${GOOGLE_ENABLED}"
+if [[ "${GOOGLE_ENABLED}" == "true" ]]; then
+  echo "  Google OAuth Redirect URI: https://${DOMAIN}/oauth2/idpresponse"
+fi
 echo
-echo "Values written to .env. Next step: make deploy-backend"
+echo "Values written to .env."
