@@ -1,6 +1,9 @@
 COMPOSE := docker compose
 
-.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-cognito destroy-cognito deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role
+-include .env
+export
+
+.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-cognito destroy-cognito deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role deploy-reports report-now logs-reports
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -84,3 +87,28 @@ destroy-frontend: ## Delete the frontend stack (bucket + distribution)
 
 github-role: ## Create the IAM role GitHub Actions assumes to deploy (OIDC, no keys)
 	./scripts/github-role.sh
+
+deploy-reports: ## Deploy the event-driven weekly reports stack (S3, SQS, Scheduler, Lambdas)
+	./scripts/deploy-reports.sh
+
+report-now: ## Request an on-demand weekly report via SQS: make report-now [WEEK=2026-W41]
+	@unset AWS_PROFILE; \
+	QUEUE_URL="$$(aws cloudformation describe-stacks --region $${AWS_REGION:-us-east-1} --stack-name $${PROJECT_NAME:-peach}-reports --query "Stacks[0].Outputs[?OutputKey=='ReportRequestsQueueUrl'].OutputValue" --output text 2>/dev/null || true)"; \
+	if [ -z "$$QUEUE_URL" ] || [ "$$QUEUE_URL" = "None" ]; then \
+	  echo "Error: ReportRequestsQueueUrl not found. Run make deploy-reports first." >&2; exit 1; \
+	fi; \
+	TARGET_WEEK="$${WEEK:-$$(date -u -v-7d +%G-W%V 2>/dev/null || date -u -d '7 days ago' +%G-W%V 2>/dev/null || echo '2026-W41')}"; \
+	echo "Sending report request for week: $$TARGET_WEEK to $$QUEUE_URL"; \
+	aws sqs send-message \
+	  --region $${AWS_REGION:-us-east-1} \
+	  --queue-url "$$QUEUE_URL" \
+	  --message-body "{\"week\": \"$$TARGET_WEEK\", \"source\": \"sqs\"}"
+
+logs-reports: ## View recent logs from builder and mailer Lambda functions
+	@unset AWS_PROFILE; \
+	echo "=== Report Builder Logs ==="; \
+	aws --region $${AWS_REGION:-us-east-1} logs tail /aws/lambda/$${PROJECT_NAME:-peach}-report-builder --since 15m || true; \
+	echo "=== Report Mailer Logs ==="; \
+	aws --region $${AWS_REGION:-us-east-1} logs tail /aws/lambda/$${PROJECT_NAME:-peach}-report-mailer --since 15m || true
+
+

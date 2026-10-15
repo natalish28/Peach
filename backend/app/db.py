@@ -71,7 +71,8 @@ def create_engine() -> AsyncEngine:
             try:
                 import boto3
 
-                client = boto3.client("rds", region_name=settings.cognito_region)
+                region = getattr(settings, "cognito_region", None) or "us-east-1"
+                client = boto3.client("rds", region_name=region)
                 cparams["password"] = client.generate_db_auth_token(
                     DBHostname=cparams["host"],
                     Port=cparams.get("port", 5432),
