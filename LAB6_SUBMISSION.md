@@ -33,12 +33,12 @@ Deploy order: enable Claude in Bedrock (us-east-1) → set `BUDGET_EMAIL` in `.e
 
 ## 1. Commit
 
-_Link to the commit: fill in after committing._
+Commit: https://github.com/natalish28/Peach/commit/deeb064 (branch `lab6-agenda-parser`)
 
 ## 2. Screen recording
 
-_Record on the deployed app (≤45 s): paste → Parse → pre-filled form with "suggested" badges →
-correct one field → Save. Attach the GIF/MP4._
+Recorded on the deployed app (https://d1wt0wouypakka.cloudfront.net/agendas/): paste, Parse,
+pre-filled form with "suggested" badges, correct one field, Save. Attached separately.
 
 ## 3. Test table (Part 4, Step 5)
 
@@ -136,5 +136,4 @@ See `docs/architecture.md` (C4 level 2 with the parse and save arrows) and
 - Deployed: `peach-ai` (parser Lambda on Nova Lite, `agenda-v3`), updated `peach-backend` and
   `peach-frontend`. The parser URL answers 401 without a valid Cognito token.
 - Done on the deployed screen: parses logged by the Lambda (section 4), screen recording made.
-- **Still to do by the student:** the commit link and attaching the recording. Claude was not
-  measured (Free plan).
+- Claude was not measured (Free plan).
