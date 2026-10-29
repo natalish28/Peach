@@ -67,6 +67,8 @@ Resources:
   # =========================================================================
 
   S3Endpoint:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::EC2::VPCEndpoint
     Properties:
       VpcId: !Ref VpcId
@@ -75,6 +77,8 @@ Resources:
       RouteTableIds: !Ref RouteTableIds
 
   ReportsBucket:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::S3::Bucket
     DependsOn:
       - MailerPermissionForS3
@@ -110,6 +114,8 @@ Resources:
   # =========================================================================
 
   ReportRequestsDlq:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::SQS::Queue
     Properties:
       QueueName: !Sub "${ProjectName}-report-requests-dlq"
@@ -119,6 +125,8 @@ Resources:
           Value: !Ref ProjectName
 
   ReportRequestsQueue:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::SQS::Queue
     Properties:
       QueueName: !Sub "${ProjectName}-report-requests"
@@ -135,6 +143,8 @@ Resources:
   # =========================================================================
 
   BuilderExecutionRole:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -180,9 +190,9 @@ Resources:
           Value: !Ref ProjectName
 
   BuilderLogGroup:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Logs::LogGroup
-    DeletionPolicy: Delete
-    UpdateReplacePolicy: Delete
     Properties:
       LogGroupName: !Sub "/aws/lambda/${ProjectName}-report-builder"
       RetentionInDays: 7
@@ -191,6 +201,8 @@ Resources:
           Value: !Ref ProjectName
 
   BuilderFunction:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Sub "${ProjectName}-report-builder"
@@ -224,6 +236,8 @@ Resources:
           Value: !Ref ProjectName
 
   BuilderEventSourceMapping:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::EventSourceMapping
     Properties:
       BatchSize: 1
@@ -236,6 +250,8 @@ Resources:
   # =========================================================================
 
   SchedulerRole:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -260,6 +276,8 @@ Resources:
           Value: !Ref ProjectName
 
   WeeklyReportSchedule:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Scheduler::Schedule
     Properties:
       Name: !Sub "${ProjectName}-weekly-report"
@@ -278,6 +296,8 @@ Resources:
   # =========================================================================
 
   MailerExecutionRole:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -313,9 +333,9 @@ Resources:
           Value: !Ref ProjectName
 
   MailerLogGroup:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Logs::LogGroup
-    DeletionPolicy: Delete
-    UpdateReplacePolicy: Delete
     Properties:
       LogGroupName: !Sub "/aws/lambda/${ProjectName}-report-mailer"
       RetentionInDays: 7
@@ -324,6 +344,8 @@ Resources:
           Value: !Ref ProjectName
 
   MailerFunction:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Sub "${ProjectName}-report-mailer"
@@ -426,6 +448,8 @@ Resources:
           Value: !Ref ProjectName
 
   MailerPermissionForS3:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::Permission
     Properties:
       FunctionName: !Ref MailerFunction

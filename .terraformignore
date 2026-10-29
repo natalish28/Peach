@@ -1,0 +1,13 @@
+# What `terraform plan` uploads to HCP Terraform from this repository (the workspace's
+# working directory is infra/). Everything but infra/ is irrelevant to a run.
+.git/
+.env
+**/.terraform/
+**/node_modules/
+**/.venv/
+**/__pycache__/
+frontend/
+backend/
+docs/
+infra/bootstrap/
+infra/.build/

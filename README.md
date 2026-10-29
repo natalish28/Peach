@@ -377,16 +377,14 @@ The generated project was checked end to end:
 
 ## 11. Deploying the backend to AWS
 
-Sign-in comes first: `make deploy-cognito` creates the user pool, app client and hosted domain
-(`infra/cognito.yaml`) and writes `COGNITO_REGION`, `COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID`,
-`COGNITO_DOMAIN` and `COGNITO_GOOGLE_ENABLED` to `.env`, printing them as well. Compose passes
-them to both services, `make deploy-backend` fetches the pool's signing keys and hands them to the
-Lambda (it has no internet route to fetch them), and `make deploy-frontend` compiles the ids in.
-Re-run it after the first `make deploy-frontend` so the site's URL is allowed as an OAuth
-redirect. For Google, create an OAuth client in Google Cloud with the redirect URI the deploy
-prints, set `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` in `.env`, re-run `make deploy-cognito`,
-then rebuild the frontend so the button appears. `make destroy-cognito` deletes the pool and
-every account in it.
+Sign-in comes first, and it is Terraform now (see [section 12](#12-infrastructure-as-code-terraform)):
+`infra/auth.tf` defines the user pool, app client and hosted domain, and `make infra-env` writes
+`COGNITO_USER_POOL_ID`, `COGNITO_CLIENT_ID` and `COGNITO_DOMAIN` from its outputs to `.env`.
+Compose passes them to both services, `make deploy-backend` fetches the pool's signing keys and
+hands them to the Lambda (it has no internet route to fetch them), and `make deploy-frontend`
+compiles the ids in. The site's URL must be in `callback_urls` / `logout_urls`
+(`infra/terraform.tfvars`). For Google, create an OAuth client in Google Cloud and set
+`google_client_id` / `google_client_secret` as variables of the HCP Terraform workspace.
 
 Everything lives in **us-east-1**, and every resource carries a `PROJECT_NAME` tag.
 
@@ -582,3 +580,30 @@ Compose, Dockerfiles, tooling, tests scaffolding — stays as is.
 
 The deliberate gaps, left for later: authentication and authorization, multi-tenancy, background
 workers, and a CI path for the frontend deploy.
+
+## 12. Infrastructure as code (Terraform)
+
+Lab 7 moved the Cognito, reports and agenda-parser stacks from CloudFormation to Terraform
+(`infra/*.tf`; [ADR 0007](docs/adr/0007-terraform.md)). `backend.yaml`, `frontend.yaml` and
+`github-oidc.yaml` are still CloudFormation; Terraform reads the backend Lambda's settings with a
+data source.
+
+| | |
+| --- | --- |
+| State and runs | HCP Terraform workspace `peach-dev`, connected to this repository, working directory `infra` |
+| AWS access | OIDC dynamic credentials: a run assumes the IAM role `hcp-terraform-<org>`; no keys anywhere |
+| Pull request | speculative plan, shown as a check |
+| Merge to `main` | plan + apply in HCP Terraform |
+| Application code | unchanged: the GitHub Actions workflow and `make deploy-ai` / `make deploy-reports` push an image and call `update-function-code`; Terraform ignores `image_uri` |
+
+```bash
+make infra-init       # terraform init (after terraform login)
+make infra-fmt        # terraform fmt
+make infra-validate   # terraform validate, no AWS access needed
+make infra-plan       # speculative plan in HCP Terraform
+make infra-env        # write terraform outputs (Cognito ids, parser URL, ...) to .env
+```
+
+There is no `terraform apply` target on purpose: applies happen only in HCP Terraform, after a
+merge. Secrets (`google_client_secret`) and personal data (`budget_email`) are variables of the
+workspace, not files.

@@ -48,6 +48,8 @@ Parameters:
 
 Resources:
   ExecutionRole:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -73,9 +75,9 @@ Resources:
           Value: !Ref ProjectName
 
   LogGroup:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Logs::LogGroup
-    DeletionPolicy: Delete
-    UpdateReplacePolicy: Delete
     Properties:
       LogGroupName: !Sub "/aws/lambda/${ProjectName}-agenda-parser"
       RetentionInDays: !Ref LogRetentionDays
@@ -84,6 +86,8 @@ Resources:
           Value: !Ref ProjectName
 
   Function:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Sub "${ProjectName}-agenda-parser"
@@ -113,6 +117,8 @@ Resources:
           Value: !Ref ProjectName
 
   FunctionUrl:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::Url
     Properties:
       TargetFunctionArn: !Ref Function
@@ -124,6 +130,8 @@ Resources:
         MaxAge: 600
 
   FunctionUrlPermission:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::Permission
     Properties:
       FunctionName: !Ref Function
@@ -132,6 +140,8 @@ Resources:
       FunctionUrlAuthType: NONE
 
   FunctionUrlInvokePermission:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Lambda::Permission
     Properties:
       FunctionName: !Ref Function
@@ -140,6 +150,8 @@ Resources:
       InvokedViaFunctionUrl: true
 
   MonthlyBudget:
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
     Type: AWS::Budgets::Budget
     Properties:
       Budget:
