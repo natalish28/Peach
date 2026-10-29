@@ -1,14 +1,13 @@
-import json
 import logging
 from typing import Annotated
 
-import jwt
 from fastapi import Depends, HTTPException, Request, status
 from sqlalchemy import select
 
 from app.config import get_settings
 from app.db import SessionDep
 from app.models.user import User
+from app.security import verify_id_token
 
 logger = logging.getLogger(__name__)
 
@@ -42,42 +41,7 @@ async def current_user(
     token = auth_header[7:].strip()
 
     try:
-        if settings.cognito_jwks:
-            # Lambda execution in VPC: keys passed via environment
-            jwks_data = json.loads(settings.cognito_jwks)
-            signing_keys = {
-                key["kid"]: jwt.algorithms.RSAAlgorithm.from_jwk(json.dumps(key))
-                for key in jwks_data.get("keys", [])
-            }
-            unverified_header = jwt.get_unverified_header(token)
-            kid = unverified_header.get("kid")
-            if not kid or kid not in signing_keys:
-                raise ValueError("Key ID not found in JWKS")
-            key = signing_keys[kid]
-            payload = jwt.decode(
-                token,
-                key=key,
-                algorithms=["RS256"],
-                audience=settings.cognito_client_id,
-                issuer=settings.cognito_issuer,
-                options={"verify_exp": True},
-            )
-        else:
-            # Local / testing environment with internet access
-            jwks_client = jwt.PyJWKClient(f"{settings.cognito_issuer}/.well-known/jwks.json")
-            signing_key = jwks_client.get_signing_key_from_jwt(token)
-            payload = jwt.decode(
-                token,
-                signing_key.key,
-                algorithms=["RS256"],
-                audience=settings.cognito_client_id,
-                issuer=settings.cognito_issuer,
-                options={"verify_exp": True},
-            )
-
-        if payload.get("token_use") != "id":
-            raise ValueError("Token is not an ID token")
-
+        payload = verify_id_token(token, settings)
     except Exception as exc:
         logger.warning("Token verification failed: %s", exc)
         raise HTTPException(

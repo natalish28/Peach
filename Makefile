@@ -3,7 +3,7 @@ COMPOSE := docker compose
 -include .env
 export
 
-.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-cognito destroy-cognito deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role deploy-reports report-now logs-reports
+.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-cognito destroy-cognito deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role deploy-reports report-now logs-reports llm-hello parse deploy-ai logs-ai
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -112,3 +112,16 @@ logs-reports: ## View recent logs from builder and mailer Lambda functions
 	aws --region $${AWS_REGION:-us-east-1} logs tail /aws/lambda/$${PROJECT_NAME:-peach}-report-mailer --since 15m || true
 
 
+
+llm-hello: ## First Bedrock call from the laptop (Lab 6): answer, stop_reason, usage
+	cd backend && uv run python scripts/llm_hello.py
+
+parse: ## Run the agenda parser locally: make parse TEXT="Пн 10:00, синк..." [TZ=Europe/Kyiv]
+	@test -n "$(TEXT)" || { echo 'usage: make parse TEXT="..."' >&2; exit 1; }
+	cd backend && uv run python -m app.ai.agenda "$(TEXT)" $(TZ)
+
+deploy-ai: ## Deploy the agenda-parser Lambda + function URL + $5 budget (infra/ai.yml)
+	./scripts/deploy-ai.sh
+
+logs-ai: ## Tail the agenda parser's CloudWatch logs (one JSON line per parse)
+	aws logs tail /aws/lambda/$${PROJECT_NAME:-peach}-agenda-parser --follow --since 30m

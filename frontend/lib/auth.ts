@@ -5,12 +5,17 @@ const ACCESS_TOKEN_KEY = "peach_access_token";
 const REFRESH_TOKEN_KEY = "peach_refresh_token";
 
 const COGNITO_REGION = process.env.NEXT_PUBLIC_COGNITO_REGION || "us-east-1";
-const COGNITO_CLIENT_ID = process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID || "5f96rjbr4ctcqv1248m5tunj8o";
-const COGNITO_DOMAIN = process.env.NEXT_PUBLIC_COGNITO_DOMAIN || "peach-auth-757159686525.auth.us-east-1.amazoncognito.com";
-export const COGNITO_GOOGLE_ENABLED = process.env.NEXT_PUBLIC_COGNITO_GOOGLE_ENABLED === "true";
+const COGNITO_CLIENT_ID =
+  process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID || "5f96rjbr4ctcqv1248m5tunj8o";
+const COGNITO_DOMAIN =
+  process.env.NEXT_PUBLIC_COGNITO_DOMAIN ||
+  "peach-auth-757159686525.auth.us-east-1.amazoncognito.com";
+export const COGNITO_GOOGLE_ENABLED =
+  process.env.NEXT_PUBLIC_COGNITO_GOOGLE_ENABLED === "true";
 
 export function getRedirectUri(): string {
-  if (typeof window === "undefined") return "http://localhost:3000/auth/callback";
+  if (typeof window === "undefined")
+    return "http://localhost:3000/auth/callback";
   return `${window.location.origin}/auth/callback`;
 }
 
@@ -46,7 +51,11 @@ export async function exchangeCodeForTokens(code: string): Promise<void> {
 
   const data = await response.json();
   if (!response.ok) {
-    throw new Error(data.error_description || data.error || "Failed to exchange authorization code");
+    throw new Error(
+      data.error_description ||
+        data.error ||
+        "Failed to exchange authorization code",
+    );
   }
 
   if (data.id_token) {
@@ -93,15 +102,25 @@ export async function signIn(email: string, password: string): Promise<void> {
 
   if (data.AuthenticationResult) {
     localStorage.setItem(ID_TOKEN_KEY, data.AuthenticationResult.IdToken);
-    localStorage.setItem(ACCESS_TOKEN_KEY, data.AuthenticationResult.AccessToken);
+    localStorage.setItem(
+      ACCESS_TOKEN_KEY,
+      data.AuthenticationResult.AccessToken,
+    );
     localStorage.setItem("peach_auth_provider", "password");
     if (data.AuthenticationResult.RefreshToken) {
-      localStorage.setItem(REFRESH_TOKEN_KEY, data.AuthenticationResult.RefreshToken);
+      localStorage.setItem(
+        REFRESH_TOKEN_KEY,
+        data.AuthenticationResult.RefreshToken,
+      );
     }
   }
 }
 
-export async function signUp(email: string, password: string, name?: string): Promise<void> {
+export async function signUp(
+  email: string,
+  password: string,
+  name?: string,
+): Promise<void> {
   const endpoint = `https://cognito-idp.${COGNITO_REGION}.amazonaws.com/`;
   const attributes = [{ Name: "email", Value: email }];
   if (name) attributes.push({ Name: "name", Value: name });
@@ -126,7 +145,10 @@ export async function signUp(email: string, password: string, name?: string): Pr
   }
 }
 
-export async function confirmSignUp(email: string, code: string): Promise<void> {
+export async function confirmSignUp(
+  email: string,
+  code: string,
+): Promise<void> {
   const endpoint = `https://cognito-idp.${COGNITO_REGION}.amazonaws.com/`;
   const response = await fetch(endpoint, {
     method: "POST",
@@ -174,16 +196,23 @@ export function useSession(): SessionUser | null {
         atob(base64)
           .split("")
           .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
-          .join("")
+          .join(""),
       );
       const data = JSON.parse(jsonPayload);
       const identities = data.identities || [];
-      const hasGoogleIdentity = Array.isArray(identities) && identities.some(
-        (id: any) => id.providerName?.toLowerCase() === "google" || id.providerType?.toLowerCase() === "google"
-      );
+      const hasGoogleIdentity =
+        Array.isArray(identities) &&
+        identities.some(
+          (id: any) =>
+            id.providerName?.toLowerCase() === "google" ||
+            id.providerType?.toLowerCase() === "google",
+        );
       const username = String(data["cognito:username"] || "");
       const isGoogleUsername = username.toLowerCase().startsWith("google");
-      const localProvider = typeof window !== "undefined" ? localStorage.getItem("peach_auth_provider") : null;
+      const localProvider =
+        typeof window !== "undefined"
+          ? localStorage.getItem("peach_auth_provider")
+          : null;
 
       const provider: "google" | "password" =
         hasGoogleIdentity || isGoogleUsername || localProvider === "google"

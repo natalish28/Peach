@@ -33,6 +33,11 @@ class Settings(BaseSettings):
     # them; left empty elsewhere, and they are downloaded from the issuer.
     cognito_jwks: str = ""
 
+    # The agenda parser (Lab 6). The model ID is configuration, not code.
+    parser_model: str = "anthropic.claude-opus-5-5"
+    bedrock_region: str = "us-east-1"
+    parser_max_chars: int = 10_000
+
     @field_validator("cors_origins", mode="before")
     @classmethod
     def _split_origins(cls, value: object) -> object:

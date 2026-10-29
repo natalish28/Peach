@@ -4,6 +4,7 @@ import os
 import sys
 import urllib.parse
 from email.message import EmailMessage
+
 import boto3
 
 logger = logging.getLogger("report-mailer")
@@ -58,7 +59,8 @@ def handler(event, context):
         msg["From"] = from_email
         msg["To"] = to_email
         msg.set_content(
-            f"Hello,\n\nPlease find attached the weekly meeting/task report for {week_name}.\n\nBest regards,\nPeach Reports Automated System"
+            f"Hello,\n\nPlease find attached the weekly meeting/task report for {week_name}."
+            "\n\nBest regards,\nPeach Reports Automated System"
         )
         msg.add_attachment(
             csv_content,

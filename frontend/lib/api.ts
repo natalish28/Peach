@@ -96,6 +96,67 @@ export const itemInputSchema = z.object({
   status: itemStatusSchema,
 });
 
+export const agendaItemSchema = z.object({
+  topic: z.string(),
+  owner: z.string().nullable(),
+  minutes: z.number().int().nullable(),
+});
+
+export const actionItemSchema = z.object({
+  task: z.string(),
+  owner: z.string().nullable(),
+  due: z.string().nullable(),
+});
+
+/** What the parser Lambda returns, and what the API stores as ai_suggestion. */
+export const parsedAgendaSchema = z.object({
+  title: z.string().nullable().optional(),
+  starts_at: z.string().nullable().optional(),
+  duration_minutes: z.number().int().nullable().optional(),
+  items: z.array(agendaItemSchema.partial({ owner: true, minutes: true })),
+  action_items: z
+    .array(actionItemSchema.partial({ owner: true, due: true }))
+    .default([]),
+  language: z.string(),
+});
+
+export const aiSuggestionSchema = z.object({
+  agenda: parsedAgendaSchema,
+  model: z.string(),
+  prompt_version: z.string(),
+});
+
+export const agendaSchema = z.object({
+  id: z.string(),
+  title: z.string(),
+  starts_at: z.string().nullable(),
+  duration_minutes: z.number().int().nullable(),
+  items: z.array(agendaItemSchema.partial({ owner: true, minutes: true })),
+  action_items: z.array(actionItemSchema.partial({ owner: true, due: true })),
+  notes: z.string().nullable(),
+  ai_suggestion: aiSuggestionSchema.nullable(),
+  created_at: z.string(),
+});
+
+export const agendaListSchema = z.object({
+  agendas: z.array(agendaSchema),
+  total: z.number().int(),
+});
+
+export type ParsedAgenda = z.infer<typeof parsedAgendaSchema>;
+export type AiSuggestion = z.infer<typeof aiSuggestionSchema>;
+export type Agenda = z.infer<typeof agendaSchema>;
+
+export type AgendaInput = {
+  title: string;
+  starts_at?: string | null;
+  duration_minutes?: number | null;
+  items: { topic: string; owner?: string | null; minutes?: number | null }[];
+  action_items: { task: string; owner?: string | null; due?: string | null }[];
+  notes?: string | null;
+  ai_suggestion?: AiSuggestion | null;
+};
+
 export type ItemStatus = z.infer<typeof itemStatusSchema>;
 export type Item = z.infer<typeof itemSchema>;
 export type ItemList = z.infer<typeof itemListSchema>;
@@ -124,6 +185,14 @@ export const api = {
   updateItem: (id: string, payload: Partial<ItemInput>) =>
     request(`/api/v1/items/${id}`, itemSchema, {
       method: "PATCH",
+      body: JSON.stringify(payload),
+    }),
+
+  listAgendas: () => request("/api/v1/agendas?limit=20", agendaListSchema),
+
+  createAgenda: (payload: AgendaInput) =>
+    request("/api/v1/agendas", agendaSchema, {
+      method: "POST",
       body: JSON.stringify(payload),
     }),
 

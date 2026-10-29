@@ -1,7 +1,10 @@
+import logging
 from collections.abc import AsyncIterator
 from typing import Annotated
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 from fastapi import Depends
+from sqlalchemy import event
 from sqlalchemy.ext.asyncio import (
     AsyncEngine,
     AsyncSession,
@@ -17,9 +20,6 @@ from app.config import get_settings
 class Base(DeclarativeBase):
     """Declarative base shared by every ORM model."""
 
-
-import logging
-from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
 
 logger = logging.getLogger(__name__)
 
@@ -42,13 +42,12 @@ def resolve_database_url(url: str, region: str = "us-east-1") -> str:
             query = dict(parse_qsl(parsed.query))
             query["ssl"] = "require"
             netloc = f"{uname}:{token}@{parsed.hostname}:{port}"
-            return urlunsplit((parsed.scheme, netloc, parsed.path, urlencode(query), parsed.fragment))
+            return urlunsplit(
+                (parsed.scheme, netloc, parsed.path, urlencode(query), parsed.fragment)
+            )
         except Exception as exc:
             logger.warning("Could not generate RDS IAM auth token: %s", exc)
     return url
-
-
-from sqlalchemy import event
 
 
 def create_engine() -> AsyncEngine:
@@ -66,6 +65,7 @@ def create_engine() -> AsyncEngine:
     )
 
     if is_rds:
+
         @event.listens_for(eng.sync_engine, "do_connect")
         def rds_iam_connect(dialect, conn_rec, cargs, cparams):
             try:

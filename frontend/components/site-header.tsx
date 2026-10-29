@@ -11,6 +11,7 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "/home", label: "Home" },
   { href: "/items", label: "Board" },
+  { href: "/agendas", label: "Agendas" },
 ];
 
 export function SiteHeader() {
@@ -21,7 +22,10 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-14 w-full max-w-5xl items-center gap-6 px-4 sm:px-8">
-        <Link href={session ? "/home" : "/"} className="flex items-center gap-2">
+        <Link
+          href={session ? "/home" : "/"}
+          className="flex items-center gap-2"
+        >
           <span
             aria-hidden
             className="grid size-6 place-items-center rounded-md bg-foreground font-heading text-[13px] leading-none font-semibold text-background"

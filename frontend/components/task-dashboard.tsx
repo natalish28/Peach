@@ -18,7 +18,9 @@ export function TaskDashboard() {
 
   const items = data?.items ?? [];
   const todoCount = items.filter((i) => i.status === "todo").length;
-  const inProgressCount = items.filter((i) => i.status === "in_progress").length;
+  const inProgressCount = items.filter(
+    (i) => i.status === "in_progress",
+  ).length;
   const doneCount = items.filter((i) => i.status === "done").length;
   const total = items.length;
   const progressPct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
@@ -40,41 +42,67 @@ export function TaskDashboard() {
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Total Tasks</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Total Tasks
+            </CardTitle>
             <ListTodo className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            {isPending ? <Skeleton className="h-8 w-16" /> : <div className="text-2xl font-bold">{total}</div>}
+            {isPending ? (
+              <Skeleton className="h-8 w-16" />
+            ) : (
+              <div className="text-2xl font-bold">{total}</div>
+            )}
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">To Do</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              To Do
+            </CardTitle>
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            {isPending ? <Skeleton className="h-8 w-16" /> : <div className="text-2xl font-bold">{todoCount}</div>}
+            {isPending ? (
+              <Skeleton className="h-8 w-16" />
+            ) : (
+              <div className="text-2xl font-bold">{todoCount}</div>
+            )}
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">In Progress</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              In Progress
+            </CardTitle>
             <Clock className="h-4 w-4 text-yellow-500" />
           </CardHeader>
           <CardContent>
-            {isPending ? <Skeleton className="h-8 w-16" /> : <div className="text-2xl font-bold">{inProgressCount}</div>}
+            {isPending ? (
+              <Skeleton className="h-8 w-16" />
+            ) : (
+              <div className="text-2xl font-bold">{inProgressCount}</div>
+            )}
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium text-muted-foreground">Completed</CardTitle>
+            <CardTitle className="text-sm font-medium text-muted-foreground">
+              Completed
+            </CardTitle>
             <CheckCircle2 className="h-4 w-4 text-green-500" />
           </CardHeader>
           <CardContent>
-            {isPending ? <Skeleton className="h-8 w-16" /> : <div className="text-2xl font-bold">{doneCount} ({progressPct}%)</div>}
+            {isPending ? (
+              <Skeleton className="h-8 w-16" />
+            ) : (
+              <div className="text-2xl font-bold">
+                {doneCount} ({progressPct}%)
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
@@ -92,15 +120,25 @@ export function TaskDashboard() {
               </div>
             ) : items.length === 0 ? (
               <div className="py-6 text-center text-sm text-muted-foreground">
-                No tasks yet. <Link href="/items" className="text-primary underline">Create your first task on the board!</Link>
+                No tasks yet.{" "}
+                <Link href="/items" className="text-primary underline">
+                  Create your first task on the board!
+                </Link>
               </div>
             ) : (
               <div className="divide-y divide-border">
                 {items.slice(0, 5).map((item) => (
-                  <div key={item.id} className="flex items-center justify-between py-3">
+                  <div
+                    key={item.id}
+                    className="flex items-center justify-between py-3"
+                  >
                     <div>
                       <p className="font-medium">{item.name}</p>
-                      {item.description && <p className="text-xs text-muted-foreground">{item.description}</p>}
+                      {item.description && (
+                        <p className="text-xs text-muted-foreground">
+                          {item.description}
+                        </p>
+                      )}
                     </div>
                     <span className="rounded-full bg-secondary px-2.5 py-0.5 text-xs font-semibold capitalize">
                       {item.status.replace("_", " ")}

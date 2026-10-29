@@ -13,6 +13,8 @@ dependencies = [
     "pydantic-settings>=2.7",
     "mangum>=0.22.0",
     "pyjwt[crypto]>=2.10",
+    "anthropic[bedrock]>=0.70",
+    "tzdata>=2025.2",
 ]
 
 [dependency-groups]

@@ -116,11 +116,15 @@ export default function RootPage() {
           <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-xl bg-orange-100 text-2xl">
             🍑
           </div>
-          <CardTitle className="text-2xl font-bold tracking-tight">Peach Task Manager</CardTitle>
+          <CardTitle className="text-2xl font-bold tracking-tight">
+            Peach Task Manager
+          </CardTitle>
           <CardDescription>
-            {mode === "login" && "Sign in to manage your tasks with Amazon Cognito"}
+            {mode === "login" &&
+              "Sign in to manage your tasks with Amazon Cognito"}
             {mode === "signup" && "Create an account in Amazon Cognito"}
-            {mode === "confirm" && `Enter the verification code sent to ${email}`}
+            {mode === "confirm" &&
+              `Enter the verification code sent to ${email}`}
           </CardDescription>
         </CardHeader>
 
@@ -134,7 +138,9 @@ export default function RootPage() {
           {mode === "login" && (
             <form onSubmit={handleLogin} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-foreground">Email</label>
+                <label className="text-sm font-medium text-foreground">
+                  Email
+                </label>
                 <Input
                   type="email"
                   required
@@ -145,7 +151,9 @@ export default function RootPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-foreground">Password</label>
+                <label className="text-sm font-medium text-foreground">
+                  Password
+                </label>
                 <Input
                   type="password"
                   required
@@ -201,7 +209,9 @@ export default function RootPage() {
               )}
 
               <div className="relative my-4 text-center text-xs text-muted-foreground">
-                <span className="bg-card px-2">or for quick lab evaluation</span>
+                <span className="bg-card px-2">
+                  or for quick lab evaluation
+                </span>
               </div>
 
               <Button
@@ -219,7 +229,9 @@ export default function RootPage() {
           {mode === "signup" && (
             <form onSubmit={handleSignUp} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-foreground">Name</label>
+                <label className="text-sm font-medium text-foreground">
+                  Name
+                </label>
                 <Input
                   type="text"
                   placeholder="Your Name"
@@ -229,7 +241,9 @@ export default function RootPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-foreground">Email</label>
+                <label className="text-sm font-medium text-foreground">
+                  Email
+                </label>
                 <Input
                   type="email"
                   required
@@ -240,7 +254,9 @@ export default function RootPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-foreground">Password</label>
+                <label className="text-sm font-medium text-foreground">
+                  Password
+                </label>
                 <Input
                   type="password"
                   required
@@ -260,7 +276,9 @@ export default function RootPage() {
           {mode === "confirm" && (
             <form onSubmit={handleConfirm} className="space-y-4">
               <div className="space-y-1.5">
-                <label className="text-sm font-medium text-foreground">Confirmation Code</label>
+                <label className="text-sm font-medium text-foreground">
+                  Confirmation Code
+                </label>
                 <Input
                   type="text"
                   required

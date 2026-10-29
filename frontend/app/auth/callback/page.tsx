@@ -48,7 +48,9 @@ function CallbackHandler() {
 
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
-      <p className="text-muted-foreground animate-pulse">Completing sign in with Google...</p>
+      <p className="text-muted-foreground animate-pulse">
+        Completing sign in with Google...
+      </p>
     </div>
   );
 }
@@ -66,4 +68,3 @@ export default function AuthCallbackPage() {
     </Suspense>
   );
 }
-

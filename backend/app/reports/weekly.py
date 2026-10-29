@@ -7,8 +7,8 @@ from __future__ import annotations
 
 import asyncio
 import csv
-from datetime import datetime, timedelta, timezone
 import io
+from datetime import UTC, datetime, timedelta
 
 from sqlalchemy import and_, func, select
 from sqlalchemy.ext.asyncio import async_sessionmaker
@@ -22,7 +22,7 @@ def parse_iso_week(week_str: str) -> tuple[datetime, datetime]:
     """Parse an ISO week string like '2026-W41' into UTC start and end datetimes."""
     # %G = ISO 4-digit year, %V = ISO week number, %u = ISO weekday (1=Monday)
     start = datetime.strptime(f"{week_str}-1", "%G-W%V-%u").replace(
-        hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc
+        hour=0, minute=0, second=0, microsecond=0, tzinfo=UTC
     )
     end = start + timedelta(days=7)
     return start, end
@@ -93,7 +93,9 @@ async def _build_weekly_report_async(week: str) -> bytes:
                     User.email,
                     func.count(Item.id).label("total_items"),
                     func.count(func.nullif(Item.status != "todo", True)).label("todo_count"),
-                    func.count(func.nullif(Item.status != "in_progress", True)).label("in_progress_count"),
+                    func.count(func.nullif(Item.status != "in_progress", True)).label(
+                        "in_progress_count"
+                    ),
                     func.count(func.nullif(Item.status != "done", True)).label("done_count"),
                 )
                 .join(Item, Item.owner_id == User.id)
@@ -117,15 +119,24 @@ async def _build_weekly_report_async(week: str) -> bytes:
 
         writer.writerow(["# WEEKLY REPORT", week])
         writer.writerow(["# Period Start (UTC)", current_start.strftime("%Y-%m-%d %H:%M:%S")])
-        writer.writerow(["# Period End (UTC)", (current_end - timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S")])
+        writer.writerow(
+            [
+                "# Period End (UTC)",
+                (current_end - timedelta(seconds=1)).strftime("%Y-%m-%d %H:%M:%S"),
+            ]
+        )
         writer.writerow([])
 
         # Summary Metrics
         created_change = current_created_count - prev_created_count
         done_change = current_done_count - prev_done_count
         writer.writerow(["METRIC", "CURRENT_WEEK", "PREVIOUS_WEEK", "CHANGE"])
-        writer.writerow(["Tasks Created", current_created_count, prev_created_count, f"{created_change:+d}"])
-        writer.writerow(["Tasks Completed", current_done_count, prev_done_count, f"{done_change:+d}"])
+        writer.writerow(
+            ["Tasks Created", current_created_count, prev_created_count, f"{created_change:+d}"]
+        )
+        writer.writerow(
+            ["Tasks Completed", current_done_count, prev_done_count, f"{done_change:+d}"]
+        )
         writer.writerow(["Tasks To Do", status_counts.get("todo", 0), "-", "-"])
         writer.writerow(["Tasks In Progress", status_counts.get("in_progress", 0), "-", "-"])
         writer.writerow([])
@@ -135,25 +146,46 @@ async def _build_weekly_report_async(week: str) -> bytes:
         writer.writerow(["Name", "Email", "Total Tasks", "Todo", "In Progress", "Done"])
         if user_rows:
             for r in user_rows:
-                writer.writerow([r.name, r.email, r.total_items, r.todo_count, r.in_progress_count, r.done_count])
+                writer.writerow(
+                    [
+                        r.name,
+                        r.email,
+                        r.total_items,
+                        r.todo_count,
+                        r.in_progress_count,
+                        r.done_count,
+                    ]
+                )
         else:
             writer.writerow(["No user activity recorded for this week", "", "", "", "", ""])
         writer.writerow([])
 
         # Tasks detail
         writer.writerow(["TASKS DETAIL"])
-        writer.writerow(["Task ID", "Title", "Status", "Owner Name", "Owner Email", "Created At (UTC)", "Updated At (UTC)"])
+        writer.writerow(
+            [
+                "Task ID",
+                "Title",
+                "Status",
+                "Owner Name",
+                "Owner Email",
+                "Created At (UTC)",
+                "Updated At (UTC)",
+            ]
+        )
         if task_rows:
             for item, u_name, u_email in task_rows:
-                writer.writerow([
-                    str(item.id),
-                    item.name,
-                    item.status,
-                    u_name or "Unknown",
-                    u_email or "",
-                    item.created_at.strftime("%Y-%m-%d %H:%M:%S") if item.created_at else "",
-                    item.updated_at.strftime("%Y-%m-%d %H:%M:%S") if item.updated_at else "",
-                ])
+                writer.writerow(
+                    [
+                        str(item.id),
+                        item.name,
+                        item.status,
+                        u_name or "Unknown",
+                        u_email or "",
+                        item.created_at.strftime("%Y-%m-%d %H:%M:%S") if item.created_at else "",
+                        item.updated_at.strftime("%Y-%m-%d %H:%M:%S") if item.updated_at else "",
+                    ]
+                )
         else:
             writer.writerow(["No tasks created in this period", "", "", "", "", "", ""])
 
@@ -172,8 +204,8 @@ def build_weekly_report(week: str) -> bytes:
     if loop and loop.is_running():
         # In case called inside an already running event loop
         import concurrent.futures
+
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
             return pool.submit(asyncio.run, _build_weekly_report_async(week)).result()
     else:
         return asyncio.run(_build_weekly_report_async(week))
-

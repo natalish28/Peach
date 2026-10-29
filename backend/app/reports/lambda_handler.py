@@ -1,7 +1,8 @@
 """Lambda handler for the report-builder function.
 
 Triggered either by:
-1. SQS message from EventBridge Scheduler (source='schedule') or make report-now (source='sqs'/'manual')
+1. SQS message from EventBridge Scheduler (source='schedule') or make report-now
+   (source='sqs'/'manual')
 2. Direct invocation with payload {"source": "schedule"} or {"week": "..."}
 
 Queries database, produces CSV for the week, and uploads to S3.
@@ -9,11 +10,11 @@ Queries database, produces CSV for the week, and uploads to S3.
 
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
 import json
 import logging
 import os
 import sys
+from datetime import UTC, datetime, timedelta
 
 import boto3
 
@@ -53,7 +54,7 @@ def detect_trigger(event: dict) -> tuple[str, str | None]:
 
 def get_default_week() -> str:
     """Return the previous ISO week string, e.g. '2026-W41'."""
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     prev = now - timedelta(days=7)
     return prev.strftime("%G-W%V")
 
@@ -100,4 +101,3 @@ def handler(event: dict, context: any) -> dict:
         "bucket": bucket_name,
         "key": key,
     }
-
