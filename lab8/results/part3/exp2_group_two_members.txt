@@ -1,0 +1,12 @@
+GROUP                  exp2
+COORDINATOR-NODE       0
+COORDINATOR-PARTITION  __consumer_offsets/2
+STATE                  Stable
+BALANCER               range
+MEMBERS                2
+TOTAL-LAG              0
+
+TOPIC     PARTITION  CURRENT-OFFSET  LOG-START-OFFSET  LOG-END-OFFSET  LAG   MEMBER-ID                                                 CLIENT-ID            HOST
+payments  0          20105           0                 20105           0     kafka-python-3.0.12-0a77be6d-6e1b-4ebc-a0c3-9f9aa69ee668  kafka-python-3.0.12  192.168.65.1
+payments  1          20191           0                 20191           0     kafka-python-3.0.12-0a77be6d-6e1b-4ebc-a0c3-9f9aa69ee668  kafka-python-3.0.12  192.168.65.1
+payments  2          20062           0                 20062           0     kafka-python-3.0.12-4593ec46-57ac-42c7-9296-57ad77f6b8b9  kafka-python-3.0.12  192.168.65.1

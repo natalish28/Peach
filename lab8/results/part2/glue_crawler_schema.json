@@ -1,0 +1,90 @@
+{
+    "cols": [
+        [
+            "invoiceid",
+            "string"
+        ],
+        [
+            "amount",
+            "int"
+        ],
+        [
+            "ccy",
+            "int"
+        ],
+        [
+            "reference",
+            "string"
+        ],
+        [
+            "createddate",
+            "string"
+        ],
+        [
+            "merchantid",
+            "string"
+        ],
+        [
+            "merchantname",
+            "string"
+        ],
+        [
+            "mcc",
+            "int"
+        ],
+        [
+            "customerid",
+            "string"
+        ],
+        [
+            "paymentmethod",
+            "string"
+        ],
+        [
+            "device",
+            "string"
+        ],
+        [
+            "status",
+            "string"
+        ],
+        [
+            "modifieddate",
+            "string"
+        ],
+        [
+            "finalamount",
+            "int"
+        ],
+        [
+            "receivedat",
+            "string"
+        ],
+        [
+            "failurereason",
+            "string"
+        ]
+    ],
+    "parts": [
+        {
+            "Name": "dt",
+            "Type": "string"
+        }
+    ],
+    "loc": "s3://peach-lab8-757159686525/payments/",
+    "fmt": "org.openx.data.jsonserde.JsonSerDe",
+    "params": {
+        "sizeKey": "1260672849",
+        "objectCount": "31",
+        "UPDATED_BY_CRAWLER": "lab8-payments",
+        "CRAWL_RUN_ID": "94d95c01-983d-4e65-8afb-b568c9da0df1",
+        "recordCount": "1202922",
+        "CrawlerSchemaSerializerVersion": "1.0",
+        "averageRecordSize": "1047",
+        "partition_filtering.enabled": "true",
+        "compressionType": "none",
+        "CrawlerSchemaDeserializerVersion": "1.0",
+        "classification": "json",
+        "typeOfData": "file"
+    }
+}

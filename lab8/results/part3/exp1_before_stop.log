@@ -1,0 +1,76 @@
+/Users/miunafw/Desktop/ооад/lab8/streaming/consumer.py:116: DeprecationWarning: value_deserializer does not implement kafka.serializer.Deserializer
+  consumer = KafkaConsumer(
+group=exp1 topic=payments lateness=120s
+partitions assigned: [0, 1, 2]
+ALERT 15:45 apple_pay: 1/2 = 50% failed
+window 15:45  apple_pay=1/2  card=0/6  google_pay=0/1
+ALERT 15:46 google_pay: 1/7 = 14% failed
+window 15:46  apple_pay=0/5  card=0/15  google_pay=1/7  qr=0/2
+ALERT 15:47 apple_pay: 1/7 = 14% failed
+window 15:47  apple_pay=1/7  card=1/21  google_pay=0/5  qr=0/1
+ALERT 15:48 card: 2/14 = 14% failed
+ALERT 15:48 google_pay: 1/5 = 20% failed
+window 15:48  apple_pay=0/9  card=2/14  google_pay=1/5
+ALERT 15:49 apple_pay: 1/8 = 12% failed
+window 15:49  apple_pay=1/8  card=2/26  google_pay=0/5
+ALERT 15:50 apple_pay: 2/11 = 18% failed
+window 15:50  apple_pay=2/11  card=0/12  google_pay=0/2  qr=0/1
+window 15:51  apple_pay=0/7  card=0/14  google_pay=0/2  qr=0/1
+window 15:52  apple_pay=0/8  card=1/22  google_pay=0/7
+ALERT 15:53 card: 2/17 = 12% failed
+ALERT 15:53 google_pay: 1/8 = 12% failed
+window 15:53  apple_pay=1/13  card=2/17  google_pay=1/8
+ALERT 15:54 card: 2/17 = 12% failed
+window 15:54  apple_pay=0/8  card=2/17  google_pay=0/6
+window 15:55  apple_pay=1/11  card=1/16  google_pay=0/4
+ALERT 15:56 apple_pay: 2/10 = 20% failed
+ALERT 15:56 card: 2/14 = 14% failed
+window 15:56  apple_pay=2/10  card=2/14  google_pay=0/7
+window 15:57  apple_pay=0/6  card=1/16  google_pay=0/6
+ALERT 15:58 card: 2/19 = 11% failed
+window 15:58  apple_pay=1/13  card=2/19  google_pay=0/5
+ALERT 15:59 google_pay: 1/9 = 11% failed
+window 15:59  apple_pay=0/12  card=1/11  google_pay=1/9
+ALERT 16:00 card: 2/15 = 13% failed
+window 16:00  apple_pay=0/1  card=2/15  google_pay=0/7  qr=0/1
+ALERT 16:01 google_pay: 1/7 = 14% failed
+window 16:01  apple_pay=1/12  card=1/11  google_pay=1/7  qr=0/2
+window 16:02  apple_pay=0/6  card=1/22  google_pay=1/10
+ALERT 16:03 card: 2/19 = 11% failed
+window 16:03  apple_pay=0/6  card=2/19  google_pay=0/5
+ALERT 16:04 apple_pay: 1/5 = 20% failed
+ALERT 16:04 google_pay: 1/7 = 14% failed
+window 16:04  apple_pay=1/5  card=1/20  google_pay=1/7  qr=0/1
+ALERT 16:05 card: 3/23 = 13% failed
+window 16:05  apple_pay=0/3  card=3/23  google_pay=0/4  qr=0/1
+window 16:06  apple_pay=1/12  card=1/15  google_pay=0/4
+ALERT 16:07 apple_pay: 1/9 = 11% failed
+window 16:07  apple_pay=1/9  card=2/23  google_pay=0/4  qr=0/4
+ALERT 16:08 google_pay: 2/7 = 29% failed
+window 16:08  apple_pay=0/8  card=0/28  google_pay=2/7
+window 16:09  apple_pay=0/7  card=1/17  google_pay=0/3  qr=0/3
+ALERT 16:10 card: 4/25 = 16% failed
+window 16:10  apple_pay=0/6  card=4/25  google_pay=0/7
+ALERT 16:11 google_pay: 2/7 = 29% failed
+window 16:11  apple_pay=0/9  card=2/25  google_pay=2/7  qr=0/2
+window 16:12  apple_pay=0/6  card=1/15  google_pay=0/4
+window 16:13  apple_pay=1/10  card=0/15  google_pay=0/10  qr=0/1
+window 16:14  apple_pay=1/11  card=0/21  google_pay=0/3
+window 16:15  apple_pay=0/10  card=1/17  google_pay=0/3
+ALERT 16:16 apple_pay: 1/5 = 20% failed
+ALERT 16:16 card: 3/12 = 25% failed
+ALERT 16:16 google_pay: 1/6 = 17% failed
+window 16:16  apple_pay=1/5  card=3/12  google_pay=1/6
+ALERT 16:17 card: 2/16 = 12% failed
+ALERT 16:17 google_pay: 3/8 = 38% failed
+window 16:17  apple_pay=0/3  card=2/16  google_pay=3/8  qr=0/1
+ALERT 16:18 apple_pay: 2/9 = 22% failed
+ALERT 16:18 google_pay: 2/7 = 29% failed
+window 16:18  apple_pay=2/9  card=1/10  google_pay=2/7  qr=0/2
+ALERT 16:19 apple_pay: 2/9 = 22% failed
+ALERT 16:19 card: 2/14 = 14% failed
+window 16:19  apple_pay=2/9  card=2/14  google_pay=0/6
+ALERT 16:20 google_pay: 1/8 = 12% failed
+window 16:20  apple_pay=1/11  card=0/15  google_pay=1/8
+partitions read: {0: 1340, 1: 1179, 2: 1267}
+totals: {'received': 3786, 'unique': 3740, 'counted_final': 1232, 'duplicates': 46, 'rejected_late': 58, 'rejected_late_final': 20, 'windows': 36, 'alerts': 34}

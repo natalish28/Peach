@@ -1,0 +1,2324 @@
+/Users/miunafw/Desktop/ооад/lab8/streaming/consumer.py:116: DeprecationWarning: value_deserializer does not implement kafka.serializer.Deserializer
+  consumer = KafkaConsumer(
+group=exp4-0 topic=payments lateness=0s
+partitions assigned: [0, 1, 2]
+window 00:00  apple_pay=0/2  card=0/1  google_pay=0/1
+ALERT 00:01 card: 1/3 = 33% failed
+window 00:01  card=1/3
+ALERT 00:02 apple_pay: 1/2 = 50% failed
+ALERT 00:02 card: 1/4 = 25% failed
+window 00:02  apple_pay=1/2  card=1/4  google_pay=0/1
+window 00:03  card=0/2
+window 00:04  card=0/1  google_pay=0/2
+window 00:05  card=0/1  google_pay=0/1
+window 00:06  apple_pay=0/2  card=0/5  google_pay=0/1
+window 00:07  apple_pay=0/1  card=0/2  google_pay=0/3
+window 00:08  apple_pay=0/2  card=0/2
+window 00:09  card=0/1
+window 00:10  apple_pay=0/1  google_pay=0/1
+window 00:11  card=0/2
+window 00:12  apple_pay=0/1  card=0/2  google_pay=0/2
+window 00:13  card=0/1
+window 00:14  google_pay=0/1
+window 00:15  apple_pay=0/1
+window 00:16  card=0/2  google_pay=0/1
+window 00:17  apple_pay=0/1  card=0/1
+window 00:18  apple_pay=0/1  card=0/5
+window 00:19  apple_pay=0/1  card=0/4  google_pay=0/2
+window 00:20  apple_pay=0/1  card=0/1  google_pay=0/1
+window 00:21  apple_pay=0/4  card=0/3
+window 00:22  apple_pay=0/2  card=0/2  google_pay=0/2
+window 00:23  apple_pay=0/2  google_pay=0/1
+window 00:24  apple_pay=0/1
+window 00:25  apple_pay=0/1  card=0/3
+ALERT 00:26 google_pay: 1/1 = 100% failed
+window 00:26  google_pay=1/1
+window 00:27  apple_pay=0/1  card=0/1
+window 00:28  card=0/2
+window 00:29  apple_pay=0/1  qr=0/1
+ALERT 00:30 google_pay: 1/1 = 100% failed
+window 00:30  card=0/2  google_pay=1/1
+window 00:31  apple_pay=0/1  card=0/1  google_pay=0/1
+window 00:32  card=0/6  google_pay=0/1
+window 00:33  apple_pay=0/1  card=0/2  google_pay=0/2
+ALERT 00:34 card: 2/4 = 50% failed
+window 00:34  apple_pay=0/1  card=2/4  google_pay=0/1  qr=0/1
+window 00:35  apple_pay=0/2  card=0/3
+window 00:36  apple_pay=0/1  card=0/4
+window 00:37  apple_pay=0/1  card=0/5
+ALERT 00:38 qr: 1/1 = 100% failed
+window 00:38  apple_pay=0/1  card=0/1  qr=1/1
+ALERT 00:39 apple_pay: 1/1 = 100% failed
+window 00:39  apple_pay=1/1  card=0/4  google_pay=0/1
+window 00:40  card=0/2
+window 00:41  apple_pay=0/2  google_pay=0/2
+window 00:42  card=0/5
+ALERT 00:43 card: 1/3 = 33% failed
+ALERT 00:43 google_pay: 1/2 = 50% failed
+window 00:43  apple_pay=0/2  card=1/3  google_pay=1/2
+window 00:44  apple_pay=0/3  card=0/3
+window 00:45  card=0/1
+window 00:46  apple_pay=0/1  google_pay=0/3
+ALERT 00:48 apple_pay: 1/2 = 50% failed
+window 00:48  apple_pay=1/2
+window 00:49  apple_pay=0/1  card=0/3  google_pay=0/2
+window 00:50  apple_pay=0/2  card=0/2
+window 00:51  apple_pay=0/1  card=0/1
+window 00:52  apple_pay=0/2  card=0/2
+window 00:53  apple_pay=0/3  card=0/3  google_pay=0/1
+window 00:55  apple_pay=0/1  card=0/2  google_pay=0/1  qr=0/1
+window 00:56  card=0/1
+ALERT 00:57 apple_pay: 1/2 = 50% failed
+ALERT 00:57 google_pay: 1/2 = 50% failed
+window 00:57  apple_pay=1/2  google_pay=1/2
+window 00:58  apple_pay=0/1  card=0/1  google_pay=0/2
+ALERT 00:59 apple_pay: 1/2 = 50% failed
+window 00:59  apple_pay=1/2  card=0/2
+ALERT 01:00 google_pay: 1/1 = 100% failed
+window 01:00  card=0/1  google_pay=1/1
+window 01:01  apple_pay=0/1  card=0/2  google_pay=0/3
+window 01:02  card=0/2  google_pay=0/1
+ALERT 01:03 card: 1/2 = 50% failed
+window 01:03  card=1/2
+window 01:05  card=0/1
+window 01:06  card=0/1
+window 01:07  apple_pay=0/1  card=0/2
+window 01:08  google_pay=0/1
+ALERT 01:09 apple_pay: 1/1 = 100% failed
+window 01:09  apple_pay=1/1  card=0/1
+ALERT 01:10 qr: 1/1 = 100% failed
+window 01:10  apple_pay=0/1  google_pay=0/1  qr=1/1
+ALERT 01:11 apple_pay: 1/3 = 33% failed
+window 01:11  apple_pay=1/3  card=0/1  google_pay=0/1
+window 01:12  card=0/2
+window 01:13  apple_pay=0/3  card=0/2  google_pay=0/1
+window 01:14  apple_pay=0/3  card=0/1
+window 01:15  card=0/2
+ALERT 01:16 google_pay: 1/1 = 100% failed
+window 01:16  apple_pay=0/2  card=0/4  google_pay=1/1
+window 01:17  card=0/2  google_pay=0/1
+window 01:18  card=0/2  google_pay=0/2
+window 01:19  apple_pay=0/1
+ALERT 01:20 card: 1/1 = 100% failed
+window 01:20  card=1/1
+window 01:21  card=0/1
+window 01:22  apple_pay=0/1  card=0/2  google_pay=0/1
+window 01:23  apple_pay=0/1  card=0/4  qr=0/1
+window 01:24  card=0/1
+window 01:25  card=0/3  google_pay=0/3  qr=0/1
+window 01:26  card=0/1
+window 01:27  card=0/2
+window 01:28  apple_pay=0/2  card=0/2  google_pay=0/1
+window 01:29  apple_pay=0/2  card=0/2
+window 01:30  card=0/3
+ALERT 01:31 card: 1/1 = 100% failed
+window 01:31  apple_pay=0/1  card=1/1
+ALERT 01:32 card: 1/2 = 50% failed
+window 01:32  apple_pay=0/2  card=1/2  google_pay=0/1
+ALERT 01:33 card: 1/4 = 25% failed
+window 01:33  card=1/4
+ALERT 01:34 apple_pay: 1/1 = 100% failed
+window 01:34  apple_pay=1/1  card=0/1  google_pay=0/1
+window 01:35  card=0/2  google_pay=0/1
+window 01:36  apple_pay=0/1  card=0/2  google_pay=0/1
+window 01:37  card=0/4  google_pay=0/2
+window 01:38  card=0/1
+window 01:39  apple_pay=0/1  card=0/1  google_pay=0/1
+window 01:40  apple_pay=0/3  card=0/3
+window 01:41  card=0/2
+window 01:42  apple_pay=0/2  card=0/1
+window 01:43  apple_pay=0/2  card=0/1  google_pay=0/1
+window 01:44  apple_pay=0/1  card=0/2
+window 01:45  apple_pay=0/1  card=0/1  google_pay=0/2
+window 01:46  card=0/3
+window 01:47  apple_pay=0/1
+window 01:49  apple_pay=0/1  card=0/2  google_pay=0/1
+window 01:50  card=0/4  google_pay=0/1
+ALERT 01:51 card: 1/2 = 50% failed
+window 01:51  card=1/2
+window 01:52  card=0/2  google_pay=0/1
+ALERT 01:53 card: 1/2 = 50% failed
+window 01:53  apple_pay=0/2  card=1/2  google_pay=0/2
+window 01:54  apple_pay=0/1  card=0/3  qr=0/1
+window 01:55  card=0/2
+window 01:56  apple_pay=0/1
+window 01:57  google_pay=0/2  qr=0/1
+ALERT 01:58 card: 1/6 = 17% failed
+window 01:58  card=1/6
+ALERT 01:59 card: 1/1 = 100% failed
+window 01:59  apple_pay=0/1  card=1/1  google_pay=0/1
+window 02:00  apple_pay=0/4  card=0/2  google_pay=0/1
+window 02:01  apple_pay=0/1  card=0/1  google_pay=0/2
+window 02:02  apple_pay=0/2  card=0/4
+window 02:03  apple_pay=0/2  card=0/4
+window 02:04  apple_pay=0/1  google_pay=0/2  qr=0/1
+window 02:05  card=0/2  google_pay=0/1  qr=0/1
+window 02:06  apple_pay=0/1  card=0/1  google_pay=0/1
+window 02:07  card=0/4
+window 02:08  apple_pay=0/2  card=0/2  google_pay=0/3
+window 02:09  apple_pay=0/1  card=0/2  google_pay=0/1
+window 02:10  card=0/3
+window 02:11  apple_pay=0/2  card=0/1
+window 02:12  card=0/1  google_pay=0/3
+window 02:13  apple_pay=0/2  card=0/4
+window 02:14  apple_pay=0/1  google_pay=0/1
+window 02:15  card=0/1  google_pay=0/2
+window 02:16  apple_pay=0/2  card=0/3  google_pay=0/2  qr=0/1
+window 02:17  apple_pay=0/4  card=0/4
+window 02:18  apple_pay=0/1
+ALERT 02:19 apple_pay: 1/2 = 50% failed
+ALERT 02:19 card: 1/4 = 25% failed
+window 02:19  apple_pay=1/2  card=1/4  google_pay=0/1
+window 02:20  card=0/1
+ALERT 02:21 card: 1/3 = 33% failed
+window 02:21  apple_pay=0/1  card=1/3
+ALERT 02:22 apple_pay: 1/1 = 100% failed
+window 02:22  apple_pay=1/1  card=0/5  google_pay=0/2
+ALERT 02:23 card: 1/1 = 100% failed
+window 02:23  apple_pay=0/1  card=1/1  google_pay=0/1
+window 02:24  apple_pay=0/2  card=0/1
+ALERT 02:25 apple_pay: 1/1 = 100% failed
+window 02:25  apple_pay=1/1  card=0/1  google_pay=0/1
+window 02:26  google_pay=0/1
+window 02:27  apple_pay=0/1
+ALERT 02:28 apple_pay: 1/2 = 50% failed
+window 02:28  apple_pay=1/2  google_pay=0/1
+window 02:29  apple_pay=0/1  card=0/1  google_pay=0/3
+ALERT 02:30 apple_pay: 1/1 = 100% failed
+window 02:30  apple_pay=1/1  google_pay=0/1
+window 02:31  apple_pay=0/1  card=0/2
+window 02:32  apple_pay=0/1  card=0/3
+window 02:33  apple_pay=0/1  card=0/3
+window 02:34  apple_pay=0/1  card=0/2  google_pay=0/1
+window 02:35  card=0/4  google_pay=0/1
+ALERT 02:36 card: 1/1 = 100% failed
+window 02:36  apple_pay=0/3  card=1/1
+window 02:37  card=0/3
+window 02:38  apple_pay=0/1  card=0/1
+window 02:39  card=0/1
+window 02:40  google_pay=0/1
+window 02:41  card=0/1
+window 02:42  apple_pay=0/1  card=0/2
+window 02:43  apple_pay=0/1
+window 02:44  card=0/3  google_pay=0/1
+window 02:46  apple_pay=0/2
+window 02:47  apple_pay=0/1  card=0/2  google_pay=0/1
+window 02:48  card=0/4
+window 02:49  apple_pay=0/1
+window 02:50  card=0/3  google_pay=0/1
+window 02:51  apple_pay=0/1  card=0/1  google_pay=0/1
+window 02:52  card=0/4
+window 02:53  apple_pay=0/1  card=0/1
+ALERT 02:54 apple_pay: 1/1 = 100% failed
+window 02:54  apple_pay=1/1  card=0/2
+window 02:55  apple_pay=0/1  card=0/3
+ALERT 02:56 apple_pay: 1/1 = 100% failed
+window 02:56  apple_pay=1/1  card=0/3
+window 02:57  apple_pay=0/1  card=0/1
+window 02:58  apple_pay=0/2  card=0/2
+ALERT 02:59 google_pay: 1/3 = 33% failed
+window 02:59  apple_pay=0/1  card=0/4  google_pay=1/3
+window 03:00  apple_pay=0/1  card=0/2
+window 03:01  apple_pay=0/3  card=0/1  google_pay=0/1
+window 03:02  google_pay=0/1
+window 03:03  apple_pay=0/1
+window 03:04  apple_pay=0/1  card=0/1  google_pay=0/1
+window 03:05  apple_pay=0/1  card=0/1  google_pay=0/1
+window 03:06  apple_pay=0/2
+ALERT 03:07 card: 1/2 = 50% failed
+window 03:07  apple_pay=0/1  card=1/2  google_pay=0/1  qr=0/1
+ALERT 03:08 card: 1/3 = 33% failed
+window 03:08  card=1/3
+window 03:10  apple_pay=0/3  card=0/3
+ALERT 03:11 apple_pay: 1/2 = 50% failed
+window 03:11  apple_pay=1/2  card=0/1  google_pay=0/1
+window 03:12  apple_pay=0/1  card=0/1
+window 03:13  apple_pay=0/3  card=0/1
+window 03:14  apple_pay=0/1  card=0/2
+window 03:15  card=0/4  qr=0/1
+window 03:17  card=0/4
+window 03:18  apple_pay=0/1  card=0/3
+window 03:19  card=0/1  google_pay=0/3
+window 03:20  card=0/1  google_pay=0/1
+ALERT 03:21 card: 1/8 = 12% failed
+window 03:21  apple_pay=0/1  card=1/8
+window 03:22  card=0/1
+window 03:23  apple_pay=0/1  card=0/3  google_pay=0/1
+window 03:24  apple_pay=0/1  card=0/1
+window 03:25  apple_pay=0/1  card=0/3  google_pay=0/2
+window 03:26  card=0/1
+ALERT 03:27 apple_pay: 1/2 = 50% failed
+window 03:27  apple_pay=1/2  card=0/3  google_pay=0/1
+window 03:28  card=0/2  google_pay=0/1
+ALERT 03:29 apple_pay: 1/1 = 100% failed
+window 03:29  apple_pay=1/1  card=0/4  google_pay=0/1
+window 03:30  apple_pay=0/1
+ALERT 03:31 qr: 1/1 = 100% failed
+window 03:31  card=0/3  google_pay=0/2  qr=1/1
+window 03:32  card=0/1
+window 03:33  apple_pay=0/1  card=0/2
+window 03:34  apple_pay=0/1  card=0/2  google_pay=0/1
+window 03:35  apple_pay=0/1
+window 03:36  card=0/2
+window 03:37  apple_pay=0/2  card=0/1  google_pay=0/1  qr=0/1
+ALERT 03:39 apple_pay: 1/2 = 50% failed
+window 03:39  apple_pay=1/2  card=0/1
+window 03:40  apple_pay=0/1
+window 03:41  apple_pay=0/1  card=0/2
+window 03:42  apple_pay=0/1  card=0/1  google_pay=0/1
+window 03:43  apple_pay=0/2  card=0/3  google_pay=0/1
+window 03:44  apple_pay=0/1  card=0/3
+ALERT 03:45 card: 1/2 = 50% failed
+window 03:45  card=1/2  google_pay=0/2
+window 03:46  card=0/3  google_pay=0/1
+ALERT 03:47 card: 1/1 = 100% failed
+window 03:47  apple_pay=0/3  card=1/1
+ALERT 03:48 apple_pay: 1/2 = 50% failed
+window 03:48  apple_pay=1/2  card=0/1
+window 03:49  card=0/3
+window 03:50  apple_pay=0/2  card=0/3  google_pay=0/1
+window 03:51  card=0/2  qr=0/1
+window 03:52  apple_pay=0/1  card=0/2
+window 03:53  apple_pay=0/2  card=0/3  google_pay=0/1
+window 03:54  apple_pay=0/1
+window 03:55  apple_pay=0/1  card=0/1  google_pay=0/2
+window 03:56  card=0/2
+ALERT 03:57 card: 1/3 = 33% failed
+window 03:57  apple_pay=0/1  card=1/3
+ALERT 03:58 card: 1/2 = 50% failed
+window 03:58  card=1/2
+window 03:59  card=0/2
+window 04:00  apple_pay=0/1  card=0/2
+window 04:01  apple_pay=0/1  card=0/2  google_pay=0/1
+window 04:02  card=0/4
+window 04:03  apple_pay=0/1  card=0/2  google_pay=0/1
+window 04:04  apple_pay=0/1  card=0/1  google_pay=0/1
+window 04:05  card=0/2
+window 04:06  apple_pay=0/1  card=0/5  google_pay=0/1
+window 04:07  card=0/1
+window 04:08  apple_pay=0/1  card=0/1  google_pay=0/1  qr=0/1
+ALERT 04:09 apple_pay: 1/1 = 100% failed
+window 04:09  apple_pay=1/1  card=0/2
+window 04:10  card=0/1  google_pay=0/1
+window 04:11  google_pay=0/1
+ALERT 04:12 google_pay: 1/1 = 100% failed
+window 04:12  card=0/3  google_pay=1/1
+ALERT 04:13 google_pay: 1/2 = 50% failed
+window 04:13  card=0/2  google_pay=1/2
+ALERT 04:14 card: 1/3 = 33% failed
+window 04:14  card=1/3
+window 04:15  card=0/1
+window 04:16  apple_pay=0/1  card=0/1
+window 04:17  apple_pay=0/1  card=0/1  google_pay=0/1
+window 04:18  apple_pay=0/1  card=0/1  google_pay=0/1
+window 04:19  apple_pay=0/1  card=0/2
+window 04:20  card=0/3
+ALERT 04:21 card: 1/4 = 25% failed
+window 04:21  card=1/4  google_pay=0/1
+window 04:22  card=0/1
+window 04:23  card=0/1
+ALERT 04:24 card: 1/2 = 50% failed
+window 04:24  apple_pay=0/1  card=1/2  google_pay=0/1
+window 04:25  apple_pay=0/3  card=0/2
+window 04:26  apple_pay=0/1  card=0/2
+window 04:27  card=0/1  google_pay=0/1
+ALERT 04:28 card: 1/3 = 33% failed
+window 04:28  apple_pay=0/1  card=1/3
+ALERT 04:29 google_pay: 1/2 = 50% failed
+window 04:29  card=0/1  google_pay=1/2
+ALERT 04:30 card: 1/2 = 50% failed
+window 04:30  card=1/2  google_pay=0/1
+window 04:31  card=0/1
+window 04:32  card=0/2  google_pay=0/1
+window 04:33  card=0/1
+window 04:34  apple_pay=0/2
+window 04:35  card=0/2
+window 04:36  apple_pay=0/1  card=0/2  google_pay=0/1
+ALERT 04:37 card: 1/2 = 50% failed
+window 04:37  apple_pay=0/1  card=1/2
+ALERT 04:38 apple_pay: 1/1 = 100% failed
+window 04:38  apple_pay=1/1  card=0/1  google_pay=0/1
+window 04:39  google_pay=0/1
+ALERT 04:40 card: 1/2 = 50% failed
+window 04:40  card=1/2
+window 04:41  card=0/4
+window 04:42  apple_pay=0/1  card=0/2
+window 04:43  apple_pay=0/2  google_pay=0/1
+window 04:44  card=0/1
+window 04:45  apple_pay=0/2  card=0/3  qr=0/1
+window 04:46  apple_pay=0/2  card=0/3
+window 04:47  apple_pay=0/1  card=0/2  google_pay=0/1
+window 04:48  apple_pay=0/2  card=0/2  google_pay=0/1
+window 04:49  card=0/2  google_pay=0/1
+window 04:51  apple_pay=0/1  card=0/2
+window 04:52  card=0/2  google_pay=0/2
+window 04:53  apple_pay=0/1  card=0/2  qr=0/1
+window 04:54  apple_pay=0/1  card=0/3  google_pay=0/1
+window 04:55  apple_pay=0/2  google_pay=0/1
+window 04:56  card=0/1
+window 04:57  apple_pay=0/4  card=0/5  google_pay=0/1
+window 04:58  card=0/2  google_pay=0/1
+window 04:59  card=0/2
+window 05:00  apple_pay=0/1  card=0/3  google_pay=0/1  qr=0/1
+window 05:01  apple_pay=0/1  card=0/4  google_pay=0/1
+window 05:02  card=0/2  google_pay=0/2
+ALERT 05:03 google_pay: 1/3 = 33% failed
+window 05:03  apple_pay=0/1  card=0/2  google_pay=1/3
+ALERT 05:04 card: 1/5 = 20% failed
+window 05:04  apple_pay=0/1  card=1/5  google_pay=0/2  qr=0/1
+window 05:05  apple_pay=0/1  card=0/6  google_pay=0/1
+window 05:06  apple_pay=0/3  card=0/4  google_pay=0/1
+ALERT 05:07 apple_pay: 1/2 = 50% failed
+window 05:07  apple_pay=1/2  card=0/3
+ALERT 05:08 card: 1/6 = 17% failed
+window 05:08  apple_pay=0/1  card=1/6  google_pay=0/3
+window 05:09  apple_pay=0/1  card=0/7  google_pay=0/1
+window 05:10  apple_pay=0/2  card=0/1  qr=0/1
+ALERT 05:11 card: 1/2 = 50% failed
+window 05:11  apple_pay=0/2  card=1/2  google_pay=0/1
+window 05:12  apple_pay=0/1  card=0/4  google_pay=0/2
+window 05:13  apple_pay=0/1  card=0/2  google_pay=0/3
+window 05:14  apple_pay=0/1  card=0/3  google_pay=0/1
+ALERT 05:15 card: 1/8 = 12% failed
+window 05:15  apple_pay=0/2  card=1/8  google_pay=0/2  qr=0/1
+window 05:16  card=0/1  google_pay=0/1
+ALERT 05:17 apple_pay: 1/2 = 50% failed
+window 05:17  apple_pay=1/2  card=0/4  google_pay=0/3
+window 05:18  apple_pay=0/2  card=0/3
+window 05:19  apple_pay=0/2  card=0/2
+window 05:20  apple_pay=0/1  card=0/5  google_pay=0/3
+window 05:21  apple_pay=0/1  card=0/4  google_pay=0/1
+ALERT 05:22 card: 2/6 = 33% failed
+ALERT 05:22 google_pay: 1/4 = 25% failed
+window 05:22  apple_pay=0/3  card=2/6  google_pay=1/4
+window 05:23  apple_pay=0/1  card=0/9  google_pay=0/2
+ALERT 05:24 apple_pay: 1/1 = 100% failed
+window 05:24  apple_pay=1/1  card=0/1  google_pay=0/2
+window 05:25  apple_pay=0/3  card=0/6  google_pay=0/2
+ALERT 05:26 card: 1/5 = 20% failed
+window 05:26  apple_pay=0/1  card=1/5  google_pay=0/1
+window 05:27  apple_pay=0/1  card=0/7  google_pay=0/3  qr=0/1
+ALERT 05:28 google_pay: 2/4 = 50% failed
+window 05:28  apple_pay=0/3  card=0/3  google_pay=2/4
+window 05:29  apple_pay=0/4  card=0/2  google_pay=0/3
+window 05:30  card=0/2  google_pay=0/2  qr=0/1
+ALERT 05:31 card: 1/9 = 11% failed
+ALERT 05:31 google_pay: 1/2 = 50% failed
+window 05:31  apple_pay=0/6  card=1/9  google_pay=1/2
+window 05:32  card=0/4  google_pay=0/3  qr=0/1
+window 05:33  apple_pay=0/1  card=0/4  google_pay=0/1
+ALERT 05:34 card: 1/5 = 20% failed
+window 05:34  apple_pay=0/3  card=1/5  qr=0/1
+window 05:35  apple_pay=0/3  card=0/4  google_pay=0/2
+window 05:36  apple_pay=0/2  card=0/2
+ALERT 05:37 apple_pay: 1/3 = 33% failed
+window 05:37  apple_pay=1/3  card=0/3  google_pay=0/2
+window 05:38  card=0/2  google_pay=0/1
+window 05:39  apple_pay=0/3  card=0/1  google_pay=0/1
+window 05:40  apple_pay=0/1  card=0/2  google_pay=0/1
+ALERT 05:41 card: 1/5 = 20% failed
+window 05:41  card=1/5  google_pay=0/1
+ALERT 05:42 card: 1/4 = 25% failed
+window 05:42  apple_pay=0/1  card=1/4
+window 05:43  apple_pay=0/3  card=0/6
+ALERT 05:44 google_pay: 1/3 = 33% failed
+window 05:44  apple_pay=0/1  card=0/2  google_pay=1/3
+ALERT 05:45 apple_pay: 1/3 = 33% failed
+window 05:45  apple_pay=1/3  card=0/4  google_pay=0/1
+window 05:46  apple_pay=0/4  google_pay=0/3
+window 05:47  apple_pay=0/2  card=0/6
+window 05:48  card=0/1
+ALERT 05:49 card: 2/6 = 33% failed
+ALERT 05:49 google_pay: 1/2 = 50% failed
+window 05:49  card=2/6  google_pay=1/2
+window 05:50  apple_pay=0/3  card=0/4  google_pay=0/1
+ALERT 05:51 apple_pay: 1/2 = 50% failed
+window 05:51  apple_pay=1/2  card=0/5  qr=0/1
+window 05:52  apple_pay=0/2  card=0/4
+window 05:53  apple_pay=0/2  card=0/5  google_pay=0/1
+window 05:54  apple_pay=0/2  card=0/2  google_pay=0/1
+ALERT 05:55 apple_pay: 1/1 = 100% failed
+window 05:55  apple_pay=1/1  card=0/6  google_pay=0/1
+window 05:56  card=0/5  google_pay=0/1  qr=0/1
+window 05:57  apple_pay=0/2  card=0/4  google_pay=0/1
+ALERT 05:58 google_pay: 1/1 = 100% failed
+window 05:58  apple_pay=0/3  card=0/3  google_pay=1/1
+window 05:59  apple_pay=0/2  card=0/9  google_pay=0/3
+window 06:00  apple_pay=0/9  card=0/4
+window 06:01  apple_pay=0/2  card=0/10  google_pay=0/3
+window 06:02  apple_pay=0/8  card=0/10  google_pay=0/1
+ALERT 06:03 qr: 1/2 = 50% failed
+window 06:03  apple_pay=0/5  card=0/10  google_pay=0/7  qr=1/2
+window 06:04  apple_pay=0/6  card=1/14  qr=0/1
+window 06:05  apple_pay=0/4  card=1/12  google_pay=0/5  qr=0/1
+window 06:06  apple_pay=0/1  card=0/6  google_pay=0/1  qr=0/1
+window 06:07  apple_pay=0/7  card=0/11  google_pay=0/9
+window 06:08  apple_pay=0/2  card=0/9  google_pay=0/2
+ALERT 06:09 google_pay: 1/4 = 25% failed
+window 06:09  apple_pay=0/2  card=0/11  google_pay=1/4
+window 06:10  apple_pay=0/4  card=0/7  google_pay=0/4
+ALERT 06:11 google_pay: 1/2 = 50% failed
+window 06:11  apple_pay=0/1  card=0/12  google_pay=1/2  qr=0/2
+window 06:12  apple_pay=0/4  card=0/7
+ALERT 06:13 apple_pay: 1/7 = 14% failed
+window 06:13  apple_pay=1/7  card=0/9  google_pay=0/4  qr=0/2
+window 06:14  apple_pay=0/2  card=0/6  google_pay=0/3
+window 06:15  apple_pay=0/5  card=0/6  google_pay=0/5  qr=0/1
+ALERT 06:16 google_pay: 1/5 = 20% failed
+window 06:16  apple_pay=0/3  card=0/11  google_pay=1/5
+window 06:17  apple_pay=0/1  card=1/10  google_pay=0/3
+ALERT 06:18 google_pay: 1/4 = 25% failed
+window 06:18  apple_pay=0/4  card=0/7  google_pay=1/4
+window 06:19  apple_pay=0/3  card=0/5  google_pay=0/3
+ALERT 06:20 apple_pay: 1/3 = 33% failed
+window 06:20  apple_pay=1/3  card=0/4  google_pay=0/4
+window 06:21  apple_pay=0/3  card=0/11  google_pay=0/2
+ALERT 06:22 google_pay: 1/3 = 33% failed
+window 06:22  apple_pay=0/5  card=0/5  google_pay=1/3
+ALERT 06:23 apple_pay: 1/8 = 12% failed
+ALERT 06:23 google_pay: 1/3 = 33% failed
+window 06:23  apple_pay=1/8  card=1/11  google_pay=1/3
+ALERT 06:24 card: 3/13 = 23% failed
+window 06:24  apple_pay=0/1  card=3/13  google_pay=0/1  qr=0/1
+window 06:25  apple_pay=0/11  card=0/12  google_pay=0/2
+ALERT 06:26 card: 1/9 = 11% failed
+window 06:26  apple_pay=0/3  card=1/9  google_pay=0/4
+window 06:27  apple_pay=0/3  card=0/7  google_pay=0/2
+ALERT 06:28 card: 1/6 = 17% failed
+window 06:28  apple_pay=0/1  card=1/6  google_pay=0/2
+window 06:29  apple_pay=0/7  card=0/8  google_pay=0/3
+ALERT 06:30 card: 1/9 = 11% failed
+window 06:30  apple_pay=0/2  card=1/9  google_pay=0/1
+ALERT 06:31 card: 2/11 = 18% failed
+window 06:31  apple_pay=0/3  card=2/11  google_pay=0/2
+ALERT 06:32 card: 1/4 = 25% failed
+window 06:32  apple_pay=0/2  card=1/4  google_pay=0/2
+window 06:33  apple_pay=0/1  card=0/6  google_pay=0/2
+window 06:34  apple_pay=0/1  card=0/4  google_pay=0/3  qr=0/2
+ALERT 06:35 card: 1/9 = 11% failed
+window 06:35  apple_pay=0/5  card=1/9  google_pay=0/1
+ALERT 06:36 card: 1/8 = 12% failed
+window 06:36  apple_pay=0/5  card=1/8  google_pay=0/1
+ALERT 06:37 card: 3/12 = 25% failed
+ALERT 06:37 google_pay: 1/4 = 25% failed
+window 06:37  apple_pay=0/4  card=3/12  google_pay=1/4
+window 06:38  apple_pay=0/4  card=0/11  google_pay=0/2
+ALERT 06:39 google_pay: 1/3 = 33% failed
+window 06:39  apple_pay=0/3  card=0/9  google_pay=1/3  qr=0/1
+window 06:40  apple_pay=0/1  card=0/7  google_pay=0/6
+ALERT 06:41 google_pay: 1/5 = 20% failed
+window 06:41  apple_pay=0/8  card=0/7  google_pay=1/5
+window 06:42  apple_pay=0/2  card=0/6  google_pay=0/3
+window 06:43  apple_pay=0/2  card=0/11  google_pay=0/1
+ALERT 06:44 card: 1/7 = 14% failed
+window 06:44  apple_pay=0/5  card=1/7  google_pay=0/1
+window 06:45  apple_pay=0/5  card=1/10  google_pay=0/1  qr=0/1
+ALERT 06:46 card: 1/6 = 17% failed
+window 06:46  apple_pay=0/5  card=1/6  google_pay=0/4
+window 06:47  apple_pay=0/4  card=0/8  google_pay=0/4
+window 06:48  apple_pay=0/6  card=0/4  google_pay=0/4
+window 06:49  apple_pay=0/3  card=0/7  google_pay=0/3  qr=0/1
+window 06:50  apple_pay=0/2  card=1/12  google_pay=0/2
+ALERT 06:51 apple_pay: 1/2 = 50% failed
+ALERT 06:51 card: 2/13 = 15% failed
+ALERT 06:51 google_pay: 1/2 = 50% failed
+window 06:51  apple_pay=1/2  card=2/13  google_pay=1/2  qr=0/1
+window 06:52  apple_pay=0/7  card=0/9  google_pay=0/3
+window 06:53  apple_pay=0/5  card=0/5  google_pay=0/4
+window 06:54  apple_pay=0/2  card=0/10  google_pay=0/2
+ALERT 06:55 apple_pay: 1/5 = 20% failed
+window 06:55  apple_pay=1/5  card=1/11  google_pay=0/4
+window 06:56  apple_pay=0/6  card=0/12  google_pay=0/1
+ALERT 06:57 apple_pay: 1/4 = 25% failed
+ALERT 06:57 card: 1/9 = 11% failed
+window 06:57  apple_pay=1/4  card=1/9  google_pay=0/1
+ALERT 06:58 apple_pay: 1/4 = 25% failed
+ALERT 06:58 card: 1/7 = 14% failed
+window 06:58  apple_pay=1/4  card=1/7  google_pay=0/4
+ALERT 06:59 apple_pay: 1/7 = 14% failed
+window 06:59  apple_pay=1/7  card=0/9  google_pay=0/2
+window 07:00  apple_pay=0/8  card=0/15  google_pay=0/5
+window 07:01  apple_pay=0/5  card=0/9  google_pay=0/5
+ALERT 07:02 apple_pay: 2/7 = 29% failed
+ALERT 07:02 card: 4/21 = 19% failed
+ALERT 07:02 google_pay: 1/7 = 14% failed
+window 07:02  apple_pay=2/7  card=4/21  google_pay=1/7
+ALERT 07:03 card: 2/10 = 20% failed
+window 07:03  apple_pay=0/8  card=2/10  google_pay=0/1
+ALERT 07:04 card: 2/17 = 12% failed
+ALERT 07:04 google_pay: 2/8 = 25% failed
+window 07:04  apple_pay=0/5  card=2/17  google_pay=2/8  qr=0/1
+ALERT 07:05 card: 2/15 = 13% failed
+ALERT 07:05 google_pay: 1/8 = 12% failed
+window 07:05  apple_pay=0/2  card=2/15  google_pay=1/8
+window 07:06  apple_pay=1/12  card=0/18  google_pay=0/4  qr=0/1
+window 07:07  apple_pay=0/7  card=0/13  google_pay=0/8  qr=0/1
+window 07:08  apple_pay=0/7  card=0/9  google_pay=0/7  qr=0/2
+ALERT 07:09 apple_pay: 1/3 = 33% failed
+window 07:09  apple_pay=1/3  card=1/15  google_pay=0/4  qr=0/1
+ALERT 07:10 card: 3/15 = 20% failed
+ALERT 07:10 google_pay: 1/5 = 20% failed
+window 07:10  apple_pay=0/2  card=3/15  google_pay=1/5
+window 07:11  apple_pay=0/4  card=0/8  google_pay=0/5
+window 07:12  apple_pay=0/6  card=1/14  google_pay=0/6  qr=0/1
+window 07:13  apple_pay=0/5  card=0/19  google_pay=0/7
+ALERT 07:14 card: 2/13 = 15% failed
+window 07:14  apple_pay=0/6  card=2/13  google_pay=0/3
+ALERT 07:15 apple_pay: 1/9 = 11% failed
+ALERT 07:15 card: 2/16 = 12% failed
+window 07:15  apple_pay=1/9  card=2/16  google_pay=0/2
+window 07:16  apple_pay=0/8  card=1/10  google_pay=0/3  qr=0/1
+window 07:17  apple_pay=0/6  card=2/26  google_pay=0/5  qr=0/2
+window 07:18  apple_pay=0/10  card=0/12  google_pay=0/7
+ALERT 07:19 apple_pay: 3/12 = 25% failed
+window 07:19  apple_pay=3/12  card=0/23  google_pay=0/3
+window 07:20  apple_pay=0/1  card=1/11  google_pay=0/3
+ALERT 07:21 google_pay: 1/7 = 14% failed
+window 07:21  apple_pay=0/6  card=0/17  google_pay=1/7
+ALERT 07:22 google_pay: 2/5 = 40% failed
+window 07:22  apple_pay=0/6  card=0/21  google_pay=2/5
+window 07:23  apple_pay=0/6  card=0/14  google_pay=0/5
+ALERT 07:24 google_pay: 1/4 = 25% failed
+window 07:24  apple_pay=0/6  card=0/14  google_pay=1/4  qr=0/2
+window 07:25  apple_pay=0/4  card=0/16  google_pay=0/5
+window 07:26  apple_pay=0/4  card=0/19  google_pay=0/4
+window 07:27  apple_pay=0/8  card=1/24  google_pay=0/4  qr=0/1
+ALERT 07:28 apple_pay: 1/7 = 14% failed
+window 07:28  apple_pay=1/7  card=0/17  google_pay=0/2  qr=0/2
+window 07:29  apple_pay=0/5  card=0/16  google_pay=0/8  qr=0/1
+ALERT 07:30 card: 2/17 = 12% failed
+window 07:30  apple_pay=0/7  card=2/17  google_pay=0/5  qr=0/2
+window 07:31  apple_pay=0/2  card=0/13  google_pay=0/3
+ALERT 07:32 apple_pay: 1/5 = 20% failed
+ALERT 07:32 card: 2/12 = 17% failed
+ALERT 07:32 qr: 1/1 = 100% failed
+window 07:32  apple_pay=1/5  card=2/12  google_pay=0/4  qr=1/1
+window 07:33  apple_pay=0/6  card=1/14  google_pay=0/4  qr=0/1
+ALERT 07:34 apple_pay: 1/7 = 14% failed
+window 07:34  apple_pay=1/7  card=0/10  google_pay=0/3
+window 07:35  apple_pay=0/7  card=1/21  google_pay=0/2
+ALERT 07:36 google_pay: 1/6 = 17% failed
+window 07:36  apple_pay=0/5  card=1/20  google_pay=1/6  qr=0/1
+window 07:37  apple_pay=0/8  card=1/10  google_pay=0/6
+window 07:38  apple_pay=0/9  card=0/19  google_pay=0/5
+ALERT 07:39 apple_pay: 3/8 = 38% failed
+window 07:39  apple_pay=3/8  card=1/23  google_pay=0/4  qr=0/1
+window 07:40  apple_pay=0/9  card=0/5  google_pay=0/2  qr=0/1
+ALERT 07:41 apple_pay: 1/2 = 50% failed
+ALERT 07:41 card: 3/17 = 18% failed
+ALERT 07:41 google_pay: 1/3 = 33% failed
+window 07:41  apple_pay=1/2  card=3/17  google_pay=1/3  qr=0/1
+ALERT 07:42 card: 1/5 = 20% failed
+window 07:42  apple_pay=0/7  card=1/5  google_pay=0/9
+ALERT 07:43 google_pay: 1/2 = 50% failed
+window 07:43  apple_pay=1/11  card=0/15  google_pay=1/2
+window 07:44  apple_pay=0/3  card=1/13  google_pay=0/5  qr=0/1
+window 07:45  apple_pay=0/7  card=0/12  google_pay=0/1
+window 07:46  apple_pay=0/2  card=1/10  google_pay=0/7
+ALERT 07:47 card: 2/12 = 17% failed
+ALERT 07:47 google_pay: 1/7 = 14% failed
+window 07:47  apple_pay=0/7  card=2/12  google_pay=1/7  qr=0/2
+window 07:48  apple_pay=0/4  card=0/17  google_pay=0/2
+window 07:49  apple_pay=0/2  card=1/14  google_pay=0/2
+window 07:50  apple_pay=0/6  card=1/12  google_pay=0/3  qr=0/1
+ALERT 07:51 apple_pay: 1/5 = 20% failed
+window 07:51  apple_pay=1/5  card=0/13  google_pay=0/4
+ALERT 07:52 card: 3/18 = 17% failed
+ALERT 07:52 google_pay: 1/5 = 20% failed
+window 07:52  apple_pay=0/5  card=3/18  google_pay=1/5
+ALERT 07:53 google_pay: 1/3 = 33% failed
+window 07:53  apple_pay=0/8  card=0/16  google_pay=1/3
+window 07:54  apple_pay=0/6  card=1/15  google_pay=0/7  qr=0/1
+window 07:55  apple_pay=0/4  card=1/15  google_pay=0/3
+window 07:56  apple_pay=0/10  card=0/13  google_pay=0/6
+ALERT 07:57 apple_pay: 1/6 = 17% failed
+window 07:57  apple_pay=1/6  card=0/23  google_pay=0/4
+ALERT 07:58 card: 2/13 = 15% failed
+window 07:58  apple_pay=0/5  card=2/13  google_pay=0/5
+ALERT 07:59 apple_pay: 2/9 = 22% failed
+window 07:59  apple_pay=2/9  card=1/16  google_pay=0/1
+window 08:00  apple_pay=0/3  card=1/13  google_pay=0/6  qr=0/2
+ALERT 08:01 card: 2/15 = 13% failed
+window 08:01  apple_pay=0/5  card=2/15  google_pay=0/9
+ALERT 08:02 apple_pay: 1/5 = 20% failed
+ALERT 08:02 google_pay: 1/6 = 17% failed
+window 08:02  apple_pay=1/5  card=1/17  google_pay=1/6  qr=0/1
+ALERT 08:03 apple_pay: 2/13 = 15% failed
+ALERT 08:03 card: 3/25 = 12% failed
+ALERT 08:03 google_pay: 2/9 = 22% failed
+window 08:03  apple_pay=2/13  card=3/25  google_pay=2/9  qr=0/1
+window 08:04  apple_pay=1/10  card=2/27  google_pay=0/7  qr=0/1
+ALERT 08:05 card: 5/27 = 19% failed
+ALERT 08:05 google_pay: 1/5 = 20% failed
+ALERT 08:05 qr: 1/1 = 100% failed
+window 08:05  apple_pay=0/7  card=5/27  google_pay=1/5  qr=1/1
+ALERT 08:06 apple_pay: 1/8 = 12% failed
+window 08:06  apple_pay=1/8  card=1/16  google_pay=0/2  qr=0/1
+ALERT 08:07 card: 2/17 = 12% failed
+window 08:07  apple_pay=0/7  card=2/17  google_pay=0/7  qr=0/1
+window 08:08  apple_pay=0/6  card=1/26  google_pay=0/9  qr=0/1
+window 08:09  apple_pay=0/10  card=0/18  google_pay=0/3  qr=0/1
+window 08:10  apple_pay=1/10  card=1/18  google_pay=0/5
+window 08:11  apple_pay=0/10  card=1/15  google_pay=0/9  qr=0/1
+window 08:12  apple_pay=0/7  card=0/21  google_pay=0/4  qr=0/1
+ALERT 08:13 google_pay: 1/5 = 20% failed
+ALERT 08:13 qr: 1/2 = 50% failed
+window 08:13  apple_pay=0/13  card=1/19  google_pay=1/5  qr=1/2
+ALERT 08:14 card: 3/18 = 17% failed
+window 08:14  apple_pay=0/9  card=3/18  google_pay=0/9  qr=0/2
+ALERT 08:15 apple_pay: 1/8 = 12% failed
+ALERT 08:15 card: 2/19 = 11% failed
+window 08:15  apple_pay=1/8  card=2/19  google_pay=0/6
+window 08:16  apple_pay=0/7  card=1/22  google_pay=0/3  qr=0/1
+ALERT 08:17 apple_pay: 2/6 = 33% failed
+ALERT 08:17 qr: 1/2 = 50% failed
+window 08:17  apple_pay=2/6  card=0/14  google_pay=0/1  qr=1/2
+ALERT 08:18 apple_pay: 1/8 = 12% failed
+ALERT 08:18 card: 5/26 = 19% failed
+window 08:18  apple_pay=1/8  card=5/26  google_pay=0/4  qr=0/1
+ALERT 08:19 apple_pay: 2/8 = 25% failed
+window 08:19  apple_pay=2/8  card=1/23  google_pay=0/4
+ALERT 08:20 apple_pay: 1/8 = 12% failed
+window 08:20  apple_pay=1/8  card=1/18  google_pay=0/3  qr=0/2
+ALERT 08:21 card: 4/25 = 16% failed
+ALERT 08:21 google_pay: 1/8 = 12% failed
+window 08:21  apple_pay=0/8  card=4/25  google_pay=1/8  qr=0/2
+ALERT 08:22 google_pay: 3/10 = 30% failed
+window 08:22  apple_pay=0/10  card=1/17  google_pay=3/10  qr=0/1
+ALERT 08:23 apple_pay: 1/6 = 17% failed
+ALERT 08:23 google_pay: 1/6 = 17% failed
+window 08:23  apple_pay=1/6  card=0/18  google_pay=1/6
+ALERT 08:24 google_pay: 1/3 = 33% failed
+window 08:24  apple_pay=0/4  card=2/20  google_pay=1/3
+ALERT 08:25 apple_pay: 1/7 = 14% failed
+window 08:25  apple_pay=1/7  card=0/21  google_pay=0/6  qr=0/1
+window 08:26  apple_pay=0/8  card=0/18  google_pay=0/2
+window 08:27  apple_pay=1/11  card=1/27  google_pay=0/8  qr=0/1
+ALERT 08:28 apple_pay: 1/2 = 50% failed
+window 08:28  apple_pay=1/2  card=1/20  google_pay=0/6
+window 08:29  apple_pay=0/7  card=1/21  google_pay=0/5
+ALERT 08:30 apple_pay: 2/9 = 22% failed
+window 08:30  apple_pay=2/9  card=1/20  google_pay=0/4  qr=0/1
+ALERT 08:31 apple_pay: 2/5 = 40% failed
+window 08:31  apple_pay=2/5  card=1/20  google_pay=0/6  qr=0/1
+ALERT 08:32 apple_pay: 1/8 = 12% failed
+window 08:32  apple_pay=1/8  card=0/17  google_pay=0/5
+window 08:33  apple_pay=0/6  card=2/22  google_pay=0/7  qr=0/1
+ALERT 08:34 apple_pay: 1/5 = 20% failed
+ALERT 08:34 card: 2/19 = 11% failed
+ALERT 08:34 google_pay: 1/7 = 14% failed
+window 08:34  apple_pay=1/5  card=2/19  google_pay=1/7
+ALERT 08:35 card: 4/21 = 19% failed
+window 08:35  apple_pay=0/3  card=4/21  google_pay=0/6
+ALERT 08:36 card: 3/20 = 15% failed
+ALERT 08:36 google_pay: 2/11 = 18% failed
+window 08:36  apple_pay=0/8  card=3/20  google_pay=2/11
+ALERT 08:37 apple_pay: 1/7 = 14% failed
+ALERT 08:37 card: 2/12 = 17% failed
+window 08:37  apple_pay=1/7  card=2/12  google_pay=0/7
+ALERT 08:38 apple_pay: 2/6 = 33% failed
+ALERT 08:38 google_pay: 1/5 = 20% failed
+window 08:38  apple_pay=2/6  card=1/15  google_pay=1/5
+window 08:39  apple_pay=0/8  card=0/18  google_pay=0/5
+ALERT 08:40 apple_pay: 1/8 = 12% failed
+window 08:40  apple_pay=1/8  card=1/20  google_pay=0/6
+window 08:41  apple_pay=1/12  card=0/21  google_pay=0/6  qr=0/1
+ALERT 08:42 google_pay: 2/11 = 18% failed
+window 08:42  apple_pay=0/10  card=0/16  google_pay=2/11
+window 08:43  apple_pay=0/11  card=2/28  google_pay=1/10
+ALERT 08:44 apple_pay: 1/8 = 12% failed
+window 08:44  apple_pay=1/8  card=1/19  google_pay=0/5  qr=0/2
+window 08:45  apple_pay=0/13  card=0/21  google_pay=1/10  qr=0/1
+window 08:46  apple_pay=0/6  card=0/21  google_pay=0/8  qr=0/2
+ALERT 08:47 google_pay: 1/9 = 11% failed
+window 08:47  apple_pay=0/9  card=0/9  google_pay=1/9
+ALERT 08:48 google_pay: 1/7 = 14% failed
+window 08:48  apple_pay=0/5  card=1/12  google_pay=1/7
+ALERT 08:49 google_pay: 1/5 = 20% failed
+window 08:49  apple_pay=0/8  card=1/17  google_pay=1/5
+ALERT 08:50 apple_pay: 1/8 = 12% failed
+ALERT 08:50 card: 3/21 = 14% failed
+ALERT 08:50 qr: 1/1 = 100% failed
+window 08:50  apple_pay=1/8  card=3/21  google_pay=0/10  qr=1/1
+ALERT 08:51 card: 3/25 = 12% failed
+window 08:51  apple_pay=1/11  card=3/25  google_pay=0/4
+window 08:52  apple_pay=0/11  card=1/22  google_pay=0/5
+ALERT 08:53 apple_pay: 1/8 = 12% failed
+window 08:53  apple_pay=1/8  card=1/21  google_pay=0/6
+ALERT 08:54 google_pay: 1/9 = 11% failed
+window 08:54  apple_pay=0/7  card=2/20  google_pay=1/9  qr=0/1
+window 08:55  apple_pay=0/13  card=0/16  google_pay=0/5
+window 08:56  apple_pay=0/14  card=0/20  google_pay=0/9
+window 08:57  apple_pay=0/8  card=1/22  google_pay=0/6
+ALERT 08:58 apple_pay: 1/9 = 11% failed
+ALERT 08:58 google_pay: 1/3 = 33% failed
+window 08:58  apple_pay=1/9  card=0/18  google_pay=1/3
+ALERT 08:59 card: 5/26 = 19% failed
+window 08:59  apple_pay=0/5  card=5/26  google_pay=0/8  qr=0/1
+window 09:00  apple_pay=0/10  card=1/18  google_pay=0/6
+window 09:01  apple_pay=1/15  card=1/19  google_pay=0/2  qr=0/1
+ALERT 09:02 card: 3/20 = 15% failed
+window 09:02  apple_pay=0/10  card=3/20  google_pay=0/4  qr=0/1
+window 09:03  apple_pay=0/4  card=0/21  google_pay=0/5  qr=0/1
+ALERT 09:04 card: 2/16 = 12% failed
+ALERT 09:04 google_pay: 1/8 = 12% failed
+window 09:04  apple_pay=0/10  card=2/16  google_pay=1/8  qr=0/1
+ALERT 09:05 apple_pay: 1/4 = 25% failed
+window 09:05  apple_pay=1/4  card=0/15  google_pay=0/6  qr=0/2
+window 09:06  apple_pay=0/10  card=1/18  google_pay=0/3
+window 09:07  apple_pay=0/10  card=1/14  google_pay=0/4
+ALERT 09:08 apple_pay: 1/7 = 14% failed
+ALERT 09:08 card: 2/15 = 13% failed
+ALERT 09:08 google_pay: 1/6 = 17% failed
+window 09:08  apple_pay=1/7  card=2/15  google_pay=1/6  qr=0/1
+ALERT 09:09 card: 2/17 = 12% failed
+ALERT 09:09 google_pay: 1/5 = 20% failed
+window 09:09  apple_pay=1/10  card=2/17  google_pay=1/5
+ALERT 09:10 apple_pay: 1/5 = 20% failed
+window 09:10  apple_pay=1/5  card=0/15  google_pay=0/2  qr=0/3
+ALERT 09:11 apple_pay: 1/5 = 20% failed
+window 09:11  apple_pay=1/5  card=2/20  google_pay=0/3  qr=0/1
+ALERT 09:12 card: 2/17 = 12% failed
+window 09:12  apple_pay=0/11  card=2/17  google_pay=0/7
+ALERT 09:13 card: 2/19 = 11% failed
+window 09:13  apple_pay=0/14  card=2/19  google_pay=0/3
+ALERT 09:14 apple_pay: 3/9 = 33% failed
+ALERT 09:14 google_pay: 1/4 = 25% failed
+window 09:14  apple_pay=3/9  card=0/15  google_pay=1/4
+window 09:15  apple_pay=0/7  card=1/19  google_pay=0/5
+window 09:16  apple_pay=0/16  card=1/14  google_pay=0/3  qr=0/1
+window 09:17  apple_pay=0/8  card=0/18  google_pay=0/5
+window 09:18  apple_pay=0/6  card=0/15  google_pay=0/1
+ALERT 09:19 apple_pay: 2/13 = 15% failed
+ALERT 09:19 card: 4/18 = 22% failed
+window 09:19  apple_pay=2/13  card=4/18  google_pay=0/4
+ALERT 09:20 card: 2/18 = 11% failed
+window 09:20  apple_pay=0/5  card=2/18  google_pay=1/11  qr=0/1
+window 09:21  apple_pay=0/7  card=0/20  google_pay=0/6
+ALERT 09:22 card: 1/9 = 11% failed
+window 09:22  apple_pay=0/7  card=1/9  google_pay=0/2  qr=0/1
+window 09:23  apple_pay=1/13  card=2/20  google_pay=0/3
+ALERT 09:24 card: 2/14 = 14% failed
+window 09:24  apple_pay=0/8  card=2/14  google_pay=0/5
+window 09:25  apple_pay=0/11  card=0/18  google_pay=0/7  qr=0/1
+window 09:26  apple_pay=0/6  card=1/18  google_pay=0/9  qr=0/1
+ALERT 09:27 google_pay: 2/7 = 29% failed
+window 09:27  apple_pay=0/8  card=1/17  google_pay=2/7
+window 09:28  apple_pay=0/7  card=2/29  google_pay=0/5
+ALERT 09:29 card: 3/20 = 15% failed
+ALERT 09:29 google_pay: 1/6 = 17% failed
+window 09:29  apple_pay=0/9  card=3/20  google_pay=1/6
+ALERT 09:30 apple_pay: 1/7 = 14% failed
+window 09:30  apple_pay=1/7  card=0/15  google_pay=0/5
+window 09:31  apple_pay=0/4  card=0/18  google_pay=0/4
+window 09:32  apple_pay=0/11  card=1/15  google_pay=0/4  qr=0/1
+window 09:33  apple_pay=0/6  card=0/8  google_pay=0/5  qr=0/1
+ALERT 09:34 apple_pay: 1/8 = 12% failed
+window 09:34  apple_pay=1/8  card=0/19  google_pay=0/5  qr=0/1
+window 09:35  apple_pay=0/5  card=1/13  google_pay=0/5
+ALERT 09:36 apple_pay: 2/5 = 40% failed
+window 09:36  apple_pay=2/5  card=1/15  google_pay=0/3  qr=0/1
+ALERT 09:37 apple_pay: 1/6 = 17% failed
+window 09:37  apple_pay=1/6  card=0/16  google_pay=0/4
+ALERT 09:38 card: 2/16 = 12% failed
+window 09:38  apple_pay=1/11  card=2/16  google_pay=1/12
+window 09:39  apple_pay=0/5  card=1/15  google_pay=0/9
+ALERT 09:40 card: 2/17 = 12% failed
+ALERT 09:40 google_pay: 1/5 = 20% failed
+window 09:40  apple_pay=0/8  card=2/17  google_pay=1/5  qr=0/1
+window 09:41  apple_pay=0/3  card=2/22  google_pay=0/1
+window 09:42  apple_pay=0/5  card=0/23  google_pay=0/7
+ALERT 09:43 apple_pay: 1/6 = 17% failed
+ALERT 09:43 card: 2/15 = 13% failed
+ALERT 09:43 google_pay: 1/6 = 17% failed
+window 09:43  apple_pay=1/6  card=2/15  google_pay=1/6  qr=0/1
+ALERT 09:44 apple_pay: 1/3 = 33% failed
+ALERT 09:44 google_pay: 2/7 = 29% failed
+window 09:44  apple_pay=1/3  card=1/18  google_pay=2/7
+window 09:45  apple_pay=0/6  card=0/17  google_pay=0/4
+ALERT 09:46 apple_pay: 1/7 = 14% failed
+window 09:46  apple_pay=1/7  card=0/15  google_pay=0/7
+window 09:47  apple_pay=0/5  card=0/15  google_pay=0/4  qr=0/1
+ALERT 09:48 qr: 1/2 = 50% failed
+window 09:48  apple_pay=0/8  card=1/19  google_pay=1/10  qr=1/2
+window 09:49  apple_pay=0/4  card=1/15  google_pay=0/1  qr=0/1
+window 09:50  apple_pay=0/11  card=0/19  google_pay=0/5
+ALERT 09:51 card: 2/13 = 15% failed
+ALERT 09:51 google_pay: 1/7 = 14% failed
+window 09:51  apple_pay=0/7  card=2/13  google_pay=1/7  qr=0/2
+ALERT 09:52 apple_pay: 1/6 = 17% failed
+ALERT 09:52 qr: 2/2 = 100% failed
+window 09:52  apple_pay=1/6  card=1/22  google_pay=0/5  qr=2/2
+window 09:53  apple_pay=0/6  card=0/15  google_pay=0/2
+ALERT 09:54 apple_pay: 1/7 = 14% failed
+ALERT 09:54 google_pay: 1/6 = 17% failed
+window 09:54  apple_pay=1/7  card=1/17  google_pay=1/6
+ALERT 09:55 card: 2/12 = 17% failed
+window 09:55  apple_pay=0/9  card=2/12  google_pay=0/2  qr=0/1
+ALERT 09:56 card: 3/19 = 16% failed
+window 09:56  apple_pay=0/10  card=3/19  google_pay=0/6
+ALERT 09:57 google_pay: 2/4 = 50% failed
+window 09:57  apple_pay=0/9  card=0/18  google_pay=2/4
+window 09:58  apple_pay=0/5  card=1/15  google_pay=0/6  qr=0/2
+ALERT 09:59 apple_pay: 1/8 = 12% failed
+window 09:59  apple_pay=1/8  card=2/20  google_pay=0/9  qr=0/1
+ALERT 10:00 apple_pay: 3/9 = 33% failed
+ALERT 10:00 google_pay: 2/6 = 33% failed
+window 10:00  apple_pay=3/9  card=1/14  google_pay=2/6
+ALERT 10:01 apple_pay: 1/4 = 25% failed
+window 10:01  apple_pay=1/4  card=1/13  google_pay=0/3  qr=0/1
+ALERT 10:02 card: 2/10 = 20% failed
+ALERT 10:02 google_pay: 1/1 = 100% failed
+window 10:02  apple_pay=0/6  card=2/10  google_pay=1/1
+window 10:03  apple_pay=0/6  card=1/13  google_pay=0/6
+window 10:04  apple_pay=0/4  card=1/15  google_pay=0/5  qr=0/1
+window 10:05  apple_pay=0/4  card=0/12  google_pay=0/2
+window 10:06  apple_pay=0/7  card=0/14  google_pay=0/3  qr=0/1
+ALERT 10:07 apple_pay: 1/5 = 20% failed
+window 10:07  apple_pay=1/5  card=0/17  google_pay=0/4  qr=0/1
+ALERT 10:08 card: 2/15 = 13% failed
+window 10:08  apple_pay=0/4  card=2/15  google_pay=0/5
+window 10:09  apple_pay=0/7  card=0/17  google_pay=0/3
+window 10:10  apple_pay=0/7  card=0/8  google_pay=0/7
+ALERT 10:11 card: 2/15 = 13% failed
+window 10:11  apple_pay=0/10  card=2/15  google_pay=0/5
+ALERT 10:12 card: 2/17 = 12% failed
+ALERT 10:12 google_pay: 1/5 = 20% failed
+window 10:12  apple_pay=1/11  card=2/17  google_pay=1/5
+window 10:13  apple_pay=0/5  card=1/12  google_pay=0/2  qr=0/1
+window 10:14  apple_pay=0/7  card=0/14  google_pay=0/6
+ALERT 10:15 apple_pay: 1/6 = 17% failed
+window 10:15  apple_pay=1/6  card=0/8  google_pay=0/4  qr=0/1
+ALERT 10:16 google_pay: 1/6 = 17% failed
+window 10:16  apple_pay=0/10  card=1/14  google_pay=1/6  qr=0/1
+ALERT 10:17 apple_pay: 1/9 = 11% failed
+ALERT 10:17 card: 3/16 = 19% failed
+window 10:17  apple_pay=1/9  card=3/16  google_pay=0/4  qr=0/1
+ALERT 10:18 apple_pay: 1/9 = 11% failed
+ALERT 10:18 card: 3/16 = 19% failed
+window 10:18  apple_pay=1/9  card=3/16  google_pay=0/3  qr=0/1
+ALERT 10:19 apple_pay: 1/5 = 20% failed
+ALERT 10:19 card: 2/13 = 15% failed
+window 10:19  apple_pay=1/5  card=2/13  google_pay=0/2
+ALERT 10:20 apple_pay: 1/2 = 50% failed
+window 10:20  apple_pay=1/2  card=0/8  google_pay=0/2  qr=0/1
+ALERT 10:21 apple_pay: 1/8 = 12% failed
+window 10:21  apple_pay=1/8  card=0/17  google_pay=0/9  qr=0/1
+ALERT 10:22 google_pay: 1/4 = 25% failed
+window 10:22  apple_pay=0/6  card=1/18  google_pay=1/4
+window 10:23  apple_pay=0/6  card=0/12  google_pay=0/2
+ALERT 10:24 google_pay: 1/5 = 20% failed
+window 10:24  apple_pay=0/3  card=1/13  google_pay=1/5  qr=0/1
+window 10:25  apple_pay=0/5  card=0/26  google_pay=0/4
+ALERT 10:26 apple_pay: 1/5 = 20% failed
+ALERT 10:26 qr: 1/2 = 50% failed
+window 10:26  apple_pay=1/5  card=0/15  google_pay=0/2  qr=1/2
+ALERT 10:27 google_pay: 1/5 = 20% failed
+window 10:27  apple_pay=0/4  card=1/15  google_pay=1/5  qr=0/2
+ALERT 10:28 apple_pay: 1/6 = 17% failed
+window 10:28  apple_pay=1/6  card=1/18  google_pay=0/3
+ALERT 10:29 apple_pay: 1/7 = 14% failed
+ALERT 10:29 card: 2/19 = 11% failed
+window 10:29  apple_pay=1/7  card=2/19  google_pay=0/3
+ALERT 10:30 google_pay: 1/6 = 17% failed
+window 10:30  apple_pay=0/6  card=1/12  google_pay=1/6
+window 10:31  apple_pay=0/5  card=0/16  google_pay=0/7
+ALERT 10:32 apple_pay: 1/8 = 12% failed
+ALERT 10:32 card: 1/9 = 11% failed
+window 10:32  apple_pay=1/8  card=1/9  google_pay=0/5
+window 10:33  apple_pay=0/4  card=1/13  google_pay=0/2
+window 10:34  apple_pay=0/2  card=0/13  google_pay=0/8
+ALERT 10:35 google_pay: 1/8 = 12% failed
+window 10:35  apple_pay=0/8  card=0/14  google_pay=1/8  qr=0/1
+ALERT 10:36 google_pay: 1/6 = 17% failed
+window 10:36  apple_pay=0/4  card=1/20  google_pay=1/6
+window 10:37  apple_pay=0/3  card=1/20  google_pay=0/8
+ALERT 10:38 apple_pay: 1/7 = 14% failed
+window 10:38  apple_pay=1/7  card=1/16  google_pay=0/8
+ALERT 10:39 google_pay: 1/7 = 14% failed
+window 10:39  apple_pay=0/8  card=1/10  google_pay=1/7  qr=0/1
+ALERT 10:40 card: 3/18 = 17% failed
+window 10:40  apple_pay=0/4  card=3/18  google_pay=0/6  qr=0/4
+ALERT 10:41 google_pay: 1/8 = 12% failed
+window 10:41  apple_pay=0/4  card=1/16  google_pay=1/8  qr=0/1
+ALERT 10:42 google_pay: 2/6 = 33% failed
+window 10:42  apple_pay=0/5  card=1/11  google_pay=2/6
+ALERT 10:43 google_pay: 1/2 = 50% failed
+window 10:43  apple_pay=0/5  card=0/17  google_pay=1/2
+window 10:44  apple_pay=1/11  card=0/8  google_pay=0/6
+window 10:45  apple_pay=0/8  card=0/13  google_pay=0/6  qr=0/2
+window 10:46  apple_pay=0/5  card=0/30  google_pay=0/6  qr=0/1
+ALERT 10:47 card: 1/9 = 11% failed
+ALERT 10:47 qr: 1/2 = 50% failed
+window 10:47  apple_pay=0/8  card=1/9  google_pay=0/1  qr=1/2
+ALERT 10:48 apple_pay: 2/11 = 18% failed
+ALERT 10:48 card: 3/22 = 14% failed
+ALERT 10:48 google_pay: 3/12 = 25% failed
+window 10:48  apple_pay=2/11  card=3/22  google_pay=3/12  qr=0/1
+ALERT 10:49 card: 2/12 = 17% failed
+window 10:49  apple_pay=0/11  card=2/12  google_pay=0/3
+window 10:50  apple_pay=0/4  card=1/16  google_pay=0/6
+window 10:51  apple_pay=0/6  card=0/11  google_pay=0/9  qr=0/1
+ALERT 10:52 apple_pay: 1/7 = 14% failed
+ALERT 10:52 card: 1/9 = 11% failed
+ALERT 10:52 google_pay: 1/3 = 33% failed
+window 10:52  apple_pay=1/7  card=1/9  google_pay=1/3
+ALERT 10:53 card: 4/17 = 24% failed
+window 10:53  apple_pay=0/9  card=4/17  google_pay=0/6  qr=0/2
+window 10:54  apple_pay=0/9  card=0/14  google_pay=0/3  qr=0/1
+window 10:55  apple_pay=0/7  card=0/11  qr=0/2
+ALERT 10:56 apple_pay: 1/7 = 14% failed
+window 10:56  apple_pay=1/7  card=0/13
+ALERT 10:57 card: 4/13 = 31% failed
+window 10:57  apple_pay=0/7  card=4/13  google_pay=0/5  qr=0/1
+window 10:58  apple_pay=0/5  card=0/10  google_pay=0/5  qr=0/1
+ALERT 10:59 google_pay: 1/7 = 14% failed
+window 10:59  apple_pay=0/8  card=0/15  google_pay=1/7
+ALERT 11:00 apple_pay: 1/8 = 12% failed
+ALERT 11:00 card: 2/17 = 12% failed
+window 11:00  apple_pay=1/8  card=2/17  google_pay=0/6
+ALERT 11:01 google_pay: 1/5 = 20% failed
+window 11:01  apple_pay=1/10  card=2/20  google_pay=1/5  qr=0/1
+window 11:02  apple_pay=0/3  card=2/21  google_pay=0/6  qr=0/2
+window 11:03  apple_pay=0/11  card=1/16  google_pay=0/3
+window 11:04  apple_pay=0/15  card=0/16  google_pay=0/2  qr=0/1
+ALERT 11:05 google_pay: 1/3 = 33% failed
+window 11:05  apple_pay=0/4  card=0/14  google_pay=1/3
+ALERT 11:06 apple_pay: 1/7 = 14% failed
+window 11:06  apple_pay=1/7  card=1/16  google_pay=0/3
+window 11:07  apple_pay=0/5  card=1/19  google_pay=0/7  qr=0/2
+window 11:08  apple_pay=0/7  card=0/22  google_pay=0/2
+ALERT 11:09 apple_pay: 1/9 = 11% failed
+ALERT 11:09 card: 5/15 = 33% failed
+window 11:09  apple_pay=1/9  card=5/15  google_pay=0/4
+ALERT 11:10 apple_pay: 2/11 = 18% failed
+window 11:10  apple_pay=2/11  card=0/20  google_pay=1/10
+window 11:11  apple_pay=0/9  card=1/14  google_pay=0/9  qr=0/2
+window 11:12  apple_pay=0/3  card=1/14  google_pay=0/3
+ALERT 11:13 card: 3/10 = 30% failed
+ALERT 11:13 google_pay: 1/6 = 17% failed
+window 11:13  apple_pay=0/7  card=3/10  google_pay=1/6  qr=0/1
+ALERT 11:14 apple_pay: 1/4 = 25% failed
+window 11:14  apple_pay=1/4  card=1/15  google_pay=1/10  qr=0/1
+window 11:15  apple_pay=1/11  card=0/12  google_pay=0/3  qr=0/1
+ALERT 11:16 apple_pay: 1/8 = 12% failed
+ALERT 11:16 google_pay: 1/5 = 20% failed
+window 11:16  apple_pay=1/8  card=0/15  google_pay=1/5
+ALERT 11:17 apple_pay: 1/6 = 17% failed
+window 11:17  apple_pay=1/6  card=1/10  google_pay=0/8  qr=0/1
+window 11:18  apple_pay=0/7  card=0/22  google_pay=0/9  qr=0/1
+ALERT 11:19 card: 3/12 = 25% failed
+window 11:19  apple_pay=0/9  card=3/12  google_pay=0/4  qr=0/1
+window 11:20  apple_pay=0/4  card=2/22  google_pay=0/6  qr=0/2
+ALERT 11:21 card: 2/12 = 17% failed
+window 11:21  apple_pay=0/5  card=2/12  google_pay=0/4  qr=0/1
+window 11:22  apple_pay=0/5  card=0/20  google_pay=0/4
+ALERT 11:23 apple_pay: 1/9 = 11% failed
+window 11:23  apple_pay=1/9  card=1/13  google_pay=0/7  qr=0/1
+ALERT 11:24 apple_pay: 3/8 = 38% failed
+ALERT 11:24 google_pay: 1/6 = 17% failed
+window 11:24  apple_pay=3/8  card=0/13  google_pay=1/6
+ALERT 11:25 card: 4/27 = 15% failed
+ALERT 11:25 google_pay: 1/7 = 14% failed
+window 11:25  apple_pay=0/11  card=4/27  google_pay=1/7  qr=0/2
+ALERT 11:26 apple_pay: 1/9 = 11% failed
+window 11:26  apple_pay=1/9  card=2/20  google_pay=0/5
+ALERT 11:27 apple_pay: 1/7 = 14% failed
+window 11:27  apple_pay=1/7  card=0/19  google_pay=0/9
+ALERT 11:28 card: 2/19 = 11% failed
+ALERT 11:28 google_pay: 1/9 = 11% failed
+ALERT 11:28 qr: 1/2 = 50% failed
+window 11:28  apple_pay=0/3  card=2/19  google_pay=1/9  qr=1/2
+ALERT 11:29 apple_pay: 1/9 = 11% failed
+window 11:29  apple_pay=1/9  card=2/20  google_pay=0/2  qr=0/1
+window 11:30  apple_pay=0/6  card=0/11  google_pay=0/5  qr=0/1
+ALERT 11:31 apple_pay: 1/6 = 17% failed
+ALERT 11:31 card: 2/19 = 11% failed
+window 11:31  apple_pay=1/6  card=2/19  google_pay=0/2
+window 11:32  apple_pay=0/10  card=0/14  google_pay=0/4
+ALERT 11:33 apple_pay: 1/8 = 12% failed
+ALERT 11:33 google_pay: 1/7 = 14% failed
+window 11:33  apple_pay=1/8  card=2/21  google_pay=1/7  qr=0/1
+window 11:34  apple_pay=0/11  card=1/16  google_pay=0/5
+ALERT 11:35 apple_pay: 1/6 = 17% failed
+ALERT 11:35 card: 3/15 = 20% failed
+window 11:35  apple_pay=1/6  card=3/15  google_pay=0/8
+window 11:36  apple_pay=0/4  card=0/17  google_pay=0/9
+ALERT 11:37 card: 2/15 = 13% failed
+window 11:37  apple_pay=0/8  card=2/15  google_pay=0/2
+window 11:38  apple_pay=0/7  card=0/10  google_pay=0/5
+ALERT 11:39 apple_pay: 1/6 = 17% failed
+window 11:39  apple_pay=1/6  card=1/15  google_pay=0/3
+ALERT 11:40 apple_pay: 1/7 = 14% failed
+window 11:40  apple_pay=1/7  card=1/17  google_pay=0/8  qr=0/2
+window 11:41  apple_pay=0/3  card=0/16  google_pay=0/5  qr=0/2
+ALERT 11:42 google_pay: 2/7 = 29% failed
+window 11:42  apple_pay=0/7  card=1/10  google_pay=2/7
+ALERT 11:43 google_pay: 1/3 = 33% failed
+window 11:43  apple_pay=0/8  card=0/21  google_pay=1/3
+ALERT 11:44 apple_pay: 1/9 = 11% failed
+window 11:44  apple_pay=1/9  card=0/10  google_pay=0/6
+window 11:45  apple_pay=0/14  card=0/11  google_pay=0/7  qr=0/1
+ALERT 11:46 apple_pay: 1/9 = 11% failed
+window 11:46  apple_pay=1/9  card=0/12  google_pay=0/6
+window 11:47  apple_pay=0/5  card=1/18  google_pay=0/2
+ALERT 11:48 apple_pay: 1/4 = 25% failed
+window 11:48  apple_pay=1/4  card=1/15  google_pay=0/4
+window 11:49  apple_pay=0/10  card=1/22  google_pay=0/8
+window 11:50  apple_pay=0/5  card=1/17  google_pay=0/4  qr=0/1
+window 11:51  apple_pay=0/10  card=0/11  google_pay=0/5
+window 11:52  apple_pay=0/8  card=0/14  google_pay=0/3  qr=0/1
+ALERT 11:53 card: 2/9 = 22% failed
+window 11:53  apple_pay=0/8  card=2/9  google_pay=0/2
+window 11:54  apple_pay=0/9  card=1/15  google_pay=0/5
+window 11:55  apple_pay=0/12  card=1/19  google_pay=0/4  qr=0/1
+ALERT 11:56 card: 2/16 = 12% failed
+window 11:56  apple_pay=0/7  card=2/16  google_pay=0/3  qr=0/1
+ALERT 11:57 card: 4/22 = 18% failed
+ALERT 11:57 google_pay: 1/8 = 12% failed
+window 11:57  apple_pay=0/8  card=4/22  google_pay=1/8
+window 11:58  apple_pay=0/7  card=1/13  google_pay=0/8  qr=0/2
+window 11:59  apple_pay=0/12  card=2/21  google_pay=0/1
+window 12:00  apple_pay=0/11  card=0/23  google_pay=0/6  qr=0/1
+ALERT 12:01 google_pay: 1/5 = 20% failed
+window 12:01  apple_pay=0/8  card=2/21  google_pay=1/5  qr=0/2
+window 12:02  apple_pay=0/4  card=1/21  google_pay=0/5
+ALERT 12:03 qr: 1/1 = 100% failed
+window 12:03  apple_pay=0/9  card=0/11  google_pay=0/5  qr=1/1
+ALERT 12:04 apple_pay: 2/10 = 20% failed
+window 12:04  apple_pay=2/10  card=1/21  google_pay=0/4  qr=0/1
+ALERT 12:05 google_pay: 1/6 = 17% failed
+window 12:05  apple_pay=0/9  card=0/19  google_pay=1/6  qr=0/2
+ALERT 12:06 card: 4/25 = 16% failed
+window 12:06  apple_pay=0/14  card=4/25  google_pay=1/11
+ALERT 12:07 google_pay: 1/7 = 14% failed
+window 12:07  apple_pay=1/13  card=0/14  google_pay=1/7  qr=0/1
+ALERT 12:08 apple_pay: 1/9 = 11% failed
+ALERT 12:08 google_pay: 1/8 = 12% failed
+window 12:08  apple_pay=1/9  card=0/15  google_pay=1/8
+window 12:09  apple_pay=1/12  card=1/20  google_pay=0/4
+ALERT 12:10 apple_pay: 1/9 = 11% failed
+window 12:10  apple_pay=1/9  card=1/20  google_pay=0/11  qr=0/1
+ALERT 12:11 apple_pay: 1/9 = 11% failed
+ALERT 12:11 card: 2/19 = 11% failed
+ALERT 12:11 google_pay: 2/9 = 22% failed
+window 12:11  apple_pay=1/9  card=2/19  google_pay=2/9
+window 12:12  apple_pay=0/10  card=0/17  google_pay=0/7
+window 12:13  apple_pay=1/10  card=0/15  google_pay=0/5
+window 12:14  apple_pay=0/7  card=1/20  google_pay=0/12  qr=0/3
+window 12:15  apple_pay=0/4  card=1/23  google_pay=0/6  qr=0/1
+window 12:16  apple_pay=1/10  card=1/23  google_pay=1/10
+window 12:17  apple_pay=0/5  card=1/26  google_pay=0/5
+window 12:18  apple_pay=0/10  card=0/23  google_pay=0/3
+ALERT 12:19 apple_pay: 1/8 = 12% failed
+window 12:19  apple_pay=1/8  card=0/26  google_pay=0/5
+ALERT 12:20 google_pay: 1/8 = 12% failed
+window 12:20  apple_pay=0/7  card=1/17  google_pay=1/8
+ALERT 12:21 card: 3/24 = 12% failed
+window 12:21  apple_pay=0/11  card=3/24  google_pay=0/4  qr=0/1
+window 12:22  apple_pay=0/11  card=2/21  google_pay=0/10
+ALERT 12:23 google_pay: 1/7 = 14% failed
+window 12:23  apple_pay=0/6  card=1/12  google_pay=1/7
+ALERT 12:24 card: 5/25 = 20% failed
+window 12:24  apple_pay=1/12  card=5/25  google_pay=0/9  qr=0/1
+window 12:25  apple_pay=1/13  card=1/19  google_pay=0/9  qr=0/1
+ALERT 12:26 card: 2/16 = 12% failed
+window 12:26  apple_pay=0/10  card=2/16  google_pay=1/10
+window 12:27  apple_pay=0/6  card=2/24  google_pay=0/6  qr=0/2
+ALERT 12:28 google_pay: 1/8 = 12% failed
+window 12:28  apple_pay=0/2  card=1/24  google_pay=1/8  qr=0/1
+ALERT 12:29 card: 3/24 = 12% failed
+ALERT 12:29 google_pay: 1/9 = 11% failed
+window 12:29  apple_pay=0/10  card=3/24  google_pay=1/9
+window 12:30  apple_pay=0/10  card=0/21  google_pay=0/5  qr=0/1
+window 12:31  apple_pay=0/6  card=0/25  google_pay=0/7  qr=0/2
+window 12:32  apple_pay=0/6  card=1/23  google_pay=1/10  qr=0/2
+ALERT 12:33 apple_pay: 1/8 = 12% failed
+ALERT 12:33 google_pay: 1/4 = 25% failed
+window 12:33  apple_pay=1/8  card=1/17  google_pay=1/4
+ALERT 12:34 apple_pay: 2/8 = 25% failed
+window 12:34  apple_pay=2/8  card=0/12  google_pay=0/11  qr=0/1
+ALERT 12:35 card: 2/15 = 13% failed
+ALERT 12:35 google_pay: 1/5 = 20% failed
+window 12:35  apple_pay=0/12  card=2/15  google_pay=1/5  qr=0/1
+ALERT 12:36 card: 3/19 = 16% failed
+window 12:36  apple_pay=0/11  card=3/19  google_pay=0/7  qr=0/1
+window 12:37  apple_pay=0/7  card=0/11  google_pay=0/5  qr=0/2
+ALERT 12:38 google_pay: 2/7 = 29% failed
+window 12:38  apple_pay=0/10  card=1/12  google_pay=2/7
+ALERT 12:39 apple_pay: 1/8 = 12% failed
+window 12:39  apple_pay=1/8  card=0/20  google_pay=0/8  qr=0/2
+ALERT 12:40 google_pay: 1/8 = 12% failed
+ALERT 12:40 qr: 1/2 = 50% failed
+window 12:40  apple_pay=0/10  card=2/23  google_pay=1/8  qr=1/2
+ALERT 12:41 apple_pay: 1/9 = 11% failed
+ALERT 12:41 card: 2/15 = 13% failed
+ALERT 12:41 qr: 1/3 = 33% failed
+window 12:41  apple_pay=1/9  card=2/15  google_pay=0/6  qr=1/3
+ALERT 12:42 apple_pay: 1/7 = 14% failed
+window 12:42  apple_pay=1/7  card=1/15  google_pay=0/4  qr=0/3
+ALERT 12:43 google_pay: 1/4 = 25% failed
+window 12:43  apple_pay=1/13  card=0/17  google_pay=1/4
+ALERT 12:44 card: 2/17 = 12% failed
+window 12:44  apple_pay=0/8  card=2/17  google_pay=0/5
+ALERT 12:45 apple_pay: 1/9 = 11% failed
+ALERT 12:45 card: 3/17 = 18% failed
+window 12:45  apple_pay=1/9  card=3/17  google_pay=0/4  qr=0/1
+window 12:46  apple_pay=1/16  card=1/22  google_pay=0/7
+ALERT 12:47 apple_pay: 1/9 = 11% failed
+ALERT 12:47 google_pay: 1/4 = 25% failed
+window 12:47  apple_pay=1/9  card=2/27  google_pay=1/4  qr=0/1
+window 12:48  apple_pay=1/12  card=0/32  google_pay=0/3  qr=0/3
+ALERT 12:49 apple_pay: 1/7 = 14% failed
+window 12:49  apple_pay=1/7  card=0/20  google_pay=0/11  qr=0/1
+window 12:50  apple_pay=0/10  card=0/20  google_pay=0/6
+window 12:51  apple_pay=0/6  card=0/21  google_pay=0/5
+window 12:52  apple_pay=0/7  card=1/12  google_pay=0/6  qr=0/1
+ALERT 12:53 apple_pay: 1/8 = 12% failed
+window 12:53  apple_pay=1/8  card=1/21  google_pay=1/10
+window 12:54  apple_pay=0/7  card=0/24  google_pay=0/3  qr=0/1
+window 12:55  apple_pay=0/5  card=0/22  google_pay=0/8  qr=0/1
+window 12:56  apple_pay=0/6  card=0/15  google_pay=0/8
+window 12:57  apple_pay=1/14  card=0/24  google_pay=0/2
+window 12:58  apple_pay=0/6  card=0/18  google_pay=0/4  qr=0/2
+window 12:59  apple_pay=0/6  card=1/18  google_pay=0/7  qr=0/1
+ALERT 13:00 apple_pay: 2/7 = 29% failed
+window 13:00  apple_pay=2/7  card=2/20  google_pay=0/6
+window 13:01  apple_pay=0/9  card=0/22  google_pay=0/10  qr=0/2
+window 13:02  apple_pay=0/7  card=0/16  google_pay=0/3  qr=0/2
+ALERT 13:03 card: 2/14 = 14% failed
+window 13:03  apple_pay=0/7  card=2/14  google_pay=0/4
+ALERT 13:04 google_pay: 1/7 = 14% failed
+window 13:04  apple_pay=1/13  card=0/12  google_pay=1/7
+window 13:05  apple_pay=0/18  card=0/23  google_pay=0/5
+window 13:06  apple_pay=0/11  card=0/13  google_pay=0/5  qr=0/2
+ALERT 13:07 apple_pay: 1/9 = 11% failed
+window 13:07  apple_pay=1/9  card=1/17  google_pay=0/3  qr=0/1
+window 13:08  apple_pay=0/10  card=0/24  google_pay=0/8
+window 13:09  apple_pay=1/11  card=2/23  google_pay=0/8
+ALERT 13:10 card: 2/17 = 12% failed
+ALERT 13:10 google_pay: 1/5 = 20% failed
+window 13:10  apple_pay=0/6  card=2/17  google_pay=1/5
+window 13:11  apple_pay=0/10  card=2/25  google_pay=0/3  qr=0/1
+ALERT 13:12 google_pay: 1/8 = 12% failed
+window 13:12  apple_pay=0/6  card=1/21  google_pay=1/8  qr=0/1
+ALERT 13:13 card: 2/17 = 12% failed
+ALERT 13:13 google_pay: 1/6 = 17% failed
+window 13:13  apple_pay=0/8  card=2/17  google_pay=1/6  qr=0/1
+ALERT 13:14 apple_pay: 2/10 = 20% failed
+window 13:14  apple_pay=2/10  card=1/23  google_pay=0/4  qr=0/2
+ALERT 13:15 google_pay: 1/4 = 25% failed
+window 13:15  apple_pay=0/10  card=1/22  google_pay=1/4
+window 13:16  apple_pay=0/3  card=1/18  google_pay=0/6  qr=0/1
+ALERT 13:17 google_pay: 1/7 = 14% failed
+window 13:17  apple_pay=1/14  card=0/19  google_pay=1/7
+ALERT 13:18 google_pay: 2/4 = 50% failed
+window 13:18  apple_pay=0/7  card=0/17  google_pay=2/4
+ALERT 13:19 google_pay: 1/7 = 14% failed
+window 13:19  apple_pay=0/11  card=0/12  google_pay=1/7
+window 13:20  apple_pay=0/9  card=1/15  google_pay=0/6  qr=0/1
+ALERT 13:21 apple_pay: 1/9 = 11% failed
+ALERT 13:21 google_pay: 1/8 = 12% failed
+window 13:21  apple_pay=1/9  card=1/15  google_pay=1/8  qr=0/1
+ALERT 13:22 apple_pay: 1/8 = 12% failed
+ALERT 13:22 card: 2/19 = 11% failed
+ALERT 13:22 google_pay: 1/7 = 14% failed
+window 13:22  apple_pay=1/8  card=2/19  google_pay=1/7
+ALERT 13:23 card: 3/27 = 11% failed
+window 13:23  apple_pay=0/4  card=3/27  google_pay=0/6
+window 13:24  apple_pay=0/11  card=1/17  google_pay=0/8  qr=0/1
+ALERT 13:25 apple_pay: 1/7 = 14% failed
+ALERT 13:25 card: 2/15 = 13% failed
+window 13:25  apple_pay=1/7  card=2/15  google_pay=0/5  qr=0/1
+ALERT 13:26 google_pay: 1/5 = 20% failed
+window 13:26  apple_pay=0/5  card=1/13  google_pay=1/5  qr=0/1
+window 13:27  apple_pay=0/5  card=2/21  google_pay=0/6
+window 13:28  apple_pay=0/9  card=1/20  google_pay=0/7  qr=0/3
+window 13:29  apple_pay=0/5  card=1/17  google_pay=0/8
+window 13:30  apple_pay=0/8  card=0/12  google_pay=0/8  qr=0/1
+ALERT 13:31 card: 2/16 = 12% failed
+ALERT 13:31 google_pay: 1/6 = 17% failed
+window 13:31  apple_pay=0/4  card=2/16  google_pay=1/6  qr=0/1
+window 13:32  apple_pay=0/9  card=1/22  google_pay=0/4  qr=0/2
+ALERT 13:33 qr: 1/1 = 100% failed
+window 13:33  apple_pay=0/9  card=0/19  google_pay=0/2  qr=1/1
+ALERT 13:34 apple_pay: 2/7 = 29% failed
+window 13:34  apple_pay=2/7  card=1/10  google_pay=0/5  qr=0/1
+ALERT 13:35 apple_pay: 2/9 = 22% failed
+window 13:35  apple_pay=2/9  card=2/25  google_pay=0/2  qr=0/1
+ALERT 13:36 google_pay: 1/7 = 14% failed
+window 13:36  apple_pay=0/8  card=1/17  google_pay=1/7  qr=0/1
+window 13:37  apple_pay=0/9  card=0/17  google_pay=0/2
+ALERT 13:38 qr: 1/2 = 50% failed
+window 13:38  apple_pay=0/7  card=1/24  google_pay=0/4  qr=1/2
+ALERT 13:39 apple_pay: 1/5 = 20% failed
+window 13:39  apple_pay=1/5  card=0/7  google_pay=0/2
+ALERT 13:40 apple_pay: 1/7 = 14% failed
+ALERT 13:40 google_pay: 1/6 = 17% failed
+window 13:40  apple_pay=1/7  card=0/15  google_pay=1/6
+ALERT 13:41 apple_pay: 2/11 = 18% failed
+window 13:41  apple_pay=2/11  card=0/15  google_pay=0/10  qr=0/2
+ALERT 13:42 apple_pay: 2/12 = 17% failed
+window 13:42  apple_pay=2/12  card=1/16  google_pay=0/6  qr=0/1
+window 13:43  apple_pay=0/11  card=1/19  google_pay=0/4
+ALERT 13:44 apple_pay: 2/8 = 25% failed
+window 13:44  apple_pay=2/8  card=0/17  qr=0/1
+ALERT 13:45 apple_pay: 2/11 = 18% failed
+window 13:45  apple_pay=2/11  card=1/20  google_pay=0/9  qr=0/1
+window 13:46  apple_pay=0/11  card=2/24  google_pay=0/8
+window 13:47  apple_pay=0/9  card=1/14  google_pay=0/8
+ALERT 13:48 apple_pay: 1/4 = 25% failed
+ALERT 13:48 card: 3/18 = 17% failed
+window 13:48  apple_pay=1/4  card=3/18  google_pay=0/6
+ALERT 13:49 card: 4/23 = 17% failed
+window 13:49  apple_pay=0/8  card=4/23  google_pay=0/5  qr=0/1
+window 13:50  apple_pay=0/8  card=2/20  google_pay=0/7
+ALERT 13:51 qr: 1/3 = 33% failed
+window 13:51  apple_pay=0/13  card=2/25  google_pay=0/9  qr=1/3
+ALERT 13:52 apple_pay: 1/4 = 25% failed
+ALERT 13:52 google_pay: 2/5 = 40% failed
+window 13:52  apple_pay=1/4  card=1/17  google_pay=2/5  qr=0/2
+ALERT 13:53 google_pay: 1/9 = 11% failed
+window 13:53  apple_pay=0/8  card=1/14  google_pay=1/9
+ALERT 13:54 card: 2/17 = 12% failed
+window 13:54  apple_pay=1/13  card=2/17  google_pay=0/6  qr=0/2
+ALERT 13:55 google_pay: 1/8 = 12% failed
+window 13:55  apple_pay=0/5  card=1/20  google_pay=1/8  qr=0/2
+ALERT 13:56 apple_pay: 1/8 = 12% failed
+window 13:56  apple_pay=1/8  card=1/14  google_pay=0/3  qr=0/1
+ALERT 13:57 google_pay: 2/8 = 25% failed
+window 13:57  apple_pay=0/5  card=0/17  google_pay=2/8
+window 13:58  apple_pay=1/14  card=0/15  qr=0/1
+ALERT 13:59 card: 2/19 = 11% failed
+window 13:59  apple_pay=0/7  card=2/19  google_pay=0/7  qr=0/2
+ALERT 14:00 google_pay: 1/8 = 12% failed
+window 14:00  apple_pay=0/4  card=1/12  google_pay=1/8  qr=0/1
+ALERT 14:01 google_pay: 1/8 = 12% failed
+window 14:01  apple_pay=0/12  card=0/18  google_pay=1/8
+window 14:02  apple_pay=0/6  card=1/11  google_pay=0/9
+window 14:03  apple_pay=0/7  card=2/26  google_pay=0/9  qr=0/1
+ALERT 14:04 card: 2/12 = 17% failed
+ALERT 14:04 google_pay: 1/8 = 12% failed
+window 14:04  apple_pay=0/6  card=2/12  google_pay=1/8  qr=0/1
+ALERT 14:05 apple_pay: 1/8 = 12% failed
+ALERT 14:05 card: 3/18 = 17% failed
+window 14:05  apple_pay=1/8  card=3/18  google_pay=0/6  qr=0/2
+window 14:06  apple_pay=0/9  card=0/14  google_pay=0/7
+window 14:07  apple_pay=0/7  card=0/18  google_pay=0/6
+window 14:08  apple_pay=0/9  card=1/19  google_pay=1/11  qr=0/3
+ALERT 14:09 google_pay: 1/9 = 11% failed
+window 14:09  apple_pay=0/9  card=0/15  google_pay=1/9
+window 14:10  apple_pay=0/7  card=1/13  google_pay=0/8
+ALERT 14:11 google_pay: 1/6 = 17% failed
+window 14:11  apple_pay=1/11  card=0/10  google_pay=1/6  qr=0/1
+window 14:12  apple_pay=0/4  card=1/13  google_pay=0/8  qr=0/1
+window 14:13  apple_pay=0/7  card=0/12  google_pay=0/4
+ALERT 14:14 apple_pay: 1/6 = 17% failed
+ALERT 14:14 google_pay: 1/3 = 33% failed
+window 14:14  apple_pay=1/6  card=0/13  google_pay=1/3
+ALERT 14:15 apple_pay: 1/5 = 20% failed
+window 14:15  apple_pay=1/5  card=0/18  google_pay=1/10
+window 14:16  apple_pay=0/2  card=1/28  google_pay=0/5
+ALERT 14:17 apple_pay: 1/6 = 17% failed
+window 14:17  apple_pay=1/6  card=0/10  google_pay=0/4
+window 14:18  apple_pay=0/9  card=1/19  google_pay=0/6  qr=0/1
+ALERT 14:19 google_pay: 1/5 = 20% failed
+window 14:19  apple_pay=0/9  card=1/12  google_pay=1/5
+ALERT 14:20 google_pay: 1/4 = 25% failed
+window 14:20  apple_pay=0/6  card=0/16  google_pay=1/4  qr=0/2
+ALERT 14:21 apple_pay: 1/4 = 25% failed
+ALERT 14:21 google_pay: 1/5 = 20% failed
+window 14:21  apple_pay=1/4  card=1/22  google_pay=1/5  qr=0/1
+window 14:22  apple_pay=0/5  card=0/19  google_pay=0/6
+ALERT 14:23 card: 2/15 = 13% failed
+window 14:23  apple_pay=0/5  card=2/15  google_pay=0/6  qr=0/1
+window 14:24  apple_pay=0/7  card=1/16  google_pay=0/4
+ALERT 14:25 apple_pay: 1/4 = 25% failed
+ALERT 14:25 google_pay: 1/8 = 12% failed
+window 14:25  apple_pay=1/4  card=1/13  google_pay=1/8
+window 14:26  apple_pay=1/10  card=1/18  google_pay=0/1  qr=0/1
+ALERT 14:27 apple_pay: 1/3 = 33% failed
+window 14:27  apple_pay=1/3  card=0/18  google_pay=0/6
+ALERT 14:28 apple_pay: 1/8 = 12% failed
+window 14:28  apple_pay=1/8  card=0/16  google_pay=0/3  qr=0/1
+window 14:29  apple_pay=0/14  card=1/21  google_pay=0/7
+ALERT 14:30 google_pay: 2/8 = 25% failed
+window 14:30  apple_pay=0/2  card=1/19  google_pay=2/8
+ALERT 14:31 apple_pay: 1/5 = 20% failed
+ALERT 14:31 google_pay: 1/8 = 12% failed
+window 14:31  apple_pay=1/5  card=1/23  google_pay=1/8  qr=0/1
+window 14:32  apple_pay=0/3  card=1/19  google_pay=0/4  qr=0/1
+window 14:33  apple_pay=0/10  card=1/27  google_pay=0/10
+window 14:34  apple_pay=0/8  card=0/11  google_pay=0/10
+ALERT 14:35 apple_pay: 1/5 = 20% failed
+window 14:35  apple_pay=1/5  card=1/19  google_pay=0/6
+ALERT 14:36 google_pay: 1/2 = 50% failed
+window 14:36  apple_pay=0/5  card=0/13  google_pay=1/2  qr=0/1
+ALERT 14:37 apple_pay: 2/8 = 25% failed
+ALERT 14:37 card: 2/17 = 12% failed
+ALERT 14:37 google_pay: 1/8 = 12% failed
+window 14:37  apple_pay=2/8  card=2/17  google_pay=1/8
+ALERT 14:38 apple_pay: 1/9 = 11% failed
+window 14:38  apple_pay=1/9  card=0/11  google_pay=0/5
+ALERT 14:39 apple_pay: 1/8 = 12% failed
+window 14:39  apple_pay=1/8  card=1/21  google_pay=0/7
+window 14:40  apple_pay=0/12  card=0/12  google_pay=0/1
+window 14:41  apple_pay=0/6  card=1/11  google_pay=0/5  qr=0/4
+ALERT 14:42 card: 3/17 = 18% failed
+window 14:42  apple_pay=0/3  card=3/17  google_pay=0/1
+window 14:43  apple_pay=0/14  card=1/14  google_pay=0/4  qr=0/1
+window 14:44  apple_pay=0/8  card=1/15  google_pay=0/3  qr=0/1
+window 14:45  apple_pay=0/5  card=0/17  google_pay=0/2
+ALERT 14:46 apple_pay: 1/5 = 20% failed
+window 14:46  apple_pay=1/5  card=1/16  google_pay=0/3
+window 14:47  apple_pay=0/2  card=2/24  google_pay=0/8
+window 14:48  apple_pay=0/5  card=2/20  google_pay=0/9  qr=0/1
+ALERT 14:49 google_pay: 1/8 = 12% failed
+window 14:49  apple_pay=0/4  card=0/11  google_pay=1/8
+ALERT 14:50 apple_pay: 1/7 = 14% failed
+ALERT 14:50 card: 2/17 = 12% failed
+window 14:50  apple_pay=1/7  card=2/17  google_pay=0/6
+ALERT 14:51 card: 2/15 = 13% failed
+window 14:51  apple_pay=0/2  card=2/15  google_pay=0/6
+ALERT 14:52 apple_pay: 1/9 = 11% failed
+window 14:52  apple_pay=1/9  card=0/20  google_pay=0/9  qr=0/2
+window 14:53  apple_pay=1/10  card=1/12  google_pay=0/6
+ALERT 14:54 google_pay: 1/6 = 17% failed
+window 14:54  apple_pay=1/11  card=1/26  google_pay=1/6
+window 14:55  apple_pay=0/7  card=1/12  google_pay=0/6
+window 14:56  apple_pay=0/5  card=0/12  google_pay=0/4
+ALERT 14:57 apple_pay: 1/9 = 11% failed
+window 14:57  apple_pay=1/9  card=1/18  google_pay=0/3  qr=0/1
+ALERT 14:58 google_pay: 1/5 = 20% failed
+window 14:58  apple_pay=1/10  card=0/16  google_pay=1/5  qr=0/1
+window 14:59  apple_pay=0/7  card=0/16  google_pay=0/4
+window 15:00  apple_pay=0/8  card=0/11  google_pay=0/5
+window 15:01  apple_pay=0/4  card=1/18  google_pay=0/4
+window 15:02  apple_pay=0/6  card=0/11  google_pay=0/6
+ALERT 15:03 apple_pay: 1/8 = 12% failed
+window 15:03  apple_pay=1/8  card=1/20  google_pay=0/7  qr=0/1
+window 15:04  apple_pay=0/6  card=0/14  google_pay=0/6
+ALERT 15:05 apple_pay: 1/9 = 11% failed
+window 15:05  apple_pay=1/9  card=0/16  google_pay=0/8
+ALERT 15:06 google_pay: 2/12 = 17% failed
+window 15:06  apple_pay=0/12  card=1/12  google_pay=2/12
+window 15:07  apple_pay=0/9  card=1/11  google_pay=0/3
+ALERT 15:08 card: 3/15 = 20% failed
+window 15:08  apple_pay=0/7  card=3/15  google_pay=0/7
+window 15:09  apple_pay=0/5  card=1/21  google_pay=0/6  qr=0/1
+window 15:10  apple_pay=1/10  card=0/18  google_pay=0/2  qr=0/2
+window 15:11  apple_pay=0/6  card=1/17  google_pay=0/7
+ALERT 15:12 apple_pay: 1/9 = 11% failed
+window 15:12  apple_pay=1/9  card=1/21  google_pay=0/4  qr=0/2
+ALERT 15:13 card: 2/12 = 17% failed
+ALERT 15:13 google_pay: 1/9 = 11% failed
+window 15:13  apple_pay=1/10  card=2/12  google_pay=1/9
+ALERT 15:14 apple_pay: 1/5 = 20% failed
+window 15:14  apple_pay=1/5  card=1/11  google_pay=0/1
+window 15:15  card=1/13  google_pay=0/9
+ALERT 15:16 card: 3/20 = 15% failed
+window 15:16  apple_pay=0/6  card=3/20  google_pay=0/5
+ALERT 15:17 apple_pay: 1/5 = 20% failed
+window 15:17  apple_pay=1/5  card=1/15  google_pay=0/5
+ALERT 15:18 apple_pay: 1/8 = 12% failed
+window 15:18  apple_pay=1/8  card=1/15  google_pay=0/3  qr=0/1
+window 15:19  apple_pay=0/10  card=0/10  google_pay=0/5
+ALERT 15:20 apple_pay: 2/6 = 33% failed
+window 15:20  apple_pay=2/6  card=1/14  google_pay=0/5  qr=0/1
+ALERT 15:21 apple_pay: 1/9 = 11% failed
+window 15:21  apple_pay=1/9  card=0/14  google_pay=0/3
+ALERT 15:22 google_pay: 1/6 = 17% failed
+window 15:22  apple_pay=0/6  card=0/16  google_pay=1/6
+ALERT 15:23 apple_pay: 2/13 = 15% failed
+ALERT 15:23 card: 3/19 = 16% failed
+window 15:23  apple_pay=2/13  card=3/19  google_pay=0/5  qr=0/1
+window 15:24  apple_pay=0/7  card=0/10  google_pay=0/5
+window 15:25  apple_pay=0/5  card=0/14  google_pay=0/7
+window 15:26  apple_pay=0/7  card=2/23  google_pay=0/5  qr=0/1
+ALERT 15:27 apple_pay: 1/8 = 12% failed
+ALERT 15:27 card: 3/19 = 16% failed
+window 15:27  apple_pay=1/8  card=3/19  google_pay=0/4
+ALERT 15:28 apple_pay: 1/2 = 50% failed
+ALERT 15:28 google_pay: 2/5 = 40% failed
+window 15:28  apple_pay=1/2  card=1/15  google_pay=2/5
+ALERT 15:29 google_pay: 1/8 = 12% failed
+window 15:29  apple_pay=0/10  card=1/18  google_pay=1/8  qr=0/1
+window 15:30  apple_pay=0/7  card=2/21  google_pay=0/7  qr=0/3
+ALERT 15:31 apple_pay: 2/10 = 20% failed
+window 15:31  apple_pay=2/10  card=2/21  google_pay=0/7  qr=0/1
+ALERT 15:32 card: 3/17 = 18% failed
+window 15:32  apple_pay=1/10  card=3/17  google_pay=0/7  qr=0/2
+ALERT 15:33 apple_pay: 1/8 = 12% failed
+window 15:33  apple_pay=1/8  card=1/14  google_pay=0/6  qr=0/1
+ALERT 15:34 card: 2/15 = 13% failed
+window 15:34  apple_pay=0/7  card=2/15  google_pay=0/4  qr=0/1
+ALERT 15:35 apple_pay: 1/6 = 17% failed
+ALERT 15:35 card: 2/17 = 12% failed
+window 15:35  apple_pay=1/6  card=2/17  google_pay=0/4  qr=0/1
+window 15:36  apple_pay=1/11  card=0/19  google_pay=0/5
+window 15:37  apple_pay=0/8  card=0/6  google_pay=0/5  qr=0/1
+window 15:38  apple_pay=0/9  card=1/20  google_pay=0/7  qr=0/1
+ALERT 15:39 apple_pay: 2/8 = 25% failed
+ALERT 15:39 card: 3/17 = 18% failed
+window 15:39  apple_pay=2/8  card=3/17  google_pay=0/5
+ALERT 15:40 apple_pay: 1/5 = 20% failed
+ALERT 15:40 google_pay: 1/8 = 12% failed
+window 15:40  apple_pay=1/5  card=0/19  google_pay=1/8
+ALERT 15:41 card: 2/19 = 11% failed
+window 15:41  apple_pay=0/9  card=2/19  google_pay=0/9
+window 15:42  apple_pay=0/6  card=1/19  google_pay=0/5
+window 15:43  apple_pay=0/8  card=0/17  google_pay=0/5  qr=0/1
+window 15:44  apple_pay=0/5  card=1/17  google_pay=0/5
+ALERT 15:45 apple_pay: 1/6 = 17% failed
+window 15:45  apple_pay=1/6  card=0/12  google_pay=0/5
+ALERT 15:46 google_pay: 1/7 = 14% failed
+window 15:46  apple_pay=0/5  card=0/15  google_pay=1/7  qr=0/2
+ALERT 15:47 apple_pay: 1/7 = 14% failed
+window 15:47  apple_pay=1/7  card=1/21  google_pay=0/5  qr=0/1
+ALERT 15:48 card: 2/14 = 14% failed
+ALERT 15:48 google_pay: 1/5 = 20% failed
+window 15:48  apple_pay=0/9  card=2/14  google_pay=1/5
+ALERT 15:49 apple_pay: 1/9 = 11% failed
+window 15:49  apple_pay=1/9  card=2/26  google_pay=0/5
+ALERT 15:50 apple_pay: 2/11 = 18% failed
+window 15:50  apple_pay=2/11  card=0/12  google_pay=0/2  qr=0/1
+window 15:51  apple_pay=0/7  card=0/14  google_pay=0/2  qr=0/1
+window 15:52  apple_pay=0/8  card=1/22  google_pay=0/7
+ALERT 15:53 card: 2/17 = 12% failed
+ALERT 15:53 google_pay: 1/8 = 12% failed
+window 15:53  apple_pay=1/13  card=2/17  google_pay=1/8
+ALERT 15:54 card: 2/17 = 12% failed
+window 15:54  apple_pay=0/8  card=2/17  google_pay=0/6
+window 15:55  apple_pay=1/10  card=1/16  google_pay=0/4
+ALERT 15:56 apple_pay: 2/11 = 18% failed
+ALERT 15:56 card: 2/14 = 14% failed
+window 15:56  apple_pay=2/11  card=2/14  google_pay=0/7
+window 15:57  apple_pay=0/6  card=1/16  google_pay=0/6
+ALERT 15:58 card: 2/19 = 11% failed
+window 15:58  apple_pay=1/13  card=2/19  google_pay=0/5
+ALERT 15:59 google_pay: 1/9 = 11% failed
+window 15:59  apple_pay=0/12  card=1/11  google_pay=1/9
+ALERT 16:00 card: 2/15 = 13% failed
+window 16:00  apple_pay=0/1  card=2/15  google_pay=0/7  qr=0/2
+ALERT 16:01 google_pay: 1/7 = 14% failed
+window 16:01  apple_pay=1/12  card=1/11  google_pay=1/7  qr=0/2
+window 16:02  apple_pay=0/6  card=1/22  google_pay=1/11
+ALERT 16:03 card: 2/19 = 11% failed
+window 16:03  apple_pay=0/6  card=2/19  google_pay=0/5
+ALERT 16:04 apple_pay: 1/5 = 20% failed
+ALERT 16:04 google_pay: 1/8 = 12% failed
+window 16:04  apple_pay=1/5  card=1/20  google_pay=1/8  qr=0/1
+ALERT 16:05 card: 3/24 = 12% failed
+window 16:05  apple_pay=0/3  card=3/24  google_pay=0/4  qr=0/1
+window 16:06  apple_pay=1/12  card=1/15  google_pay=0/4
+ALERT 16:07 apple_pay: 1/9 = 11% failed
+window 16:07  apple_pay=1/9  card=2/23  google_pay=0/4  qr=0/4
+ALERT 16:08 google_pay: 2/7 = 29% failed
+window 16:08  apple_pay=0/8  card=0/29  google_pay=2/7
+window 16:09  apple_pay=0/7  card=1/17  google_pay=0/3  qr=0/3
+ALERT 16:10 card: 4/25 = 16% failed
+window 16:10  apple_pay=0/6  card=4/25  google_pay=0/7
+ALERT 16:11 google_pay: 2/7 = 29% failed
+window 16:11  apple_pay=0/9  card=2/25  google_pay=2/7  qr=0/2
+window 16:12  apple_pay=0/6  card=1/15  google_pay=0/4
+window 16:13  apple_pay=1/10  card=0/15  google_pay=0/10  qr=0/2
+window 16:14  apple_pay=1/11  card=0/21  google_pay=0/3
+window 16:15  apple_pay=0/10  card=1/17  google_pay=0/3
+ALERT 16:16 apple_pay: 1/5 = 20% failed
+ALERT 16:16 card: 3/12 = 25% failed
+ALERT 16:16 google_pay: 1/6 = 17% failed
+window 16:16  apple_pay=1/5  card=3/12  google_pay=1/6
+ALERT 16:17 card: 2/17 = 12% failed
+ALERT 16:17 google_pay: 3/8 = 38% failed
+window 16:17  apple_pay=0/3  card=2/17  google_pay=3/8  qr=0/1
+ALERT 16:18 apple_pay: 2/9 = 22% failed
+ALERT 16:18 google_pay: 2/7 = 29% failed
+window 16:18  apple_pay=2/9  card=1/10  google_pay=2/7  qr=0/2
+ALERT 16:19 apple_pay: 2/10 = 20% failed
+ALERT 16:19 card: 2/14 = 14% failed
+window 16:19  apple_pay=2/10  card=2/14  google_pay=0/6
+ALERT 16:20 google_pay: 1/8 = 12% failed
+window 16:20  apple_pay=1/11  card=0/15  google_pay=1/8
+ALERT 16:21 google_pay: 1/2 = 50% failed
+window 16:21  apple_pay=0/13  card=1/18  google_pay=1/2
+ALERT 16:22 card: 3/27 = 11% failed
+window 16:22  apple_pay=0/8  card=3/27  google_pay=0/5  qr=0/1
+ALERT 16:23 apple_pay: 1/8 = 12% failed
+ALERT 16:23 card: 3/17 = 18% failed
+ALERT 16:23 google_pay: 1/7 = 14% failed
+window 16:23  apple_pay=1/8  card=3/17  google_pay=1/7
+ALERT 16:24 google_pay: 1/9 = 11% failed
+window 16:24  apple_pay=0/9  card=0/17  google_pay=1/9  qr=0/2
+window 16:25  apple_pay=0/12  card=1/14  google_pay=0/4  qr=0/2
+ALERT 16:26 google_pay: 2/7 = 29% failed
+window 16:26  apple_pay=0/12  card=0/12  google_pay=2/7
+ALERT 16:27 apple_pay: 2/9 = 22% failed
+window 16:27  apple_pay=2/9  card=0/18  google_pay=0/9  qr=0/1
+ALERT 16:28 google_pay: 1/3 = 33% failed
+window 16:28  apple_pay=0/8  card=1/19  google_pay=1/3  qr=0/3
+window 16:29  apple_pay=0/8  card=1/15  google_pay=0/7
+ALERT 16:30 apple_pay: 2/8 = 25% failed
+window 16:30  apple_pay=2/8  card=2/25  google_pay=0/9
+ALERT 16:31 google_pay: 1/7 = 14% failed
+window 16:31  apple_pay=0/11  card=0/20  google_pay=1/7
+window 16:32  apple_pay=0/12  card=0/18  google_pay=0/5
+window 16:33  apple_pay=1/10  card=0/21  google_pay=0/9
+ALERT 16:34 apple_pay: 2/8 = 25% failed
+window 16:34  apple_pay=2/8  card=0/23  google_pay=0/9
+ALERT 16:35 apple_pay: 1/2 = 50% failed
+ALERT 16:35 google_pay: 2/5 = 40% failed
+window 16:35  apple_pay=1/2  card=2/24  google_pay=2/5  qr=0/1
+ALERT 16:36 apple_pay: 1/8 = 12% failed
+window 16:36  apple_pay=1/8  card=0/16  google_pay=0/4  qr=0/1
+ALERT 16:37 google_pay: 1/5 = 20% failed
+window 16:37  apple_pay=0/10  card=0/19  google_pay=1/5  qr=0/1
+ALERT 16:38 apple_pay: 1/3 = 33% failed
+ALERT 16:38 google_pay: 2/6 = 33% failed
+window 16:38  apple_pay=1/3  card=1/16  google_pay=2/6  qr=0/1
+window 16:39  apple_pay=0/9  card=1/21  google_pay=0/6  qr=0/1
+ALERT 16:40 apple_pay: 1/8 = 12% failed
+ALERT 16:40 card: 2/18 = 11% failed
+window 16:40  apple_pay=1/8  card=2/18  google_pay=0/5  qr=0/1
+window 16:41  apple_pay=0/12  card=2/24  google_pay=0/3
+window 16:42  apple_pay=1/13  card=1/15  google_pay=0/9
+window 16:43  apple_pay=0/10  card=0/26  google_pay=1/10  qr=0/1
+window 16:44  apple_pay=1/10  card=0/12  google_pay=0/3
+ALERT 16:45 apple_pay: 1/6 = 17% failed
+ALERT 16:45 card: 2/17 = 12% failed
+window 16:45  apple_pay=1/6  card=2/17  google_pay=0/9
+window 16:46  apple_pay=0/9  card=0/21  google_pay=0/8  qr=0/1
+ALERT 16:47 apple_pay: 1/8 = 12% failed
+window 16:47  apple_pay=1/8  card=1/13  google_pay=0/5
+window 16:48  apple_pay=1/11  card=0/23  google_pay=0/11  qr=0/1
+ALERT 16:49 card: 2/17 = 12% failed
+window 16:49  apple_pay=0/8  card=2/17  google_pay=0/4  qr=0/1
+window 16:50  apple_pay=0/11  card=0/21  google_pay=0/1
+ALERT 16:51 apple_pay: 2/9 = 22% failed
+window 16:51  apple_pay=2/9  card=1/16  google_pay=0/8  qr=0/1
+ALERT 16:52 card: 2/17 = 12% failed
+window 16:52  apple_pay=1/12  card=2/17  google_pay=0/5
+ALERT 16:53 google_pay: 1/8 = 12% failed
+window 16:53  apple_pay=0/4  card=0/21  google_pay=1/8  qr=0/1
+ALERT 16:54 apple_pay: 2/5 = 40% failed
+window 16:54  apple_pay=2/5  card=1/16  google_pay=0/6  qr=0/1
+ALERT 16:55 card: 3/18 = 17% failed
+window 16:55  apple_pay=1/14  card=3/18  google_pay=0/5  qr=0/1
+ALERT 16:56 apple_pay: 1/4 = 25% failed
+window 16:56  apple_pay=1/4  card=2/25  google_pay=0/5  qr=0/2
+ALERT 16:57 card: 3/22 = 14% failed
+window 16:57  apple_pay=0/8  card=3/22  google_pay=0/6
+ALERT 16:58 google_pay: 1/9 = 11% failed
+window 16:58  apple_pay=0/12  card=1/18  google_pay=1/9  qr=0/2
+ALERT 16:59 google_pay: 2/6 = 33% failed
+window 16:59  apple_pay=0/9  card=1/24  google_pay=2/6  qr=0/2
+ALERT 17:00 card: 3/21 = 14% failed
+window 17:00  apple_pay=0/13  card=3/21  google_pay=0/6  qr=0/3
+ALERT 17:01 google_pay: 1/7 = 14% failed
+window 17:01  apple_pay=0/9  card=2/22  google_pay=1/7  qr=0/1
+window 17:02  apple_pay=0/4  card=0/18  google_pay=0/4  qr=0/2
+window 17:03  apple_pay=0/8  card=2/20  google_pay=0/4  qr=0/1
+ALERT 17:04 google_pay: 1/8 = 12% failed
+window 17:04  apple_pay=0/11  card=1/22  google_pay=1/8
+ALERT 17:05 apple_pay: 2/11 = 18% failed
+ALERT 17:05 google_pay: 2/6 = 33% failed
+window 17:05  apple_pay=2/11  card=0/21  google_pay=2/6  qr=0/1
+ALERT 17:06 apple_pay: 1/9 = 11% failed
+ALERT 17:06 card: 2/16 = 12% failed
+ALERT 17:06 google_pay: 1/6 = 17% failed
+window 17:06  apple_pay=1/9  card=2/16  google_pay=1/6
+window 17:07  apple_pay=0/12  card=1/21  google_pay=0/6
+window 17:08  apple_pay=0/10  card=3/34  google_pay=0/7
+ALERT 17:09 card: 2/19 = 11% failed
+ALERT 17:09 google_pay: 1/8 = 12% failed
+window 17:09  apple_pay=0/12  card=2/19  google_pay=1/8
+ALERT 17:10 apple_pay: 1/5 = 20% failed
+ALERT 17:10 card: 3/27 = 11% failed
+window 17:10  apple_pay=1/5  card=3/27  google_pay=0/10  qr=0/2
+window 17:11  apple_pay=1/12  card=1/27  google_pay=0/4  qr=0/1
+window 17:12  apple_pay=1/12  card=0/16  google_pay=0/7
+window 17:13  apple_pay=0/7  card=1/23  google_pay=0/12  qr=0/1
+ALERT 17:14 card: 5/26 = 19% failed
+window 17:14  apple_pay=0/9  card=5/26  google_pay=0/4  qr=0/1
+ALERT 17:15 apple_pay: 1/8 = 12% failed
+window 17:15  apple_pay=1/8  card=1/20  google_pay=1/12
+ALERT 17:16 apple_pay: 1/7 = 14% failed
+ALERT 17:16 card: 3/27 = 11% failed
+ALERT 17:16 google_pay: 2/11 = 18% failed
+window 17:16  apple_pay=1/7  card=3/27  google_pay=2/11  qr=0/1
+ALERT 17:17 card: 2/18 = 11% failed
+window 17:17  apple_pay=0/10  card=2/18  google_pay=0/8
+ALERT 17:18 google_pay: 1/6 = 17% failed
+window 17:18  apple_pay=1/12  card=2/20  google_pay=1/6  qr=0/1
+ALERT 17:19 google_pay: 2/12 = 17% failed
+ALERT 17:19 qr: 1/1 = 100% failed
+window 17:19  apple_pay=0/10  card=0/23  google_pay=2/12  qr=1/1
+ALERT 17:20 google_pay: 1/6 = 17% failed
+window 17:20  apple_pay=0/10  card=1/23  google_pay=1/6  qr=0/1
+window 17:21  apple_pay=0/6  card=1/18  google_pay=0/4  qr=0/1
+window 17:22  apple_pay=0/15  card=0/19  google_pay=0/5  qr=0/1
+ALERT 17:23 apple_pay: 2/13 = 15% failed
+ALERT 17:23 card: 5/26 = 19% failed
+window 17:23  apple_pay=2/13  card=5/26  google_pay=1/10
+window 17:24  apple_pay=0/11  card=2/24  google_pay=0/5  qr=0/1
+ALERT 17:25 apple_pay: 1/8 = 12% failed
+ALERT 17:25 card: 3/23 = 13% failed
+window 17:25  apple_pay=1/8  card=3/23  google_pay=0/6  qr=0/1
+window 17:26  apple_pay=0/5  card=1/20  google_pay=0/6  qr=0/1
+window 17:27  apple_pay=0/7  card=1/16  google_pay=0/7  qr=0/2
+window 17:28  apple_pay=1/10  card=2/21  google_pay=0/3
+ALERT 17:29 card: 3/23 = 13% failed
+window 17:29  apple_pay=0/11  card=3/23  google_pay=0/4
+ALERT 17:30 apple_pay: 1/9 = 11% failed
+ALERT 17:30 google_pay: 1/6 = 17% failed
+window 17:30  apple_pay=1/9  card=1/21  google_pay=1/6  qr=0/3
+window 17:31  apple_pay=0/10  card=2/31  google_pay=0/9  qr=0/2
+window 17:32  apple_pay=1/10  card=1/20  google_pay=0/5  qr=0/1
+window 17:33  apple_pay=0/8  card=1/26  google_pay=0/5
+ALERT 17:34 apple_pay: 1/6 = 17% failed
+window 17:34  apple_pay=1/6  card=2/25  google_pay=0/9  qr=0/1
+window 17:35  apple_pay=0/6  card=1/18  google_pay=1/12
+window 17:36  apple_pay=0/13  card=0/23  google_pay=0/3
+window 17:37  apple_pay=0/8  card=2/27  google_pay=0/10
+ALERT 17:38 google_pay: 1/8 = 12% failed
+window 17:38  apple_pay=0/10  card=1/19  google_pay=1/8
+ALERT 17:39 card: 3/19 = 16% failed
+window 17:39  apple_pay=0/13  card=3/19  google_pay=0/6  qr=0/1
+ALERT 17:40 qr: 1/2 = 50% failed
+window 17:40  apple_pay=0/15  card=2/27  google_pay=0/12  qr=1/2
+ALERT 17:41 google_pay: 1/7 = 14% failed
+window 17:41  apple_pay=0/11  card=0/21  google_pay=1/7  qr=0/1
+ALERT 17:42 apple_pay: 1/8 = 12% failed
+window 17:42  apple_pay=1/8  card=0/21  google_pay=0/9
+window 17:43  apple_pay=0/13  card=1/19  google_pay=1/12
+ALERT 17:44 apple_pay: 2/10 = 20% failed
+window 17:44  apple_pay=2/10  card=0/25  google_pay=0/7  qr=0/2
+window 17:45  apple_pay=0/19  card=0/17  google_pay=0/7  qr=0/1
+window 17:46  apple_pay=0/3  card=1/19  google_pay=0/12
+ALERT 17:47 google_pay: 1/5 = 20% failed
+window 17:47  apple_pay=0/9  card=0/10  google_pay=1/5  qr=0/1
+ALERT 17:48 card: 2/18 = 11% failed
+ALERT 17:48 google_pay: 1/8 = 12% failed
+window 17:48  apple_pay=0/4  card=2/18  google_pay=1/8
+window 17:49  apple_pay=0/4  card=1/22  google_pay=0/9
+ALERT 17:50 google_pay: 1/8 = 12% failed
+window 17:50  apple_pay=0/9  card=2/33  google_pay=1/8
+ALERT 17:51 google_pay: 1/6 = 17% failed
+window 17:51  apple_pay=0/7  card=2/22  google_pay=1/6
+window 17:52  apple_pay=0/11  card=0/36  google_pay=0/5
+ALERT 17:53 apple_pay: 1/7 = 14% failed
+ALERT 17:53 google_pay: 2/5 = 40% failed
+window 17:53  apple_pay=1/7  card=2/24  google_pay=2/5  qr=0/1
+window 17:54  apple_pay=0/8  card=0/22  google_pay=0/10  qr=0/1
+ALERT 17:55 card: 2/15 = 13% failed
+ALERT 17:55 google_pay: 1/5 = 20% failed
+window 17:55  apple_pay=0/5  card=2/15  google_pay=1/5
+window 17:56  apple_pay=0/7  card=0/14  google_pay=0/5  qr=0/1
+ALERT 17:57 google_pay: 2/6 = 33% failed
+window 17:57  apple_pay=0/12  card=1/33  google_pay=2/6
+window 17:58  apple_pay=1/11  card=1/19  google_pay=0/4  qr=0/1
+ALERT 17:59 google_pay: 1/8 = 12% failed
+window 17:59  apple_pay=0/6  card=2/24  google_pay=1/8  qr=0/1
+ALERT 18:00 apple_pay: 2/14 = 14% failed
+window 18:00  apple_pay=2/14  card=0/15  google_pay=0/5
+ALERT 18:01 card: 3/23 = 13% failed
+window 18:01  apple_pay=0/15  card=3/23  google_pay=0/6  qr=0/2
+window 18:02  apple_pay=0/9  card=2/35  google_pay=0/8
+window 18:03  apple_pay=1/11  card=1/29  google_pay=0/10  qr=0/1
+ALERT 18:04 apple_pay: 1/9 = 11% failed
+ALERT 18:04 google_pay: 1/8 = 12% failed
+window 18:04  apple_pay=1/9  card=1/23  google_pay=1/8  qr=0/1
+ALERT 18:05 google_pay: 1/5 = 20% failed
+window 18:05  apple_pay=0/10  card=1/20  google_pay=1/5
+window 18:06  apple_pay=0/9  card=2/26  google_pay=0/8
+ALERT 18:07 card: 3/20 = 15% failed
+ALERT 18:07 google_pay: 1/8 = 12% failed
+window 18:07  apple_pay=0/7  card=3/20  google_pay=1/8
+ALERT 18:08 apple_pay: 2/12 = 17% failed
+window 18:08  apple_pay=2/12  card=1/26  google_pay=0/3
+window 18:09  apple_pay=0/16  card=1/17  google_pay=0/8  qr=0/1
+ALERT 18:10 card: 3/17 = 18% failed
+window 18:10  apple_pay=0/12  card=3/17  google_pay=0/8  qr=0/1
+ALERT 18:11 card: 4/24 = 17% failed
+window 18:11  apple_pay=1/11  card=4/24  google_pay=0/10
+window 18:12  apple_pay=0/8  card=1/20  google_pay=0/11  qr=0/1
+ALERT 18:13 google_pay: 2/9 = 22% failed
+window 18:13  apple_pay=1/13  card=1/19  google_pay=2/9
+ALERT 18:14 card: 3/29 = 10% failed
+window 18:14  apple_pay=0/16  card=3/29  google_pay=0/11  qr=0/1
+ALERT 18:15 apple_pay: 2/11 = 18% failed
+ALERT 18:15 google_pay: 1/8 = 12% failed
+window 18:15  apple_pay=2/11  card=0/18  google_pay=1/8
+ALERT 18:16 google_pay: 2/11 = 18% failed
+window 18:16  apple_pay=1/12  card=1/26  google_pay=2/11
+ALERT 18:17 google_pay: 1/6 = 17% failed
+window 18:17  apple_pay=1/10  card=2/28  google_pay=1/6  qr=0/1
+window 18:18  apple_pay=1/13  card=0/17  google_pay=0/5  qr=0/1
+ALERT 18:19 card: 3/27 = 11% failed
+ALERT 18:19 google_pay: 1/9 = 11% failed
+window 18:19  apple_pay=0/14  card=3/27  google_pay=1/9
+ALERT 18:20 apple_pay: 2/8 = 25% failed
+ALERT 18:20 card: 3/25 = 12% failed
+ALERT 18:20 google_pay: 1/6 = 17% failed
+window 18:20  apple_pay=2/8  card=3/25  google_pay=1/6
+ALERT 18:21 apple_pay: 2/5 = 40% failed
+ALERT 18:21 google_pay: 2/12 = 17% failed
+window 18:21  apple_pay=2/5  card=1/23  google_pay=2/12  qr=0/1
+window 18:22  apple_pay=0/12  card=0/24  google_pay=0/8
+window 18:23  apple_pay=1/17  card=2/25  google_pay=0/10
+ALERT 18:24 card: 3/29 = 10% failed
+window 18:24  apple_pay=0/7  card=3/29  google_pay=0/15
+ALERT 18:25 card: 4/29 = 14% failed
+window 18:25  apple_pay=1/11  card=4/29  google_pay=0/4  qr=0/1
+ALERT 18:26 apple_pay: 2/13 = 15% failed
+ALERT 18:26 google_pay: 1/6 = 17% failed
+window 18:26  apple_pay=2/13  card=0/24  google_pay=1/6
+ALERT 18:27 google_pay: 1/7 = 14% failed
+window 18:27  apple_pay=0/11  card=1/25  google_pay=1/7  qr=0/3
+ALERT 18:28 google_pay: 1/6 = 17% failed
+window 18:28  apple_pay=0/9  card=2/31  google_pay=1/6
+ALERT 18:29 apple_pay: 1/8 = 12% failed
+window 18:29  apple_pay=1/8  card=3/32  google_pay=0/5
+window 18:30  apple_pay=0/7  card=2/26  google_pay=0/9  qr=0/1
+window 18:31  apple_pay=0/14  card=0/23  google_pay=0/12
+window 18:32  apple_pay=1/12  card=1/21  google_pay=0/6  qr=0/1
+ALERT 18:33 qr: 1/2 = 50% failed
+window 18:33  apple_pay=1/15  card=0/26  google_pay=0/4  qr=1/2
+ALERT 18:34 apple_pay: 3/9 = 33% failed
+ALERT 18:34 google_pay: 1/9 = 11% failed
+window 18:34  apple_pay=3/9  card=0/25  google_pay=1/9  qr=0/3
+window 18:35  apple_pay=0/11  card=0/19  google_pay=0/6  qr=0/1
+ALERT 18:36 apple_pay: 2/11 = 18% failed
+ALERT 18:36 google_pay: 1/8 = 12% failed
+window 18:36  apple_pay=2/11  card=1/25  google_pay=1/8  qr=0/1
+ALERT 18:37 google_pay: 1/4 = 25% failed
+window 18:37  apple_pay=1/13  card=2/24  google_pay=1/4
+ALERT 18:38 qr: 1/1 = 100% failed
+window 18:38  apple_pay=1/10  card=1/21  google_pay=0/11  qr=1/1
+window 18:39  apple_pay=1/14  card=0/20  google_pay=0/7  qr=0/1
+ALERT 18:40 google_pay: 2/10 = 20% failed
+window 18:40  apple_pay=0/6  card=1/18  google_pay=2/10  qr=0/3
+ALERT 18:41 google_pay: 1/8 = 12% failed
+window 18:41  apple_pay=0/12  card=1/13  google_pay=1/8  qr=0/1
+window 18:42  apple_pay=0/14  card=1/28  google_pay=1/13
+window 18:43  apple_pay=0/5  card=1/33  google_pay=1/11  qr=0/1
+window 18:44  apple_pay=0/12  card=0/24  google_pay=0/6  qr=0/1
+window 18:45  apple_pay=0/12  card=1/27  google_pay=0/8  qr=0/2
+window 18:46  apple_pay=1/15  card=1/27  google_pay=0/5
+ALERT 18:47 card: 2/18 = 11% failed
+window 18:47  apple_pay=0/7  card=2/18  google_pay=0/8  qr=0/1
+window 18:48  apple_pay=0/12  card=0/21  google_pay=0/8  qr=0/2
+ALERT 18:49 card: 2/19 = 11% failed
+window 18:49  apple_pay=1/16  card=2/19  google_pay=1/10  qr=0/1
+ALERT 18:50 google_pay: 1/9 = 11% failed
+window 18:50  apple_pay=0/9  card=0/20  google_pay=1/9  qr=0/2
+ALERT 18:51 apple_pay: 2/10 = 20% failed
+ALERT 18:51 google_pay: 2/4 = 50% failed
+window 18:51  apple_pay=2/10  card=1/18  google_pay=2/4  qr=0/2
+ALERT 18:52 apple_pay: 2/14 = 14% failed
+ALERT 18:52 card: 3/26 = 12% failed
+window 18:52  apple_pay=2/14  card=3/26  google_pay=1/12  qr=0/1
+ALERT 18:53 apple_pay: 2/11 = 18% failed
+ALERT 18:53 qr: 1/2 = 50% failed
+window 18:53  apple_pay=2/11  card=0/20  google_pay=0/11  qr=1/2
+window 18:54  apple_pay=0/15  card=0/23  google_pay=0/9
+ALERT 18:55 google_pay: 1/7 = 14% failed
+window 18:55  apple_pay=1/11  card=1/18  google_pay=1/7
+window 18:56  apple_pay=0/18  card=0/19  google_pay=0/10  qr=0/2
+ALERT 18:57 qr: 1/1 = 100% failed
+window 18:57  apple_pay=0/9  card=0/24  google_pay=0/9  qr=1/1
+ALERT 18:58 apple_pay: 1/9 = 11% failed
+ALERT 18:58 google_pay: 1/6 = 17% failed
+window 18:58  apple_pay=1/9  card=2/32  google_pay=1/6
+ALERT 18:59 apple_pay: 1/6 = 17% failed
+window 18:59  apple_pay=1/6  card=1/20  google_pay=0/6
+ALERT 19:00 google_pay: 2/7 = 29% failed
+window 19:00  apple_pay=0/14  card=2/22  google_pay=2/7  qr=0/2
+ALERT 19:01 google_pay: 1/8 = 12% failed
+window 19:01  apple_pay=0/14  card=0/26  google_pay=1/8
+ALERT 19:02 card: 3/25 = 12% failed
+ALERT 19:02 google_pay: 1/9 = 11% failed
+window 19:02  apple_pay=0/9  card=3/25  google_pay=1/9
+window 19:03  apple_pay=0/3  card=0/15  google_pay=0/5  qr=0/1
+window 19:04  apple_pay=1/10  card=1/27  google_pay=0/6
+window 19:05  apple_pay=1/14  card=0/23  google_pay=0/1
+ALERT 19:06 apple_pay: 1/5 = 20% failed
+ALERT 19:06 card: 4/24 = 17% failed
+window 19:06  apple_pay=1/5  card=4/24  google_pay=0/7
+ALERT 19:07 apple_pay: 1/9 = 11% failed
+window 19:07  apple_pay=1/9  card=0/26  google_pay=0/6
+ALERT 19:08 google_pay: 1/6 = 17% failed
+window 19:08  apple_pay=1/15  card=1/23  google_pay=1/6
+window 19:09  apple_pay=1/11  card=0/21  google_pay=0/7  qr=0/1
+window 19:10  apple_pay=1/10  card=1/25  google_pay=1/12
+window 19:11  apple_pay=1/11  card=1/24  google_pay=0/6  qr=0/1
+window 19:12  apple_pay=0/12  card=2/26  google_pay=0/12  qr=0/1
+window 19:13  apple_pay=0/14  card=0/23  google_pay=0/10
+ALERT 19:14 qr: 1/2 = 50% failed
+window 19:14  apple_pay=0/9  card=0/18  google_pay=0/10  qr=1/2
+ALERT 19:15 card: 3/19 = 16% failed
+window 19:15  apple_pay=1/14  card=3/19  google_pay=0/4
+window 19:16  apple_pay=0/12  card=1/23  google_pay=0/6
+ALERT 19:17 card: 2/18 = 11% failed
+window 19:17  apple_pay=0/13  card=2/18  google_pay=0/10  qr=0/4
+window 19:18  apple_pay=0/16  card=1/21  google_pay=0/9
+window 19:19  apple_pay=1/12  card=1/20  google_pay=0/4  qr=0/1
+ALERT 19:20 google_pay: 2/13 = 15% failed
+window 19:20  apple_pay=1/10  card=2/22  google_pay=2/13
+ALERT 19:21 google_pay: 1/9 = 11% failed
+window 19:21  apple_pay=0/11  card=1/31  google_pay=1/9
+ALERT 19:22 google_pay: 1/5 = 20% failed
+window 19:22  apple_pay=0/10  card=2/23  google_pay=1/5  qr=0/1
+ALERT 19:23 google_pay: 1/2 = 50% failed
+window 19:23  apple_pay=1/12  card=0/20  google_pay=1/2  qr=0/2
+window 19:24  apple_pay=1/12  card=1/18  google_pay=0/3  qr=0/3
+ALERT 19:25 apple_pay: 6/16 = 38% failed
+window 19:25  apple_pay=6/16  card=0/17  google_pay=0/6  qr=0/1
+window 19:26  apple_pay=0/14  card=0/25  google_pay=0/12  qr=0/1
+ALERT 19:27 google_pay: 1/4 = 25% failed
+window 19:27  apple_pay=0/7  card=1/28  google_pay=1/4
+window 19:28  apple_pay=0/6  card=2/23  google_pay=0/5  qr=0/2
+ALERT 19:29 qr: 1/1 = 100% failed
+window 19:29  apple_pay=0/9  card=1/15  google_pay=0/5  qr=1/1
+ALERT 19:30 card: 4/27 = 15% failed
+window 19:30  apple_pay=0/6  card=4/27  google_pay=0/2  qr=0/2
+ALERT 19:31 google_pay: 1/4 = 25% failed
+window 19:31  apple_pay=1/10  card=0/15  google_pay=1/4
+window 19:32  apple_pay=1/11  card=1/26  google_pay=0/10  qr=0/2
+ALERT 19:33 google_pay: 1/7 = 14% failed
+window 19:33  apple_pay=0/14  card=1/20  google_pay=1/7
+ALERT 19:34 apple_pay: 1/7 = 14% failed
+ALERT 19:34 google_pay: 1/9 = 11% failed
+window 19:34  apple_pay=1/7  card=1/20  google_pay=1/9  qr=0/1
+ALERT 19:35 apple_pay: 2/13 = 15% failed
+ALERT 19:35 qr: 1/1 = 100% failed
+window 19:35  apple_pay=2/13  card=1/18  google_pay=0/10  qr=1/1
+ALERT 19:36 card: 2/19 = 11% failed
+ALERT 19:36 google_pay: 1/9 = 11% failed
+window 19:36  apple_pay=1/10  card=2/19  google_pay=1/9
+window 19:37  apple_pay=0/7  card=1/18  google_pay=0/5  qr=0/2
+ALERT 19:38 google_pay: 1/9 = 11% failed
+window 19:38  apple_pay=0/4  card=1/27  google_pay=1/9  qr=0/1
+window 19:39  apple_pay=0/9  card=2/23  google_pay=0/4
+ALERT 19:40 apple_pay: 2/10 = 20% failed
+window 19:40  apple_pay=2/10  card=0/13  google_pay=0/12
+window 19:41  apple_pay=1/14  card=2/24  google_pay=0/7  qr=0/1
+ALERT 19:42 apple_pay: 2/13 = 15% failed
+window 19:42  apple_pay=2/13  card=2/28  google_pay=0/2
+ALERT 19:43 apple_pay: 1/9 = 11% failed
+ALERT 19:43 card: 3/26 = 12% failed
+ALERT 19:43 google_pay: 2/7 = 29% failed
+window 19:43  apple_pay=1/9  card=3/26  google_pay=2/7
+window 19:44  apple_pay=0/14  card=2/30  google_pay=0/12  qr=0/3
+ALERT 19:45 qr: 1/2 = 50% failed
+window 19:45  apple_pay=0/10  card=0/23  google_pay=0/5  qr=1/2
+ALERT 19:46 google_pay: 2/11 = 18% failed
+window 19:46  apple_pay=0/5  card=0/19  google_pay=2/11  qr=0/1
+ALERT 19:47 google_pay: 2/8 = 25% failed
+window 19:47  apple_pay=1/11  card=0/22  google_pay=2/8  qr=0/1
+ALERT 19:48 google_pay: 1/8 = 12% failed
+window 19:48  apple_pay=0/3  card=2/28  google_pay=1/8  qr=0/1
+window 19:49  apple_pay=0/9  card=2/23  google_pay=0/4  qr=0/1
+ALERT 19:50 apple_pay: 1/8 = 12% failed
+window 19:50  apple_pay=1/8  card=2/23  google_pay=0/4  qr=0/2
+ALERT 19:51 card: 3/22 = 14% failed
+window 19:51  apple_pay=1/11  card=3/22  google_pay=0/7
+ALERT 19:52 apple_pay: 1/5 = 20% failed
+window 19:52  apple_pay=1/5  card=1/24  google_pay=0/10  qr=0/1
+window 19:53  apple_pay=0/8  card=0/10  google_pay=0/9  qr=0/1
+window 19:54  apple_pay=0/7  card=0/21  google_pay=0/5  qr=0/2
+window 19:55  apple_pay=0/8  card=1/14  google_pay=0/5  qr=0/2
+ALERT 19:56 google_pay: 1/4 = 25% failed
+window 19:56  apple_pay=0/11  card=1/19  google_pay=1/4
+ALERT 19:57 apple_pay: 1/5 = 20% failed
+window 19:57  apple_pay=1/5  card=0/18  google_pay=0/7
+ALERT 19:58 apple_pay: 1/6 = 17% failed
+ALERT 19:58 google_pay: 1/6 = 17% failed
+window 19:58  apple_pay=1/6  card=1/23  google_pay=1/6  qr=0/1
+ALERT 19:59 apple_pay: 3/12 = 25% failed
+window 19:59  apple_pay=3/12  card=0/25  google_pay=0/8  qr=0/1
+window 20:00  apple_pay=0/10  card=0/18  google_pay=0/4  qr=0/2
+ALERT 20:01 card: 2/19 = 11% failed
+ALERT 20:01 google_pay: 2/10 = 20% failed
+window 20:01  apple_pay=1/12  card=2/19  google_pay=2/10  qr=0/1
+window 20:02  apple_pay=1/12  card=0/10  google_pay=0/7  qr=0/1
+ALERT 20:03 card: 2/17 = 12% failed
+window 20:03  apple_pay=1/11  card=2/17  google_pay=0/12  qr=0/1
+window 20:04  apple_pay=0/7  card=1/22  google_pay=0/5  qr=0/2
+ALERT 20:05 apple_pay: 1/9 = 11% failed
+window 20:05  apple_pay=1/9  card=0/11  google_pay=0/7  qr=0/1
+window 20:06  apple_pay=1/11  card=1/15  google_pay=0/7
+window 20:07  apple_pay=0/8  card=1/18  google_pay=0/6
+ALERT 20:08 google_pay: 2/10 = 20% failed
+window 20:08  apple_pay=1/12  card=0/19  google_pay=2/10
+ALERT 20:09 google_pay: 1/9 = 11% failed
+window 20:09  apple_pay=1/10  card=0/17  google_pay=1/9
+ALERT 20:10 apple_pay: 1/7 = 14% failed
+ALERT 20:10 card: 3/17 = 18% failed
+window 20:10  apple_pay=1/7  card=3/17  google_pay=0/6  qr=0/1
+ALERT 20:11 google_pay: 2/8 = 25% failed
+window 20:11  apple_pay=0/7  card=1/20  google_pay=2/8
+ALERT 20:12 card: 3/20 = 15% failed
+window 20:12  apple_pay=0/11  card=3/20  google_pay=0/9
+ALERT 20:13 card: 3/23 = 13% failed
+window 20:13  apple_pay=0/10  card=3/23  google_pay=0/7
+ALERT 20:14 apple_pay: 1/7 = 14% failed
+ALERT 20:14 card: 4/19 = 21% failed
+ALERT 20:14 google_pay: 1/6 = 17% failed
+window 20:14  apple_pay=1/7  card=4/19  google_pay=1/6  qr=0/1
+window 20:15  apple_pay=1/11  card=0/25  google_pay=0/9
+window 20:16  apple_pay=0/9  card=1/18  google_pay=0/4
+ALERT 20:17 apple_pay: 1/7 = 14% failed
+ALERT 20:17 google_pay: 1/4 = 25% failed
+window 20:17  apple_pay=1/7  card=0/19  google_pay=1/4
+window 20:18  apple_pay=0/6  card=0/19  google_pay=0/6
+window 20:19  apple_pay=0/7  card=1/14  google_pay=0/7
+ALERT 20:20 apple_pay: 2/9 = 22% failed
+window 20:20  apple_pay=2/9  card=0/17  google_pay=0/3
+window 20:21  apple_pay=1/15  card=1/11  google_pay=0/4
+ALERT 20:22 google_pay: 1/8 = 12% failed
+window 20:22  apple_pay=1/11  card=0/20  google_pay=1/8
+ALERT 20:23 apple_pay: 2/9 = 22% failed
+window 20:23  apple_pay=2/9  card=0/11  google_pay=0/4  qr=0/3
+ALERT 20:24 apple_pay: 1/7 = 14% failed
+ALERT 20:24 google_pay: 1/5 = 20% failed
+window 20:24  apple_pay=1/7  card=0/15  google_pay=1/5  qr=0/2
+window 20:25  apple_pay=0/6  card=1/27  google_pay=0/8
+window 20:26  apple_pay=0/5  card=2/20  google_pay=0/8
+window 20:27  apple_pay=0/12  card=2/21  google_pay=0/8
+window 20:28  apple_pay=1/10  card=1/14  google_pay=0/5
+window 20:29  apple_pay=0/7  card=1/19  google_pay=0/5  qr=0/1
+ALERT 20:30 apple_pay: 1/6 = 17% failed
+window 20:30  apple_pay=1/6  card=0/14  google_pay=0/2
+ALERT 20:31 apple_pay: 1/6 = 17% failed
+window 20:31  apple_pay=1/6  card=1/13  google_pay=1/10  qr=0/1
+window 20:32  apple_pay=0/4  card=1/16  google_pay=0/3
+ALERT 20:33 apple_pay: 1/9 = 11% failed
+ALERT 20:33 card: 2/17 = 12% failed
+window 20:33  apple_pay=1/9  card=2/17  google_pay=0/6
+ALERT 20:34 card: 2/14 = 14% failed
+window 20:34  apple_pay=0/8  card=2/14  google_pay=0/10
+ALERT 20:35 apple_pay: 2/9 = 22% failed
+ALERT 20:35 card: 2/13 = 15% failed
+window 20:35  apple_pay=2/9  card=2/13  google_pay=0/11
+ALERT 20:36 google_pay: 2/8 = 25% failed
+window 20:36  apple_pay=0/13  card=0/18  google_pay=2/8
+window 20:37  apple_pay=0/8  card=2/24  google_pay=0/3
+ALERT 20:38 google_pay: 1/5 = 20% failed
+window 20:38  apple_pay=0/7  card=2/21  google_pay=1/5  qr=0/1
+ALERT 20:39 apple_pay: 1/5 = 20% failed
+ALERT 20:39 google_pay: 2/7 = 29% failed
+window 20:39  apple_pay=1/5  card=0/20  google_pay=2/7
+window 20:40  apple_pay=0/6  card=0/17  google_pay=0/7
+ALERT 20:41 apple_pay: 1/8 = 12% failed
+ALERT 20:41 card: 3/29 = 10% failed
+window 20:41  apple_pay=1/8  card=3/29  google_pay=1/11  qr=0/2
+window 20:42  apple_pay=1/12  card=1/28  google_pay=0/5
+window 20:43  apple_pay=0/8  card=1/20  google_pay=0/8
+ALERT 20:44 apple_pay: 2/2 = 100% failed
+ALERT 20:44 google_pay: 2/9 = 22% failed
+window 20:44  apple_pay=2/2  card=1/22  google_pay=2/9
+ALERT 20:45 apple_pay: 2/12 = 17% failed
+ALERT 20:45 card: 2/17 = 12% failed
+window 20:45  apple_pay=2/12  card=2/17  google_pay=0/9
+window 20:46  apple_pay=0/8  card=1/13  google_pay=0/6
+ALERT 20:47 google_pay: 1/4 = 25% failed
+window 20:47  apple_pay=0/7  card=0/22  google_pay=1/4  qr=0/1
+window 20:48  apple_pay=1/11  card=1/18  google_pay=0/5  qr=0/2
+ALERT 20:49 google_pay: 2/11 = 18% failed
+window 20:49  apple_pay=0/4  card=0/16  google_pay=2/11  qr=0/1
+ALERT 20:50 google_pay: 1/6 = 17% failed
+window 20:50  apple_pay=0/4  card=2/23  google_pay=1/6  qr=0/1
+window 20:51  apple_pay=0/10  card=0/23  google_pay=0/5  qr=0/1
+window 20:52  apple_pay=1/15  card=0/14  google_pay=1/10  qr=0/2
+window 20:53  apple_pay=0/9  card=2/21  google_pay=0/6
+window 20:54  apple_pay=0/6  card=0/13  google_pay=0/3
+ALERT 20:55 apple_pay: 1/8 = 12% failed
+window 20:55  apple_pay=1/8  card=2/26  google_pay=1/11  qr=0/1
+window 20:56  apple_pay=0/5  card=1/20  google_pay=0/2
+window 20:57  apple_pay=0/6  card=1/13  google_pay=0/7  qr=0/2
+ALERT 20:58 card: 5/19 = 26% failed
+ALERT 20:58 google_pay: 2/4 = 50% failed
+window 20:58  apple_pay=0/10  card=5/19  google_pay=2/4  qr=0/1
+window 20:59  apple_pay=0/11  card=0/20  google_pay=0/7  qr=0/1
+window 21:00  apple_pay=0/9  card=0/8  google_pay=0/4
+ALERT 21:01 apple_pay: 1/9 = 11% failed
+ALERT 21:01 card: 3/17 = 18% failed
+window 21:01  apple_pay=1/9  card=3/17  google_pay=0/5
+window 21:02  apple_pay=1/12  card=1/13  google_pay=0/3  qr=0/1
+window 21:03  apple_pay=0/5  card=1/13  google_pay=0/4
+ALERT 21:04 apple_pay: 2/11 = 18% failed
+ALERT 21:04 card: 1/7 = 14% failed
+window 21:04  apple_pay=2/11  card=1/7  google_pay=0/7  qr=0/1
+ALERT 21:05 google_pay: 1/6 = 17% failed
+window 21:05  apple_pay=0/6  card=1/16  google_pay=1/6
+window 21:06  apple_pay=0/9  card=1/11  google_pay=0/5
+window 21:07  apple_pay=0/3  card=1/14  google_pay=0/4  qr=0/1
+window 21:08  apple_pay=0/9  card=0/5  google_pay=0/2  qr=0/1
+window 21:09  apple_pay=0/5  card=1/12  google_pay=0/5  qr=0/3
+window 21:10  apple_pay=0/7  card=0/17  google_pay=0/3  qr=0/2
+window 21:11  apple_pay=0/7  card=0/10
+ALERT 21:12 apple_pay: 1/7 = 14% failed
+ALERT 21:12 google_pay: 1/3 = 33% failed
+window 21:12  apple_pay=1/7  card=1/14  google_pay=1/3  qr=0/1
+ALERT 21:13 apple_pay: 1/3 = 33% failed
+window 21:13  apple_pay=1/3  card=0/13  google_pay=0/2
+window 21:14  apple_pay=0/3  card=1/16  google_pay=0/6
+ALERT 21:15 card: 2/17 = 12% failed
+window 21:15  apple_pay=0/11  card=2/17  google_pay=0/1  qr=0/3
+window 21:16  apple_pay=0/3  card=1/15  google_pay=0/8
+ALERT 21:17 apple_pay: 1/5 = 20% failed
+ALERT 21:17 card: 3/18 = 17% failed
+window 21:17  apple_pay=1/5  card=3/18  google_pay=0/6
+window 21:18  apple_pay=1/10  card=1/27  google_pay=0/5
+window 21:19  apple_pay=0/10  card=1/13  google_pay=0/4  qr=0/1
+ALERT 21:20 google_pay: 1/4 = 25% failed
+window 21:20  apple_pay=0/9  card=0/17  google_pay=1/4
+window 21:21  apple_pay=0/7  card=0/10  google_pay=0/5  qr=0/1
+window 21:22  apple_pay=0/9  card=1/17  google_pay=0/4
+window 21:23  apple_pay=0/6  card=0/11  google_pay=0/5
+window 21:24  apple_pay=0/6  card=1/19  google_pay=0/4  qr=0/1
+window 21:25  apple_pay=0/4  card=0/11  google_pay=0/7
+ALERT 21:26 card: 2/15 = 13% failed
+ALERT 21:26 google_pay: 1/6 = 17% failed
+window 21:26  apple_pay=0/3  card=2/15  google_pay=1/6
+window 21:27  apple_pay=0/7  card=1/17  google_pay=0/3
+window 21:28  apple_pay=0/3  card=1/18  google_pay=0/5
+ALERT 21:29 card: 3/14 = 21% failed
+window 21:29  apple_pay=0/10  card=3/14  google_pay=0/4  qr=0/1
+window 21:30  apple_pay=0/2  card=1/14  google_pay=0/1
+ALERT 21:31 apple_pay: 3/10 = 30% failed
+window 21:31  apple_pay=3/10  card=1/20  google_pay=0/3  qr=0/2
+ALERT 21:32 apple_pay: 1/5 = 20% failed
+ALERT 21:32 card: 2/11 = 18% failed
+window 21:32  apple_pay=1/5  card=2/11  google_pay=0/5
+window 21:33  apple_pay=0/5  card=1/11  google_pay=0/8
+ALERT 21:34 apple_pay: 1/8 = 12% failed
+ALERT 21:34 qr: 1/1 = 100% failed
+window 21:34  apple_pay=1/8  card=0/9  google_pay=0/5  qr=1/1
+window 21:35  apple_pay=0/6  card=0/14  google_pay=0/5
+window 21:36  apple_pay=0/4  card=0/11  google_pay=0/7  qr=0/2
+window 21:37  apple_pay=0/7  card=0/15  google_pay=0/4
+ALERT 21:38 card: 2/13 = 15% failed
+window 21:38  apple_pay=0/6  card=2/13  google_pay=0/7
+ALERT 21:39 card: 2/11 = 18% failed
+window 21:39  apple_pay=0/7  card=2/11  google_pay=0/4  qr=0/2
+ALERT 21:40 apple_pay: 1/4 = 25% failed
+ALERT 21:40 card: 3/13 = 23% failed
+window 21:40  apple_pay=1/4  card=3/13  google_pay=0/4
+ALERT 21:41 google_pay: 1/9 = 11% failed
+window 21:41  apple_pay=0/5  card=0/9  google_pay=1/9
+ALERT 21:42 card: 2/15 = 13% failed
+ALERT 21:42 google_pay: 1/8 = 12% failed
+window 21:42  apple_pay=0/7  card=2/15  google_pay=1/8  qr=0/1
+ALERT 21:43 card: 1/7 = 14% failed
+ALERT 21:43 google_pay: 1/5 = 20% failed
+window 21:43  apple_pay=0/4  card=1/7  google_pay=1/5
+ALERT 21:44 apple_pay: 1/6 = 17% failed
+window 21:44  apple_pay=1/6  card=1/12  google_pay=0/6
+window 21:45  apple_pay=0/5  card=1/13  google_pay=0/1
+ALERT 21:46 google_pay: 1/5 = 20% failed
+window 21:46  apple_pay=0/5  card=1/21  google_pay=1/5
+ALERT 21:47 apple_pay: 1/9 = 11% failed
+window 21:47  apple_pay=1/9  card=0/16  google_pay=0/4
+ALERT 21:48 google_pay: 2/8 = 25% failed
+window 21:48  apple_pay=0/5  card=1/18  google_pay=2/8  qr=0/2
+ALERT 21:49 apple_pay: 1/9 = 11% failed
+ALERT 21:49 google_pay: 2/6 = 33% failed
+window 21:49  apple_pay=1/9  card=1/19  google_pay=2/6
+window 21:50  apple_pay=0/5  card=0/10  google_pay=0/4
+window 21:51  apple_pay=0/7  card=1/11  google_pay=0/3
+ALERT 21:52 apple_pay: 1/3 = 33% failed
+window 21:52  apple_pay=1/3  card=1/16  google_pay=0/6
+ALERT 21:53 card: 4/15 = 27% failed
+window 21:53  apple_pay=0/4  card=4/15  google_pay=0/3  qr=0/1
+ALERT 21:54 card: 1/9 = 11% failed
+window 21:54  apple_pay=0/7  card=1/9  google_pay=0/10
+ALERT 21:55 apple_pay: 1/6 = 17% failed
+ALERT 21:55 google_pay: 1/5 = 20% failed
+window 21:55  apple_pay=1/6  card=0/16  google_pay=1/5
+ALERT 21:56 apple_pay: 2/7 = 29% failed
+window 21:56  apple_pay=2/7  card=1/15  google_pay=0/5
+ALERT 21:57 google_pay: 2/7 = 29% failed
+window 21:57  apple_pay=0/6  card=1/14  google_pay=2/7
+window 21:58  apple_pay=0/6  card=1/17  google_pay=0/6
+window 21:59  apple_pay=0/8  card=0/17  google_pay=0/3
+ALERT 22:00 card: 2/12 = 17% failed
+window 22:00  apple_pay=0/4  card=2/12  google_pay=0/2  qr=0/1
+ALERT 22:01 google_pay: 1/1 = 100% failed
+window 22:01  apple_pay=0/2  card=0/7  google_pay=1/1
+ALERT 22:02 google_pay: 1/4 = 25% failed
+window 22:02  apple_pay=0/3  card=0/11  google_pay=1/4  qr=0/1
+ALERT 22:03 google_pay: 1/5 = 20% failed
+window 22:03  apple_pay=0/1  card=0/8  google_pay=1/5  qr=0/2
+window 22:04  apple_pay=0/7  card=0/8  google_pay=0/3
+ALERT 22:05 card: 1/7 = 14% failed
+window 22:05  apple_pay=0/4  card=1/7  google_pay=0/4  qr=0/1
+ALERT 22:06 apple_pay: 1/6 = 17% failed
+ALERT 22:06 google_pay: 1/2 = 50% failed
+window 22:06  apple_pay=1/6  card=1/15  google_pay=1/2
+window 22:07  apple_pay=0/5  card=0/5
+ALERT 22:08 card: 3/10 = 30% failed
+window 22:08  apple_pay=0/2  card=3/10  google_pay=0/1
+ALERT 22:09 card: 1/5 = 20% failed
+window 22:09  apple_pay=0/4  card=1/5  google_pay=0/2  qr=0/1
+ALERT 22:10 card: 2/10 = 20% failed
+window 22:10  apple_pay=0/5  card=2/10
+window 22:11  apple_pay=0/3  card=0/1  google_pay=0/4
+window 22:12  apple_pay=0/5  card=0/12  google_pay=0/1  qr=0/1
+window 22:13  apple_pay=0/3  card=0/7  google_pay=0/4
+window 22:14  apple_pay=0/5  card=1/13
+ALERT 22:15 apple_pay: 1/5 = 20% failed
+ALERT 22:15 card: 1/8 = 12% failed
+window 22:15  apple_pay=1/5  card=1/8  google_pay=0/4
+window 22:16  apple_pay=0/2  card=0/4  google_pay=0/3
+window 22:17  apple_pay=0/4  card=0/4  google_pay=0/1  qr=0/2
+window 22:18  apple_pay=0/2  card=0/7  google_pay=0/7
+ALERT 22:19 card: 1/8 = 12% failed
+window 22:19  apple_pay=0/4  card=1/8  google_pay=0/2
+window 22:20  apple_pay=0/4  card=0/7
+ALERT 22:21 apple_pay: 1/6 = 17% failed
+window 22:21  apple_pay=1/6  card=0/12  google_pay=0/5  qr=0/1
+window 22:22  apple_pay=0/4  card=0/5  google_pay=0/1  qr=0/1
+window 22:23  apple_pay=0/4  card=0/8  google_pay=0/2  qr=0/2
+window 22:24  apple_pay=0/6  card=0/6  google_pay=0/3  qr=0/3
+window 22:25  apple_pay=0/6  card=0/11  google_pay=0/5
+ALERT 22:26 card: 2/8 = 25% failed
+window 22:26  apple_pay=0/7  card=2/8  qr=0/1
+ALERT 22:27 apple_pay: 1/2 = 50% failed
+window 22:27  apple_pay=1/2  card=0/8  google_pay=0/2
+ALERT 22:28 apple_pay: 1/5 = 20% failed
+window 22:28  apple_pay=1/5  card=0/7  google_pay=0/7
+ALERT 22:29 google_pay: 1/5 = 20% failed
+window 22:29  apple_pay=0/2  card=0/8  google_pay=1/5  qr=0/1
+ALERT 22:30 card: 1/7 = 14% failed
+window 22:30  apple_pay=0/1  card=1/7  google_pay=0/1
+ALERT 22:31 card: 1/9 = 11% failed
+window 22:31  apple_pay=0/1  card=1/9  google_pay=0/3
+ALERT 22:32 apple_pay: 1/3 = 33% failed
+window 22:32  apple_pay=1/3  card=0/3
+window 22:33  apple_pay=0/5  card=0/9  google_pay=0/1
+window 22:34  apple_pay=0/2  card=0/11  google_pay=0/5  qr=0/2
+window 22:35  apple_pay=0/2  card=0/10  google_pay=0/4
+window 22:36  apple_pay=0/5  card=0/9  google_pay=0/3
+window 22:37  apple_pay=0/3  card=0/7  google_pay=0/4
+window 22:38  apple_pay=0/3  card=0/6  google_pay=0/3
+ALERT 22:39 card: 1/7 = 14% failed
+window 22:39  apple_pay=0/5  card=1/7  google_pay=0/1  qr=0/1
+ALERT 22:40 card: 1/6 = 17% failed
+ALERT 22:40 google_pay: 1/4 = 25% failed
+window 22:40  apple_pay=0/2  card=1/6  google_pay=1/4  qr=0/1
+window 22:41  apple_pay=0/5  card=0/7  google_pay=0/2
+window 22:42  apple_pay=0/2  card=0/3  google_pay=0/1  qr=0/1
+window 22:43  apple_pay=0/5  card=0/7  google_pay=0/5
+ALERT 22:44 apple_pay: 1/4 = 25% failed
+window 22:44  apple_pay=1/4  card=0/8  google_pay=0/2  qr=0/1
+ALERT 22:45 card: 1/9 = 11% failed
+ALERT 22:45 qr: 1/1 = 100% failed
+window 22:45  apple_pay=0/1  card=1/9  google_pay=0/3  qr=1/1
+window 22:46  apple_pay=0/3  card=1/12  google_pay=0/4
+ALERT 22:47 apple_pay: 1/5 = 20% failed
+window 22:47  apple_pay=1/5  card=1/13  google_pay=0/5
+window 22:48  apple_pay=0/1  card=0/8  google_pay=0/2
+ALERT 22:49 card: 2/9 = 22% failed
+ALERT 22:49 google_pay: 1/2 = 50% failed
+window 22:49  apple_pay=0/7  card=2/9  google_pay=1/2  qr=0/1
+ALERT 22:50 card: 2/9 = 22% failed
+window 22:50  apple_pay=0/4  card=2/9  google_pay=0/6  qr=0/1
+window 22:51  apple_pay=0/3  card=0/8  google_pay=0/7
+window 22:52  apple_pay=0/2  card=0/8  google_pay=0/3
+ALERT 22:53 apple_pay: 1/1 = 100% failed
+ALERT 22:53 qr: 1/1 = 100% failed
+window 22:53  apple_pay=1/1  card=0/6  google_pay=0/2  qr=1/1
+window 22:54  apple_pay=0/2  card=0/9  google_pay=0/2
+ALERT 22:55 apple_pay: 1/3 = 33% failed
+ALERT 22:55 card: 2/10 = 20% failed
+window 22:55  apple_pay=1/3  card=2/10  google_pay=0/2
+window 22:56  apple_pay=0/1  card=0/6  google_pay=0/2  qr=0/1
+ALERT 22:57 apple_pay: 1/5 = 20% failed
+window 22:57  apple_pay=1/5  card=0/6  google_pay=0/1
+ALERT 22:58 apple_pay: 1/6 = 17% failed
+window 22:58  apple_pay=1/6  card=0/7  google_pay=0/3
+ALERT 22:59 google_pay: 1/8 = 12% failed
+window 22:59  apple_pay=0/3  card=0/7  google_pay=1/8
+window 23:00  card=0/5  google_pay=0/1
+window 23:01  apple_pay=0/4  card=0/3  google_pay=0/4
+ALERT 23:02 apple_pay: 1/3 = 33% failed
+window 23:02  apple_pay=1/3  card=0/3  google_pay=0/1
+window 23:03  apple_pay=0/2  card=0/1
+ALERT 23:04 apple_pay: 1/1 = 100% failed
+window 23:04  apple_pay=1/1  card=0/2  google_pay=0/2
+window 23:05  apple_pay=0/3  card=0/2  google_pay=0/1
+window 23:06  apple_pay=0/1  card=0/6  google_pay=0/1  qr=0/1
+ALERT 23:07 google_pay: 1/1 = 100% failed
+window 23:07  card=0/3  google_pay=1/1
+window 23:08  card=0/4
+window 23:09  apple_pay=0/2  card=0/5  google_pay=0/1
+window 23:10  apple_pay=0/1  card=0/5  google_pay=0/1
+ALERT 23:11 card: 1/5 = 20% failed
+window 23:11  apple_pay=0/1  card=1/5  google_pay=0/2
+ALERT 23:12 card: 2/4 = 50% failed
+ALERT 23:12 google_pay: 1/1 = 100% failed
+window 23:12  apple_pay=0/2  card=2/4  google_pay=1/1
+window 23:13  apple_pay=0/5  card=0/3  google_pay=0/2  qr=0/1
+ALERT 23:14 card: 1/1 = 100% failed
+ALERT 23:14 google_pay: 1/5 = 20% failed
+window 23:14  apple_pay=0/3  card=1/1  google_pay=1/5
+window 23:15  apple_pay=0/1  card=0/7  google_pay=0/2
+window 23:16  apple_pay=0/1  card=0/1  google_pay=0/5  qr=0/1
+window 23:17  apple_pay=0/2  card=0/5  google_pay=0/2
+window 23:18  apple_pay=0/1  card=0/4
+ALERT 23:19 apple_pay: 1/3 = 33% failed
+window 23:19  apple_pay=1/3  card=0/4  google_pay=0/1
+ALERT 23:20 card: 1/4 = 25% failed
+window 23:20  apple_pay=0/2  card=1/4  qr=0/1
+window 23:21  apple_pay=0/3  card=0/9  google_pay=0/3
+window 23:22  apple_pay=0/1  card=0/4  google_pay=0/2
+window 23:23  apple_pay=0/1  card=0/4  google_pay=0/3
+window 23:24  apple_pay=0/1  card=0/5  google_pay=0/1
+window 23:25  apple_pay=0/2  card=0/6
+ALERT 23:26 card: 1/1 = 100% failed
+window 23:26  apple_pay=0/2  card=1/1  qr=0/1
+window 23:27  apple_pay=0/3  card=0/3  google_pay=0/2
+window 23:28  apple_pay=0/1  card=0/4  google_pay=0/2
+window 23:29  card=0/3  google_pay=0/1  qr=0/1
+window 23:30  card=0/2  google_pay=0/2
+window 23:31  apple_pay=0/2  card=0/5  google_pay=0/3
+window 23:32  apple_pay=0/2  card=0/4  google_pay=0/2
+window 23:33  apple_pay=0/1  card=0/3  google_pay=0/1
+window 23:34  apple_pay=0/2  card=0/6  google_pay=0/3
+window 23:35  apple_pay=0/3  card=0/6  google_pay=0/1
+window 23:36  card=0/2
+window 23:37  apple_pay=0/1  card=0/4  google_pay=0/1
+window 23:38  card=0/3
+window 23:39  apple_pay=0/2  card=0/2  google_pay=0/5
+ALERT 23:40 apple_pay: 1/7 = 14% failed
+window 23:40  apple_pay=1/7  card=0/2  google_pay=0/2
+window 23:41  apple_pay=0/2  card=0/2  google_pay=0/1
+window 23:42  apple_pay=0/2  card=0/4  google_pay=0/2
+ALERT 23:43 card: 1/4 = 25% failed
+ALERT 23:43 google_pay: 1/1 = 100% failed
+window 23:43  apple_pay=0/5  card=1/4  google_pay=1/1
+window 23:44  apple_pay=0/1  card=0/4  google_pay=0/3
+window 23:45  apple_pay=0/1  card=0/4  google_pay=0/2  qr=0/1
+window 23:46  apple_pay=0/1  card=0/1  google_pay=0/1
+ALERT 23:47 card: 1/7 = 14% failed
+window 23:47  apple_pay=0/3  card=1/7  google_pay=0/1
+window 23:48  apple_pay=0/2  card=0/2  google_pay=0/2
+window 23:49  apple_pay=0/1  card=0/3  google_pay=0/2
+ALERT 23:50 google_pay: 1/4 = 25% failed
+window 23:50  card=0/5  google_pay=1/4
+window 23:51  apple_pay=0/1  card=0/4
+ALERT 23:52 card: 1/6 = 17% failed
+window 23:52  apple_pay=0/2  card=1/6  google_pay=0/4
+window 23:53  card=0/5  google_pay=0/1
+ALERT 23:54 card: 1/3 = 33% failed
+window 23:54  apple_pay=0/2  card=1/3
+window 23:55  apple_pay=0/3  card=0/2  google_pay=0/1
+window 23:56  apple_pay=0/2  card=0/3  google_pay=0/2
+ALERT 23:57 card: 1/3 = 33% failed
+window 23:57  apple_pay=0/2  card=1/3  google_pay=0/1
+window 23:58  apple_pay=0/2  card=0/3  google_pay=0/1  qr=0/1
+ALERT 23:59 card: 1/5 = 20% failed
+window 23:59  apple_pay=0/1  card=1/5  google_pay=0/2  qr=0/1
+partitions read: {0: 33788, 1: 34234, 2: 33766}
+totals: {'received': 101788, 'unique': 100703, 'counted_final': 33277, 'duplicates': 1085, 'windows': 1431, 'alerts': 887, 'rejected_late': 840, 'rejected_late_final': 291}

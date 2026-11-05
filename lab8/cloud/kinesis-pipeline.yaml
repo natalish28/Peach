@@ -1,0 +1,129 @@
+# The pipeline from the lab diagram: producer -> Kinesis -> Firehose -> S3 -> Athena,
+# and Kinesis -> Lambda -> SNS for the alert. Needs an account that may use Kinesis
+# (not the AWS Free plan). Shards bill by the hour: delete the stack when finished.
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Lab 8 - streaming payments through Kinesis and Firehose
+
+Parameters:
+  Bucket:
+    Type: String
+    Default: peach-lab8-757159686525
+
+Resources:
+  Stream:
+    Type: AWS::Kinesis::Stream
+    Properties:
+      Name: lab8-payments
+      ShardCount: 1
+      RetentionPeriodHours: 24
+
+  AlertTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: lab8-kinesis-alerts
+
+  FirehoseRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: firehose.amazonaws.com }
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: read-stream-write-bucket
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - kinesis:DescribeStream
+                  - kinesis:GetShardIterator
+                  - kinesis:GetRecords
+                  - kinesis:ListShards
+                Resource: !GetAtt Stream.Arn
+              - Effect: Allow
+                Action: [s3:AbortMultipartUpload, s3:GetBucketLocation, s3:GetObject, s3:ListBucket, s3:ListBucketMultipartUploads, s3:PutObject]
+                Resource:
+                  - !Sub arn:aws:s3:::${Bucket}
+                  - !Sub arn:aws:s3:::${Bucket}/stream-kinesis/*
+
+  Firehose:
+    Type: AWS::KinesisFirehose::DeliveryStream
+    Properties:
+      DeliveryStreamName: lab8-payments-to-s3
+      DeliveryStreamType: KinesisStreamAsSource
+      KinesisStreamSourceConfiguration:
+        KinesisStreamARN: !GetAtt Stream.Arn
+        RoleARN: !GetAtt FirehoseRole.Arn
+      ExtendedS3DestinationConfiguration:
+        BucketARN: !Sub arn:aws:s3:::${Bucket}
+        RoleARN: !GetAtt FirehoseRole.Arn
+        Prefix: stream-kinesis/dt=!{timestamp:yyyy-MM-dd}/
+        ErrorOutputPrefix: stream-kinesis-errors/!{firehose:error-output-type}/
+        BufferingHints: { IntervalInSeconds: 60, SizeInMBs: 5 }
+        CompressionFormat: UNCOMPRESSED
+
+  AlertRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: lambda.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaKinesisExecutionRole
+      Policies:
+        - PolicyName: publish-alert
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: sns:Publish
+                Resource: !Ref AlertTopic
+
+  AlertFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: lab8-kinesis-alert
+      Runtime: python3.13
+      Handler: index.handler
+      Timeout: 60
+      Role: !GetAtt AlertRole.Arn
+      Environment:
+        Variables:
+          TOPIC_ARN: !Ref AlertTopic
+      Code:
+        ZipFile: |
+          import base64, json, os
+          from collections import defaultdict
+          import boto3
+
+          sns = boto3.client("sns")
+
+          def handler(event, context):
+              counts = defaultdict(lambda: [0, 0])
+              for record in event["Records"]:
+                  e = json.loads(base64.b64decode(record["kinesis"]["data"]))
+                  if e["status"] in ("success", "failure"):
+                      counts[e["paymentMethod"]][e["status"] == "failure"] += 1
+              for method, (ok, failed) in counts.items():
+                  total = ok + failed
+                  if total >= 20 and failed / total > 0.10:
+                      sns.publish(
+                          TopicArn=os.environ["TOPIC_ARN"],
+                          Subject=f"Payments alert: {method}",
+                          Message=f"{method}: {failed}/{total} = {failed / total:.0%} failed",
+                      )
+
+  AlertTrigger:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn: !GetAtt Stream.Arn
+      FunctionName: !Ref AlertFunction
+      StartingPosition: LATEST
+      BatchSize: 1000
+      MaximumBatchingWindowInSeconds: 60

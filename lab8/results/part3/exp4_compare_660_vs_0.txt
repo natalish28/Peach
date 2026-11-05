@@ -1,0 +1,18 @@
+                                  base     other
+final events in windows          33568     32876
+failed events in windows          2022      1959
+window/method cells               4437      4421
+cells above 10%                    891       882
+cells that differ: 608 of 4437
+  00:06 google_pay: [0, 1] -> None
+  00:38 qr: [1, 1] -> None
+  00:47 google_pay: [0, 1] -> None
+  01:18 google_pay: [0, 3] -> [0, 2]
+  02:08 google_pay: [0, 3] -> [0, 2]
+  02:10 card: [0, 4] -> [0, 3]
+  02:19 card: [1, 5] -> [1, 4]
+  02:37 card: [0, 3] -> [0, 2]
+  02:57 card: [0, 2] -> [0, 1]
+  03:01 google_pay: [0, 2] -> [0, 1]
+  03:07 card: [1, 2] -> [0, 1]
+  03:20 card: [0, 1] -> None

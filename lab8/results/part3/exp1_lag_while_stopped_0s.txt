@@ -1,0 +1,12 @@
+GROUP                  exp1
+COORDINATOR-NODE       0
+COORDINATOR-PARTITION  __consumer_offsets/2
+STATE                  Empty
+BALANCER               
+MEMBERS                0
+TOTAL-LAG              15
+
+TOPIC     PARTITION  CURRENT-OFFSET  LOG-START-OFFSET  LOG-END-OFFSET  LAG   MEMBER-ID  CLIENT-ID  HOST
+payments  0          20100           0                 20104           4                           
+payments  1          20183           0                 20188           5                           
+payments  2          20052           0                 20058           6                           

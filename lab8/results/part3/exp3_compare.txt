@@ -1,0 +1,6 @@
+                                  base     other
+final events in windows          33003     33003
+failed events in windows          1966     11273
+window/method cells               4421      4421
+cells above 10%                    882      3390
+cells that differ: 3232 of 4421

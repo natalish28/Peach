@@ -1,0 +1,127 @@
+# Free-plan stand-in for the lab diagram, where Kinesis and Firehose are not available:
+# producer -> SQS -> Lambda -> S3 -> Athena, and the same Lambda -> SNS for the alert.
+# SQS takes the place of the stream, the Lambda batching window the place of Firehose's buffer.
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Lab 8 - streaming payments through SQS and Lambda
+
+Parameters:
+  Bucket:
+    Type: String
+    Default: peach-lab8-757159686525
+
+Resources:
+  Queue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: lab8-payments
+      VisibilityTimeout: 360
+
+  AlertTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: lab8-alerts
+
+  # Proof of delivery without e-mail: every alert also lands in this queue.
+  AlertCheckQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: lab8-alerts-check
+
+  AlertCheckQueuePolicy:
+    Type: AWS::SQS::QueuePolicy
+    Properties:
+      Queues: [!Ref AlertCheckQueue]
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: sns.amazonaws.com }
+            Action: sqs:SendMessage
+            Resource: !GetAtt AlertCheckQueue.Arn
+            Condition:
+              ArnEquals: { aws:SourceArn: !Ref AlertTopic }
+
+  AlertCheckSubscription:
+    Type: AWS::SNS::Subscription
+    Properties:
+      TopicArn: !Ref AlertTopic
+      Protocol: sqs
+      Endpoint: !GetAtt AlertCheckQueue.Arn
+      RawMessageDelivery: true
+
+  WriterRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal: { Service: lambda.amazonaws.com }
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/service-role/AWSLambdaSQSQueueExecutionRole
+      Policies:
+        - PolicyName: write-bucket-publish-alert
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: s3:PutObject
+                Resource: !Sub arn:aws:s3:::${Bucket}/stream/*
+              - Effect: Allow
+                Action: sns:Publish
+                Resource: !Ref AlertTopic
+
+  WriterFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: lab8-stream-writer
+      Runtime: python3.13
+      Handler: index.handler
+      Timeout: 60
+      Role: !GetAtt WriterRole.Arn
+      Environment:
+        Variables:
+          BUCKET: !Ref Bucket
+          TOPIC_ARN: !Ref AlertTopic
+      Code:
+        ZipFile: |
+          import json, os, uuid
+          from collections import defaultdict
+          import boto3
+
+          s3 = boto3.client("s3")
+          sns = boto3.client("sns")
+
+          def handler(event, context):
+              events = [json.loads(r["body"]) for r in event["Records"]]
+              by_day = defaultdict(list)
+              counts = defaultdict(lambda: [0, 0])
+              for e in events:
+                  by_day[e["modifiedDate"][:10]].append(e)
+                  if e["status"] in ("success", "failure"):
+                      counts[e["paymentMethod"]][e["status"] == "failure"] += 1
+              for day, rows in by_day.items():
+                  body = "\n".join(json.dumps(e, ensure_ascii=False) for e in rows) + "\n"
+                  s3.put_object(
+                      Bucket=os.environ["BUCKET"],
+                      Key=f"stream/dt={day}/{uuid.uuid4()}.jsonl",
+                      Body=body.encode(),
+                  )
+              for method, (ok, failed) in counts.items():
+                  total = ok + failed
+                  if total >= 20 and failed / total > 0.10:
+                      sns.publish(
+                          TopicArn=os.environ["TOPIC_ARN"],
+                          Subject=f"Payments alert: {method}",
+                          Message=f"{method}: {failed}/{total} = {failed / total:.0%} failed",
+                      )
+
+  WriterTrigger:
+    Type: AWS::Lambda::EventSourceMapping
+    Properties:
+      EventSourceArn: !GetAtt Queue.Arn
+      FunctionName: !Ref WriterFunction
+      BatchSize: 2000
+      MaximumBatchingWindowInSeconds: 30
+      ScalingConfig: { MaximumConcurrency: 2 }

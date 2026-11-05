@@ -1,0 +1,25 @@
+/Users/miunafw/Desktop/ооад/lab8/streaming/producer.py:78: DeprecationWarning: key_serializer does not implement kafka.serializer.Serializer
+  main()
+/Users/miunafw/Desktop/ооад/lab8/streaming/producer.py:78: DeprecationWarning: value_serializer does not implement kafka.serializer.Serializer
+  main()
+sent 5000/101788  receivedAt=2026-10-15T06:10:00Z
+sent 10000/101788  receivedAt=2026-10-15T07:32:17Z
+sent 15000/101788  receivedAt=2026-10-15T08:27:18Z
+sent 20000/101788  receivedAt=2026-10-15T09:15:50Z
+sent 25000/101788  receivedAt=2026-10-15T10:12:36Z
+sent 30000/101788  receivedAt=2026-10-15T11:12:14Z
+sent 35000/101788  receivedAt=2026-10-15T12:06:36Z
+sent 40000/101788  receivedAt=2026-10-15T12:51:21Z
+sent 45000/101788  receivedAt=2026-10-15T13:41:23Z
+sent 50000/101788  receivedAt=2026-10-15T14:33:21Z
+sent 55000/101788  receivedAt=2026-10-15T15:29:47Z
+sent 60000/101788  receivedAt=2026-10-15T16:20:41Z
+sent 65000/101788  receivedAt=2026-10-15T17:06:49Z
+sent 70000/101788  receivedAt=2026-10-15T17:47:27Z
+sent 75000/101788  receivedAt=2026-10-15T18:26:36Z
+sent 80000/101788  receivedAt=2026-10-15T19:04:32Z
+sent 85000/101788  receivedAt=2026-10-15T19:44:24Z
+sent 90000/101788  receivedAt=2026-10-15T20:31:25Z
+sent 95000/101788  receivedAt=2026-10-15T21:24:50Z
+sent 100000/101788  receivedAt=2026-10-15T22:49:51Z
+done: 101788 events in 1696s

@@ -1,0 +1,31 @@
+# Redpanda (Kafka-compatible) and its Console. Clients on the host use localhost:19092.
+name: lab8
+
+services:
+  redpanda:
+    image: redpandadata/redpanda:v25.2.9
+    command:
+      - redpanda
+      - start
+      - --smp=1
+      - --memory=1G
+      - --overprovisioned
+      - --kafka-addr=internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr=internal://redpanda:9092,external://localhost:19092
+    ports:
+      - "19092:19092"
+    healthcheck:
+      test: ["CMD", "rpk", "cluster", "health", "--exit-when-healthy"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  console:
+    image: redpandadata/console:v3.2.2
+    environment:
+      KAFKA_BROKERS: redpanda:9092
+    ports:
+      - "8080:8080"
+    depends_on:
+      redpanda:
+        condition: service_healthy

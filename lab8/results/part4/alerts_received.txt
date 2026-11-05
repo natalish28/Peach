@@ -1,0 +1,13 @@
+apple_pay: 48/52 = 92% failed
+google_pay: 37/37 = 100% failed
+google_pay: 24/27 = 89% failed
+card: 103/103 = 100% failed
+apple_pay: 44/44 = 100% failed
+apple_pay: 7/69 = 10% failed
+card: 82/91 = 90% failed
+google_pay: 25/28 = 89% failed
+google_pay: 29/29 = 100% failed
+card: 93/93 = 100% failed
+google_pay: 3/25 = 12% failed
+apple_pay: 35/41 = 85% failed
+card: 91/97 = 94% failed
