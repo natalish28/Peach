@@ -3,7 +3,7 @@ COMPOSE := docker compose
 -include .env
 export
 
-.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role deploy-reports report-now logs-reports llm-hello parse deploy-ai logs-ai infra-init infra-fmt infra-validate infra-plan infra-env
+.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role deploy-reports report-now logs-reports llm-hello parse deploy-ai logs-ai infra-init infra-fmt infra-validate infra-plan infra-env gcp-init gcp-fmt gcp-validate gcp-plan deploy-gcp-backend deploy-gcp-frontend gcp-db-stop gcp-db-start gcp-logs
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -137,3 +137,36 @@ infra-plan: ## Speculative plan in HCP Terraform. Applies happen only there, aft
 
 infra-env: ## Write Cognito/parser/reports values from Terraform outputs into .env
 	./scripts/infra-env.sh
+
+# --- Google Cloud (Lab 9): gcp/, its own HCP Terraform workspace (peach-gcp) -------------------
+
+GCP_OUT = terraform -chdir=gcp output -raw
+
+gcp-init: ## Terraform init for gcp/ (state in HCP Terraform workspace peach-gcp)
+	terraform -chdir=gcp init
+
+gcp-fmt: ## Format the GCP Terraform files
+	terraform -chdir=gcp fmt -recursive
+
+gcp-validate: ## Check the GCP Terraform files without touching Google Cloud
+	terraform -chdir=gcp init -backend=false -input=false >/dev/null
+	terraform -chdir=gcp validate
+
+gcp-plan: ## Speculative plan for gcp/ in HCP Terraform. Applies happen only there
+	terraform -chdir=gcp plan
+
+deploy-gcp-backend: ## Build the runtime image, push to Artifact Registry, roll Cloud Run onto it
+	./scripts/deploy-gcp-backend.sh
+
+deploy-gcp-frontend: ## Static export to Firebase Hosting, /api/** rewritten to Cloud Run
+	./scripts/deploy-gcp-frontend.sh
+
+gcp-db-stop: ## Stop the Cloud SQL instance (compute stops billing; storage still bills)
+	gcloud sql instances patch "$$($(GCP_OUT) sql_instance)" --project "$$($(GCP_OUT) project_id)" --activation-policy=NEVER --quiet
+
+gcp-db-start: ## Start the Cloud SQL instance again
+	gcloud sql instances patch "$$($(GCP_OUT) sql_instance)" --project "$$($(GCP_OUT) project_id)" --activation-policy=ALWAYS --quiet
+
+gcp-logs: ## Read the Cloud Run API's recent logs
+	gcloud logging read 'resource.type="cloud_run_revision" AND resource.labels.service_name="'"$$($(GCP_OUT) api_service)"'"' \
+		--project "$$($(GCP_OUT) project_id)" --freshness 30m --limit 100 --format 'value(timestamp,severity,textPayload)'

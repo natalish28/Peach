@@ -9,10 +9,14 @@ callback_urls = [
   "http://localhost:3000/auth/callback",
   "https://d1wt0wouypakka.cloudfront.net",
   "https://d1wt0wouypakka.cloudfront.net/auth/callback",
+  # Lab 9: the same app on Firebase Hosting (gcp/), signing in against this pool.
+  "https://peach-natalish-2026-web.web.app",
+  "https://peach-natalish-2026-web.web.app/auth/callback",
 ]
 logout_urls = [
   "http://localhost:3000",
   "https://d1wt0wouypakka.cloudfront.net",
+  "https://peach-natalish-2026-web.web.app",
 ]
 
 vpc_id          = "vpc-0b1ce9b8049973a6d"

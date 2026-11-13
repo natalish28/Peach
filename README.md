@@ -607,3 +607,59 @@ make infra-env        # write terraform outputs (Cognito ids, parser URL, ...) t
 There is no `terraform apply` target on purpose: applies happen only in HCP Terraform, after a
 merge. Secrets (`google_client_secret`) and personal data (`budget_email`) are variables of the
 workspace, not files.
+
+## 15. Google Cloud (Lab 9)
+
+The core of Peach (frontend, API and database) also runs on Google Cloud, described in `gcp/`
+([ADR 0008](docs/adr/0008-google-cloud.md)). It is a second environment with its own database. It
+shares sign-in with AWS.
+
+| Piece | Google Cloud | Where it is defined |
+| --- | --- | --- |
+| Frontend | Firebase Hosting, `https://<hosting_site_id>.web.app`; `/api/**` rewritten to Cloud Run | `gcp/hosting.tf`, `scripts/deploy-gcp-frontend.sh` |
+| API | Cloud Run `peach-api`, runs as `peach-api@…`, min 0 / max 1 instances | `gcp/api.tf`, `scripts/deploy-gcp-backend.sh` |
+| Database | Cloud SQL for PostgreSQL 17, `db-f1-micro`, 10 GB SSD; URL in Secret Manager | `gcp/database.tf` |
+| Images | Artifact Registry `peach` (keeps the 2 newest) | `gcp/api.tf` |
+| **Still on AWS** | Cognito sign-in, the weekly report (Scheduler, SQS, S3, SES), the agenda parser (Bedrock) | `infra/` |
+
+### First time
+
+1. Console: create the project (the ID in `gcp/terraform.tfvars`), link billing, and add a budget
+   alert under Billing → Budgets & alerts (for example $5 with 50/90/100 %).
+2. Laptop: `gcloud auth login && gcloud auth application-default login`, then
+   `cd gcp/bootstrap && terraform init && terraform apply -var project_id=<id>`. This creates the
+   service accounts `hcp-terraform` and `peach-api`, and the workload identity pool. It creates no keys.
+3. HCP Terraform: create the workspace `peach-gcp` (VCS: this repository, working directory `gcp`,
+   trigger path `gcp/`) and set the environment variables `TFC_GCP_PROVIDER_AUTH`,
+   `TFC_GCP_RUN_SERVICE_ACCOUNT_EMAIL` and `TFC_GCP_WORKLOAD_PROVIDER_NAME` to the bootstrap's
+   outputs. Give `peach-dev` the trigger path `infra/`, so that one cloud's change never plans the
+   other.
+4. Merge to `main`, then Confirm & Apply in `peach-gcp`. The Cloud Run service starts with
+   Google's placeholder image. The Firebase URLs in `infra/terraform.tfvars` reach Cognito through
+   the `peach-dev` apply.
+
+### Deploying
+
+```bash
+make gcp-init              # terraform init in gcp/ (reads outputs from HCP Terraform)
+make deploy-gcp-backend    # build target "runtime", push, gcloud run services update; migrations run on start
+make deploy-gcp-frontend   # static export, firebase deploy (needs COGNITO_* in .env: make infra-env)
+make gcp-plan              # speculative plan; applies happen only in HCP Terraform
+```
+
+If Firebase's rewrite does not forward a request (it allows 60 s per request),
+`GCP_API_DIRECT=1 make deploy-gcp-frontend` builds the bundle against the Cloud Run URL instead.
+CORS already allows the Hosting origins.
+
+### Stopping the database
+
+Cloud SQL does not pause. It bills about $0.0105 an hour until it is stopped:
+
+```bash
+make gcp-db-stop     # compute stops billing; the 10 GB of storage (~$1.70/month) still bills
+make gcp-db-start    # takes a few minutes; the API answers 503 on /api/v1/health/ready until then
+```
+
+Terraform ignores the instance's `activation_policy`, so an apply leaves it as you set it.
+`terraform destroy` in the `peach-gcp` workspace removes everything this section created,
+including the database.

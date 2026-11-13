@@ -11,3 +11,5 @@ backend/
 docs/
 infra/bootstrap/
 infra/.build/
+gcp/bootstrap/
+gcp/.build/
