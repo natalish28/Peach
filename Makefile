@@ -3,7 +3,7 @@ COMPOSE := docker compose
 -include .env
 export
 
-.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role deploy-reports report-now logs-reports llm-hello parse deploy-ai logs-ai infra-init infra-fmt infra-validate infra-plan infra-env gcp-init gcp-fmt gcp-validate gcp-plan deploy-gcp-backend deploy-gcp-frontend gcp-db-stop gcp-db-start gcp-logs
+.PHONY: help up down build logs ps migrate revision test test-backend test-frontend lint fmt clean shell-backend shell-db deploy-backend destroy-backend logs-backend migrate-backend cert domain deploy-frontend destroy-frontend github-role deploy-reports report-now logs-reports llm-hello parse deploy-ai logs-ai infra-init infra-fmt infra-validate infra-plan infra-env gcp-init gcp-fmt gcp-validate gcp-plan deploy-gcp-backend deploy-gcp-frontend gcp-db-stop gcp-db-start gcp-logs gcp-local gcp-local-down
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-16s\033[0m %s\n", $$1, $$2}'
@@ -170,3 +170,9 @@ gcp-db-start: ## Start the Cloud SQL instance again
 gcp-logs: ## Read the Cloud Run API's recent logs
 	gcloud logging read 'resource.type="cloud_run_revision" AND resource.labels.service_name="'"$$($(GCP_OUT) api_service)"'"' \
 		--project "$$($(GCP_OUT) project_id)" --freshness 30m --limit 100 --format 'value(timestamp,severity,textPayload)'
+
+gcp-local: ## Lab 9 without GCP: runtime image with PORT=8080 (as Cloud Run) + local Postgres + frontend on :3000
+	scripts/run-cloudrun-local.sh
+
+gcp-local-down: ## Stop and remove what gcp-local started
+	scripts/run-cloudrun-local.sh down

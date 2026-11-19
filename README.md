@@ -651,6 +651,17 @@ If Firebase's rewrite does not forward a request (it allows 60 s per request),
 `GCP_API_DIRECT=1 make deploy-gcp-frontend` builds the bundle against the Cloud Run URL instead.
 CORS already allows the Hosting origins.
 
+### Without a Google Cloud account
+
+```bash
+make gcp-local           # runtime image with PORT=8080, as Cloud Run runs it, + local Postgres + frontend on :3000
+API_HOST_PORT=8081 make gcp-local   # if the host port 8080 is taken
+make gcp-local-down      # remove the containers and the database volume
+```
+
+The same image `deploy-gcp-backend` pushes, without the Lambda adapter. `cd gcp && terraform init
+-backend=false && terraform validate` checks the configuration without credentials.
+
 ### Stopping the database
 
 Cloud SQL does not pause. It bills about $0.0105 an hour until it is stopped:

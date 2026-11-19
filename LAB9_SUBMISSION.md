@@ -1,35 +1,95 @@
 # Lab 9 — The same system on another cloud: Peach on Google Cloud
 
-The core of Peach (the static frontend, the FastAPI API and PostgreSQL) runs on Google Cloud. It
-is described in [`gcp/`](gcp/), with its own HCP Terraform workspace `peach-gcp`. Sign-in
+> **I took the route without a Google Cloud account:** no billing account was opened, so the
+> `gcp/` configuration is validated (not applied), the Cloud Run image runs locally, and the Part 4
+> demos are done in the Colab notebook and a public Looker Studio dashboard.
+
+The core of Peach (the static frontend, the FastAPI API and PostgreSQL) runs on Google Cloud. It is
+designed to run on Google Cloud and described in [`gcp/`](gcp/), with its own HCP Terraform workspace `peach-gcp`. Sign-in
 (Cognito), the weekly report and the agenda parser stay on AWS. Service choices:
 [ADR 0008](docs/adr/0008-google-cloud.md). How to deploy and stop it: README section 15.
 
-> Fill in before submitting: every **TODO** below.
-
 ## 1. Commit and ADR
 
-- `gcp/` Terraform, bootstrap, scripts, Makefile, README, ADR: **TODO commit / PR link**
+- `gcp/` Terraform, bootstrap, scripts, Makefile, README, ADR: commit
+  [`e2f7ab4`](https://github.com/natalish28/Peach/commit/e2f7ab41ffd8755d740788f4e41e76513adc7d8c)
+  on branch `lab9` (**TODO** replace with the merged PR link)
 - ADR: [`docs/adr/0008-google-cloud.md`](docs/adr/0008-google-cloud.md)
 
-## 2. Peach running on Google Cloud
+### `terraform init` and `terraform validate` in `gcp/`
 
-- Frontend: **TODO** `https://peach-natalish-2026-web.web.app`
-- API (Cloud Run): **TODO** `https://peach-api-….us-central1.run.app`
-- Call that reads from the database: sign in, open `/items`. That page calls `GET /api/v1/items`
-  through the Firebase rewrite to Cloud Run, which reads Cloud SQL. `GET /api/v1/health/ready`
-  (with the same bearer token: every `/api/v1` route requires one) runs `SELECT 1` against Cloud
-  SQL as well; the public `GET /health` only shows that the container is up.
-- Data: **migrations run against the empty database** (the container entrypoint runs
-  `alembic upgrade head` on start). There was no `pg_dump` from Aurora, because Aurora is in a
-  private subnet with IAM authentication. Users who sign in with the same Cognito account get a
-  fresh row in `users`.
+Both run without Google credentials. `-backend=false` skips the HCP Terraform `cloud` block, which
+would need a token and an existing workspace. `terraform plan` needs a project, so it is skipped.
+Full output: [`lab9/terraform-validate.txt`](lab9/terraform-validate.txt).
 
-### Part 0 — the project, without keys
+```text
+$ cd gcp && terraform init -backend=false
+Initializing provider plugins...
+- Reusing version 7.46.2 of hashicorp/google-beta from the dependency lock file
+- Reusing version 3.9.1 of hashicorp/random from the dependency lock file
+- Reusing version 7.46.2 of hashicorp/google from the dependency lock file
+Terraform has been successfully initialized!
+
+$ terraform validate
+Success! The configuration is valid.
+
+$ cd bootstrap && terraform init -backend=false && terraform validate
+Terraform has been successfully initialized!
+Success! The configuration is valid.
+```
+
+## 2. Peach, ready for Cloud Run, running locally
+
+`make gcp-local` ([`scripts/run-cloudrun-local.sh`](scripts/run-cloudrun-local.sh)) runs the core
+the way Cloud Run would run it:
+
+- The **backend image is the Dockerfile `runtime` target**, the same image
+  `make deploy-gcp-backend` pushes to Artifact Registry. It has no Mangum and no Lambda adapter
+  (those exist only in the `lambda` target). It is started as Cloud Run starts it:
+  `docker run -e PORT=8080 -p 8080:8080 -e K_SERVICE=peach-api …`. The entrypoint runs
+  `alembic upgrade head` and then uvicorn on `$PORT`.
+- **PostgreSQL 17** in a container next to it stands in for Cloud SQL (`postgres:17-alpine`, the
+  same major version as `gcp/database.tf`).
+- The **frontend** is built with the API URL baked in and served on `:3000`.
+- **Sign-in** stays on AWS Cognito, as in the GCP design; `http://localhost:3000` is an allowed
+  callback.
+
+On my laptop the host port 8080 was taken by Lab 8's Redpanda Console, so I ran it with
+`API_HOST_PORT=8081 make gcp-local`. The container still listens on `PORT=8080`; only the host
+side of `-p` differs.
+
+```text
+[entrypoint] applying migrations...
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, create items table
+…
+INFO  [alembic.runtime.migration] Running upgrade 0003 -> 0004, add agendas table
+[entrypoint] starting uvicorn...
+INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+```
+
+- Screenshot: [`lab9/screenshots/local-cloudrun.png`](lab9/screenshots/local-cloudrun.png). The
+  board after sign-in (Google through Cognito) with two tasks, loaded by `GET /api/v1/items`, which
+  reads PostgreSQL. The tasks stay after a reload. The API log and the table behind it:
+
+```text
+"POST /api/v1/items HTTP/1.1" 201 Created
+"GET /api/v1/items?limit=100 HTTP/1.1" 200 OK
+
+peach=# select name, status from items;
+ name | status
+------+--------
+ дз   | todo
+ lab  | todo
+```
+- Data: **migrations run against the empty database** (the container entrypoint, as it would on
+  Cloud Run). On Google Cloud there would be no `pg_dump` from Aurora either, because Aurora is in a
+  private subnet with IAM authentication.
+
+### Part 0 — the project, without keys (as designed in `gcp/bootstrap/`)
 
 | | |
 | --- | --- |
-| Project | `peach-natalish-2026`, budget alert $5/month at 50/90/100 % (alerts only) |
+| Project | `peach-natalish-2026` (designed, not created), budget alert $5/month at 50/90/100 % (alerts only) |
 | Service accounts | `hcp-terraform` (Terraform), `peach-api` (Cloud Run runs as it), optional `github-deploy` (CI). No default compute account, no Owner/Editor |
 | Roles of `hcp-terraform` | Cloud Run Admin, Cloud SQL Admin, Artifact Registry Administrator, Secret Manager Admin, Service Usage Admin, Firebase Admin; Service Account User **on `peach-api` only** |
 | Roles of `peach-api` | Cloud SQL Client (project); Secret Manager Secret Accessor **on the one secret** |
@@ -115,14 +175,32 @@ list page that reads every document on each refetch uses up 50,000 free reads a 
 
 ## 4. What else Google Cloud is good at
 
-Screenshots: `lab9/screenshots/` — **TODO** add the three files.
+Done without billing, in my copy of the course notebook *Lab 9. Part 4 without a Google Cloud
+bill* (free CPU runtime, no account, card or API key), and in Looker Studio.
 
-| Demo | What was done | Result |
-| --- | --- | --- |
-| BigQuery | [`lab9/bigquery/01_monthly_orders.sql`](lab9/bigquery/01_monthly_orders.sql) over `bigquery-public-data.thelook_ecommerce` (orders ⨝ order_items), in the sandbox | **TODO** bytes processed: … MB (of the 1 TiB free a month) |
-| Looker Studio | Line chart of `revenue_usd` and `cancelled_or_returned_pct` by `month`, data source = the saved query result | **TODO** screenshot |
-| Document AI / Vision OCR | **TODO**: Enterprise OCR processor in the console on one PDF, or Vision `TEXT_DETECTION` on a photo of a handwritten page | **TODO** screenshot; within the free 1,000 pages/units |
-| Vertex AI Studio (optional) | The Lab 6 agenda prompt (`SYSTEM` in `backend/app/ai/agenda.py`) with Gemini on the same pasted text | **TODO** answer and token count vs Nova Lite on Bedrock |
+- **Notebook** (Anyone with the link can view, outputs saved; Runtime → Run all on a fresh
+  runtime finishes without errors): **TODO** `https://colab.research.google.com/drive/…`
+- **Looker Studio** (public, over Our World in Data `owid-co2-data.csv`: a line chart, a geo
+  chart, a top-10 bar chart and a control): **TODO** `https://lookerstudio.google.com/reporting/…`
+  Data source: [`lab9/looker/owid-co2-countries.csv`](lab9/looker/owid-co2-countries.csv), the
+  OWID file reduced to countries only (rows with an ISO code, without the `OWID_*` aggregates such
+  as World or Asia, which would otherwise fill the top 10), from 1950, and 9 columns: 16,948 rows,
+  0.9 MB.
+
+| Demo | Instead of | What was done | Result |
+| --- | --- | --- | --- |
+| SQL over a public dataset | BigQuery | DuckDB in Colab | **TODO** the query, and rows / time |
+| OCR | Vision API | Tesseract and EasyOCR on the notebook's image | **TODO** which one read it better |
+| Document → Markdown | Document AI | Qwen3-VL 2B through Ollama on the scanned invoice | **TODO** one line on the quality |
+| Invoice → JSON | — | My prompt, with the same model, on the Markdown and on the image, checked against the right answer | **TODO** fields correct: Markdown …/…, image …/… |
+| Dashboard | Looker Studio over BigQuery | Looker Studio over the OWID CSV | link above |
+
+**Three sentences.** **TODO** (1) Which input worked better for the model, the Markdown or the
+image, and why. (2) Sections 4 and 5 took … min on … (free CPU / T4 GPU). (3) I would pay for
+Document AI instead once the documents arrive in volume and someone relies on each field: at
+$1.50 per 1,000 pages for OCR it costs less than the GPU hours a self-hosted model needs, it
+returns every field with a position and a confidence in the same shape every time, and it has no
+model, Ollama server or prompt to keep running and re-test.
 
 **When is Document AI the better tool than a general model, and when is it not?** Document AI fits
 documents with a known kind and layout: receipts, invoices, forms, IDs, scanned pages. It returns
@@ -160,7 +238,8 @@ month.
 
 ## Clean up
 
-- [ ] `make gcp-db-stop` after each session. At the end of the course: **TODO** run
-  `terraform destroy` in the `peach-gcp` workspace (Settings → Destruction and Deletion).
-- [ ] Delete the BigQuery tables or views and any Dataflow output. Delete the Document AI processor.
-- [ ] Check Billing → Reports a day later.
+Nothing was created on Google Cloud, so there is nothing to stop or bill. Locally,
+`make gcp-local-down` removes the containers, network and database volume that `make gcp-local`
+started. If the same setup is later applied for real: `make gcp-db-stop` after each session,
+`terraform destroy` in the `peach-gcp` workspace at the end, and check Billing → Reports a day
+later.
