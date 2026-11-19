@@ -11,9 +11,11 @@ designed to run on Google Cloud and described in [`gcp/`](gcp/), with its own HC
 
 ## 1. Commit and ADR
 
-- `gcp/` Terraform, bootstrap, scripts, Makefile, README, ADR: commit
+- `gcp/` Terraform, bootstrap, deploy scripts, Makefile, README, ADR: commit
   [`e2f7ab4`](https://github.com/natalish28/Peach/commit/e2f7ab41ffd8755d740788f4e41e76513adc7d8c)
-  on branch `lab9` (**TODO** replace with the merged PR link)
+- The route without an account (`make gcp-local`, validate output, screenshot): commit
+  [`49cdc4d`](https://github.com/natalish28/Peach/commit/49cdc4d0eacaf0ae1467ff09591a326d4560fc2e)
+- Branch: [`lab9`](https://github.com/natalish28/Peach/tree/lab9)
 - ADR: [`docs/adr/0008-google-cloud.md`](docs/adr/0008-google-cloud.md)
 
 ### `terraform init` and `terraform validate` in `gcp/`
