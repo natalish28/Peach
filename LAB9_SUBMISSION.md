@@ -182,12 +182,14 @@ bill* (on the free T4 GPU runtime; no account, card or API key), and in Looker S
 
 - **Notebook** (Anyone with the link can view, outputs saved; Runtime → Run all on a fresh
   runtime finishes without errors): 
-  <https://colab.research.google.com/drive/1H8P5eb2qH-WC_PkeHolUr6UCx_Mnzc1z3>
+  <https://colab.research.google.com/drive/1H8P5eb2qH-WC_PkeHolUr6UCx_Mnzc1z>
 - **Looker Studio** (public, over Our World in Data `owid-co2-data.csv`: a line chart, a geo
   chart, a top-10 bar chart and a country drop-down):
   <https://datastudio.google.com/reporting/6600d200-212c-4707-82d5-478b53bb8690>. The line chart
   uses a calculated field `year_date = PARSE_DATE("%Y", CAST(year AS TEXT))`, because a time
   series needs a date and the CSV has the year as a number.
+  The report belongs to my `@ucu.edu.ua` account: UCU's policy serves its data only to signed-in UCU
+  accounts, so outside the university the page opens with empty charts.
   Data source: [`lab9/looker/owid-co2-countries.csv`](lab9/looker/owid-co2-countries.csv), the
   OWID file reduced to countries only (rows with an ISO code, without the `OWID_*` aggregates such
   as World or Asia, which would otherwise fill the top 10), from 1950, and 9 columns: 16,948 rows,
