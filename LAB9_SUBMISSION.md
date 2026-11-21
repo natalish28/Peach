@@ -178,12 +178,16 @@ list page that reads every document on each refetch uses up 50,000 free reads a 
 ## 4. What else Google Cloud is good at
 
 Done without billing, in my copy of the course notebook *Lab 9. Part 4 without a Google Cloud
-bill* (free CPU runtime, no account, card or API key), and in Looker Studio.
+bill* (on the free T4 GPU runtime; no account, card or API key), and in Looker Studio.
 
 - **Notebook** (Anyone with the link can view, outputs saved; Runtime → Run all on a fresh
-  runtime finishes without errors): **TODO** `https://colab.research.google.com/drive/…`
+  runtime finishes without errors): 
+  <https://colab.research.google.com/drive/1H8P5eb2qH-WC_PkeHolUr6UCx_Mnzc1z3>
 - **Looker Studio** (public, over Our World in Data `owid-co2-data.csv`: a line chart, a geo
-  chart, a top-10 bar chart and a control): **TODO** `https://lookerstudio.google.com/reporting/…`
+  chart, a top-10 bar chart and a country drop-down):
+  <https://datastudio.google.com/reporting/6600d200-212c-4707-82d5-478b53bb8690>. The line chart
+  uses a calculated field `year_date = PARSE_DATE("%Y", CAST(year AS TEXT))`, because a time
+  series needs a date and the CSV has the year as a number.
   Data source: [`lab9/looker/owid-co2-countries.csv`](lab9/looker/owid-co2-countries.csv), the
   OWID file reduced to countries only (rows with an ISO code, without the `OWID_*` aggregates such
   as World or Asia, which would otherwise fill the top 10), from 1950, and 9 columns: 16,948 rows,
@@ -191,14 +195,31 @@ bill* (free CPU runtime, no account, card or API key), and in Looker Studio.
 
 | Demo | Instead of | What was done | Result |
 | --- | --- | --- | --- |
-| SQL over a public dataset | BigQuery | DuckDB in Colab | **TODO** the query, and rows / time |
-| OCR | Vision API | Tesseract and EasyOCR on the notebook's image | **TODO** which one read it better |
-| Document → Markdown | Document AI | Qwen3-VL 2B through Ollama on the scanned invoice | **TODO** one line on the quality |
-| Invoice → JSON | — | My prompt, with the same model, on the Markdown and on the image, checked against the right answer | **TODO** fields correct: Markdown …/…, image …/… |
-| Dashboard | Looker Studio over BigQuery | Looker Studio over the OWID CSV | link above |
+| SQL over a public dataset | BigQuery | DuckDB in Colab | output saved in the notebook |
+| OCR | Vision API | Tesseract and EasyOCR on the notebook's image | output saved in the notebook |
+| Document → Markdown | Document AI | Qwen3-VL 2B through Ollama on the scanned invoice | output saved in the notebook |
+| Invoice → JSON | — | My prompt ([`lab9/colab/my_prompt.txt`](lab9/colab/my_prompt.txt)), with the same model and the `Invoice` JSON schema, on the Markdown (A) and on the image (B), checked against the right answer | **A: 8 of 9, B: 8 of 9**; both miss only `seller` |
+| Dashboard | Looker Studio over BigQuery | Looker Studio (now Data Studio) over the OWID CSV | link above |
 
-**Three sentences.** **TODO** (1) Which input worked better for the model, the Markdown or the
-image, and why. (2) Sections 4 and 5 took … min on … (free CPU / T4 GPU). (3) I would pay for
+How the prompt got there. The first version asked for the seller and buyer as a name only, and
+scored 7 of 9 on both inputs: the right answer keeps the name, street and city on one line. With
+that spelled out it scored 8 of 9 on both. The one field left is a misread street name, not a
+format problem: both answers say `2a Kozelnyska St` for `2a Kozelnytska St`. Writing the street
+name into the prompt would only copy the answer into it, so the prompt stops there.
+
+```text
+A, Markdown: 8 of 9 fields match; wrong: seller
+   seller: expected 'Spry Analytics LLC, 2a Kozelnytska St, Lviv', got 'Spry Analytics LLC, 2a Kozelnyska St, Lviv'
+B, image: 8 of 9 fields match; wrong: seller
+   seller: expected 'Spry Analytics LLC, 2a Kozelnytska St, Lviv', got 'Spry Analytics LLC, 2a Kozelnyska St, Lviv'
+```
+
+**Three sentences.** The Markdown and the image scored the same (8 of 9) and failed on the same
+letter, because the Markdown was itself produced by the same Qwen3-VL model reading the same
+image: a misreading in that step is passed on, so the Markdown gives the model cleaner text but no
+information the image does not already have. Run all took about 3 minutes on the free T4 GPU, most of it installing
+Ollama and pulling the model; the prompt cell itself took 3 s on the Markdown and 4 s on the image
+(the course measured about 3.5 minutes for it on CPU). I would pay for
 Document AI instead once the documents arrive in volume and someone relies on each field: at
 $1.50 per 1,000 pages for OCR it costs less than the GPU hours a self-hosted model needs, it
 returns every field with a position and a confidence in the same shape every time, and it has no

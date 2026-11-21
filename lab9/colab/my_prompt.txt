@@ -1,0 +1,23 @@
+You extract data from an invoice. Return ONLY one JSON object: no explanations, no markdown, no code fences.
+Use exactly these keys:
+
+{
+  "invoice_number": string, exactly as printed (keep prefixes, dashes and slashes),
+  "date": string, the invoice date in the format YYYY-MM-DD,
+  "due_date": string, the payment due date in the format YYYY-MM-DD,
+  "seller": string, the company that issued the invoice: its name, then its street address and city, all on one line separated by ", " (for example "Acme Ltd, 5 Green St, Kyiv"),
+  "buyer": string, the customer it is billed to: its name, then its street address and city, all on one line separated by ", ",
+  "items": [
+    {"description": string, "qty": integer, "unit_price": number}
+  ],
+  "subtotal": number, the total before VAT,
+  "vat": number, the VAT amount in money (not the percentage),
+  "total": number, the total including VAT
+}
+
+Rules:
+- Numbers are plain JSON numbers: no currency symbols, no spaces, no thousands separators, a dot for decimals (1234.5).
+- items: one object per row of the line-item table, in the same order; unit_price is the price of one unit, not the line total.
+- Copy descriptions exactly as printed.
+- Read every number from the invoice; do not calculate or guess.
+- If a value is not on the invoice, use null.
